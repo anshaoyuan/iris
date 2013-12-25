@@ -1,0 +1,14 @@
+﻿# 可以被 git 忽略的文件列表
+/*.ids
+/*.ipr
+/*.iml
+/*.iws
+/.idea
+
+/.settings
+/.project
+
+/.classpath
+/src/application-local.properties
+
+/WebContent/WEB-INF/classes/
