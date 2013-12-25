@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	function getUser(btn){
 		var form=btn.form;
-		form.action="/bbs/user/login";
+		form.action="/iris/user/addUser_";
 		form.submit();
 	}
 	function deleteUser(btn){
@@ -18,13 +18,13 @@
 	}
 	function createUser(btn){
 		var form=btn.form;
-		form.action="/bbs/user/save";
+		form.action="/iris/user/addUser";
 		form.submit();
 	}
 </script>
 </head>
 <body>
-	<form  method="post">	
+	<form  method="post" modelAttribute="user" name="user16">	
 		用户名：<input name="userName" type="text"/><br/>
 		密&nbsp;码:<input name="passWd" type="password"/><br/>
 		<input type="button" value="创建用户" onclick="createUser(this);"/>
