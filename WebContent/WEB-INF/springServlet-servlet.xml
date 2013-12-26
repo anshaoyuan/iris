@@ -15,8 +15,29 @@
           http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
   <!--扫描的包-->
   <context:component-scan base-package="com.web"/>
-  <!--注解支持-->
-  <mvc:annotation-driven/>
+  <!--使servlet 可以将请求分发到controller-->
+	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+		<mvc:message-converters register-defaults="true">
+			<!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+		    	<constructor-arg value="UTF-8" />
+			</bean>
+			<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="prettyPrint" value="true"/>
+            </bean>
+  		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+	    <property name="mediaTypes" >
+	        <value>
+	            json=application/json
+	            xml=application/xml
+	        </value>
+	    </property>
+	</bean>
   <!--视图解析-->
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
     	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>  
