@@ -13,7 +13,7 @@
 	}
 	function deleteUser(btn){
 		var form=btn.form;
-		form.action="/bbs/user/delete";
+		form.action="/iris/user/test";
 		form.submit();
 	}
 	function createUser(btn){
