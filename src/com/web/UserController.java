@@ -1,5 +1,6 @@
 package com.web;
 
+import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,7 +77,7 @@ public class UserController {
 	
 	//produces=MediaType.APPLICATION_JSON_VALUE 返回User为json格式
 	@RequestMapping(value="/getUser",method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody User getUser( User user1){
+	public @ResponseBody User getUser(  User user1){
 		User user = new User();
 		user.setPassWd("111");
 		user.setUserName("test");
@@ -101,5 +102,23 @@ public class UserController {
 	@RequestMapping("/{id}/{pid}")
 	public String getId_P(@PathVariable(value="id") String id,@PathVariable(value="pid") String pid){
 		return id;
+	}
+	
+	//produces=MediaType.APPLICATION_JSON_VALUE 返回User为json格式
+	@RequestMapping(value="/stream",method = RequestMethod.POST)
+	public @ResponseBody User getUser(@RequestBody String body){
+		User user = new User();
+		user.setPassWd("111");
+		user.setUserName("test");
+		return user;
+	}
+	
+	@RequestMapping(value="entity",method = RequestMethod.POST)
+	//HttpEntity.getbody可以拿到请求参数，.getHeaders()能拿到cookie，牛掰
+	public @ResponseBody String getEntity(HttpEntity<String> entity){
+		System.out.println(entity.getHeaders());
+		
+		return entity.getBody();
+		
 	}
 }

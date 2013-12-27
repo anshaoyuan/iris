@@ -1,52 +1,52 @@
-<?xml version="1.0" encoding="UTF-8" ?>  
-<beans xmlns="http://www.springframework.org/schema/beans"  
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-        xmlns:context="http://www.springframework.org/schema/context"  
-        xmlns:mvc="http://www.springframework.org/schema/mvc"  
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
         xmlns:cache="http://www.springframework.org/schema/cache"
-        xsi:schemaLocation="  
-          http://www.springframework.org/schema/beans  
-          http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
-          http://www.springframework.org/schema/context  
-          http://www.springframework.org/schema/context/spring-context-3.2.xsd  
-          http://www.springframework.org/schema/mvc      
-          http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
-          http://www.springframework.org/schema/cache 
-          http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
+        xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.2.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+http://www.springframework.org/schema/cache
+http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
   <!--扫描的包-->
   <context:component-scan base-package="com.web"/>
   <!--使servlet 可以将请求分发到controller-->
-	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
-		<mvc:message-converters register-defaults="true">
-			<!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-		    	<constructor-arg value="UTF-8" />
-			</bean>
-			<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
-			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+                <mvc:message-converters register-defaults="true">
+                        <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+                        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                         <constructor-arg value="UTF-8" />
+                        </bean>
+                        <!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
+                        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="prettyPrint" value="true"/>
             </bean>
-  		</mvc:message-converters>
-	</mvc:annotation-driven>
-	
-	<!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
-	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-	    <property name="mediaTypes" >
-	        <value>
-	            json=application/json
-	            xml=application/xml
-	        </value>
-	    </property>
-	</bean>
+                  </mvc:message-converters>
+        </mvc:annotation-driven>
+        
+        <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
+        <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+         <property name="mediaTypes" >
+         <value>
+         json=application/json
+         xml=application/xml
+         </value>
+         </property>
+        </bean>
   <!--视图解析-->
-  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-    	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>  
-    	<property name="prefix" value="/pages/"/>  
-    	<property name="suffix" value=".jsp"/> 
-  </bean> 
+  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+            <property name="prefix" value="/pages/"/>
+            <property name="suffix" value=".jsp"/>
+  </bean>
   <!--静态文件的访问-->
-  <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>  
-  <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>  
-  <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/> 
+  <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>
+  <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
+  <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>
   
 </beans>
