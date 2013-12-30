@@ -13,7 +13,7 @@
 		default-lazy-init="true">
 
 	<description>Spring公共配置</description>
-	<!-- 使用annotation 自动注册bean,并检查@Required,@Autowired的属性已被注入 -->
+	<!-- 使用annotation 自动注册bean,并检查@Required,@Autowired的属性已被注入 排除了controller -->
 	<context:component-scan base-package="com">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
@@ -38,7 +38,7 @@
 		<context:property-placeholder ignore-resource-not-found="true"
 			location="classpath*:/application-local.properties" />	
 
-		<!-- Tomcat JDBC连接池 -->
+		<!-- Tomcat JDBC连接池
 		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 			<property name="driverClassName" value="${jdbc.driver}" />
 			<property name="url" value="${jdbc.url}" />
@@ -47,6 +47,6 @@
 			<property name="defaultAutoCommit" value="false" />
 		</bean>
 		
-
+ -->
 	</beans>
 </beans>

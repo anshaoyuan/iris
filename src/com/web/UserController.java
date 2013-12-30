@@ -1,5 +1,6 @@
 package com.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid; 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
 
 import com.entity.User;
 import com.entity.User_;
@@ -61,13 +63,14 @@ public class UserController {
 	//params="!param" 请求中不能有名为param 参数
 	//@RequestParam("param1")用户取请求中param1的值
 	//@ResponseBody 注释为返回值，一般用于ajax
-	@RequestMapping(value="/map/param",method = RequestMethod.GET,params="!param")
+	@RequestMapping(value="/map/param",method = RequestMethod.GET,params="param!=1")
 	public @ResponseBody String getParam(@RequestParam("param1") String param){
 		System.out.println(param);
 		return "test";
 	}
 	@RequestMapping(value="/test",method = RequestMethod.POST)
-	//getParams(String userName,String passWd) 等价于getParams(@RequestParam("userName") String userName,@RequestParam("passWd" )String passWd)
+	//getParams(String userName,String passWd) 等价于getParams(@RequestParam("userName") 
+	//String userName,@RequestParam("passWd" )String passWd)
 	//一个方法里的参数前如果没有加@RequestParam,相当于是默认加了一个
 	public @ResponseBody String getParams(String userName,String passWd){
 		System.out.println(userName);
@@ -76,8 +79,9 @@ public class UserController {
 	}
 	
 	//produces=MediaType.APPLICATION_JSON_VALUE 返回User为json格式
-	@RequestMapping(value="/getUser",method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody User getUser(  User user1){
+	@RequestMapping(value="/getUser",method = RequestMethod.POST)
+	public @ResponseBody User getUser(@RequestBody User user1){
+		
 		User user = new User();
 		user.setPassWd("111");
 		user.setUserName("test");
@@ -120,5 +124,10 @@ public class UserController {
 		
 		return entity.getBody();
 		
+	}
+	
+	@RequestMapping(value="/String",method=RequestMethod.POST)
+	public @ResponseBody String testString(@RequestBody String str){
+		return str;
 	}
 }
