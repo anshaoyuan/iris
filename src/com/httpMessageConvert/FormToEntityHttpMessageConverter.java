@@ -149,6 +149,11 @@ public class FormToEntityHttpMessageConverter extends
 			else {
 				String name = URLDecoder.decode(pair.substring(0, idx), charset.name());
 				String value = URLDecoder.decode(pair.substring(idx + 1), charset.name());
+				try {
+					value = getChangeString(value);
+				} catch (Exception e) {
+					
+				}
 				result.add(name, value);
 			}
 		}
@@ -156,10 +161,49 @@ public class FormToEntityHttpMessageConverter extends
 		Map<String, String> map = result.toSingleValueMap();
 		String json = JSONObject.toJSONString(map);
 		JavaType javaType = getJavaType(clazz, null);
-		//TODO 中文存在乱码，需要处理
 		return readJavaType(javaType,json);
 	}
-	
+
+	public   String getChangeString(String str) throws Exception{  
+        String encode = "GB2312";  
+        try {  
+            if (str.equals(new String(str.getBytes(encode), encode))) {  
+            	return new String(str.getBytes(encode),"utf-8");
+               
+            }  
+        } catch (Exception exception) {
+        	throw exception;
+        }  
+        encode = "ISO-8859-1";  
+        try {  
+            if (str.equals(new String(str.getBytes(encode), encode))) {  
+            	return new String(str.getBytes(encode),"utf-8");
+            	
+            }  
+        } catch (Exception exception1) {  
+        	throw exception1;
+        }  
+        encode = "UTF-8";  
+        try {  
+            if (str.equals(new String(str.getBytes(encode), encode))) {  
+            	return str;
+            	
+            }  
+        } catch (Exception exception2) {  
+        	throw exception2;
+        }  
+        encode = "GBK";  
+        try {  
+            if (str.equals(new String(str.getBytes(encode), encode))) {  
+            	return new String(str.getBytes(encode),"utf-8");
+            
+            }  
+        } catch (Exception exception3) {  
+        	throw exception3;
+        }  
+        //如果到这一步，再查询字符集，添加
+        return "";  
+    }
 	private Object readJavaType(JavaType javaType, String requestParam) {
 		try {
 			return this.objectMapper.readValue(requestParam, javaType);
