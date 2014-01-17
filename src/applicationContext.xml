@@ -18,9 +18,18 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
+	
+	
+	
+	
+	<!-- 定义aspectj -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	<!-- hibernate validator -->
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
-
+	<!-- 事务管理器配置, Jpa单数据源事务 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
 <!-- 国际化 -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
@@ -38,7 +47,7 @@
 		<context:property-placeholder ignore-resource-not-found="true"
 			location="classpath*:/application-local.properties" />	
 
-		<!-- Tomcat JDBC连接池
+		<!-- Tomcat JDBC连接池-->
 		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 			<property name="driverClassName" value="${jdbc.driver}" />
 			<property name="url" value="${jdbc.url}" />
@@ -46,7 +55,7 @@
 			<property name="password" value="${jdbc.password}" />
 			<property name="defaultAutoCommit" value="false" />
 		</bean>
-		
- -->
+		 
+
 	</beans>
 </beans>
