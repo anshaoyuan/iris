@@ -1,9 +1,13 @@
 package com.httpMessageConvert;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -140,30 +144,85 @@ public class FormToEntityHttpMessageConverter extends
 		String body = StreamUtils.copyToString(inputMessage.getBody(), charset);
 
 		String[] pairs = StringUtils.tokenizeToStringArray(body, "&");
-		MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>(pairs.length);
-		for (String pair : pairs) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		for(String pair: pairs){
 			int idx = pair.indexOf('=');
-			if (idx == -1) {
-				result.add(URLDecoder.decode(pair, charset.name()), null);
-			}
-			else {
-				String name = URLDecoder.decode(pair.substring(0, idx), charset.name());
-				String value = URLDecoder.decode(pair.substring(idx + 1), charset.name());
-				try {
-					value = getChangeString(value);
-				} catch (Exception e) {
+			if(idx == -1){
+				result.put(URLDecoder.decode(pair,"UTF-8"),null);
+			}else{
+				String name = URLDecoder.decode(pair.substring(0, idx), "UTF-8");
+				String value = URLDecoder.decode(pair.substring(idx + 1), "UTF-8");
+				
+				if(name.indexOf('>')!=-1){
+					setListEntity(result, name, value);
 					
+				}else if(name.indexOf('.')!=-1){
+					setSecondEntity(result, name, value);
+				}else{
+					value = changeStrToUTF8(value);
+					result.put(name, value);
 				}
-				result.add(name, value);
 			}
 		}
-	
-		Map<String, String> map = result.toSingleValueMap();
-		String json = JSONObject.toJSONString(map);
+
+		String json = JSONObject.toJSONString(result);
 		JavaType javaType = getJavaType(clazz, null);
 		return readJavaType(javaType,json);
 	}
 
+	/**
+	 * set propertie which is a list,such as List<cat> cat
+	 * input's name must be cat>id 
+	 * @param result
+	 * @param name
+	 * @param value
+	 * @throws UnsupportedEncodingException
+	 */
+	private void setListEntity(Map<String, Object> result, String name,
+			String value) throws UnsupportedEncodingException {
+		int split_index = name.indexOf('>');
+		String second_entity = URLDecoder.decode(name.substring(0, split_index), "UTF-8");
+		String second_entity_propertie = URLDecoder.decode(name.substring(split_index + 1), "UTF-8");
+		Map<String, String> second_result = new HashMap<String, String>();
+		value = changeStrToUTF8(value);
+		second_result.put(second_entity_propertie, value);
+		List<Map<String, String>> list = null;
+		if(result.containsKey(second_entity)){
+			list = (List<Map<String, String>>) result.get(second_entity);
+		}else{
+			list = new ArrayList<Map<String, String>>();
+		}
+		list.add(second_result);
+		result.put(second_entity,list);
+	}
+	/**
+	 * set propertie which is an entity too such as userInfo.accout.createDate
+	 * input's name must be account.createDate
+	 * @param result
+	 * @param name
+	 * @param value
+	 * @throws UnsupportedEncodingException
+	 */
+	private void setSecondEntity(Map<String, Object> result, String name,
+			String value) throws UnsupportedEncodingException {
+		int split_index = name.indexOf('.');
+		String second_entity = URLDecoder.decode(name.substring(0, split_index), "UTF-8");
+		String second_entity_propertie = URLDecoder.decode(name.substring(split_index + 1), "UTF-8");
+		Map<String, String> second_result = new HashMap<String, String>();
+		value = changeStrToUTF8(value);
+		second_result.put(second_entity_propertie, value);
+		result.put(second_entity,second_result);
+	}
+
+	private String changeStrToUTF8(String value) {
+		try {
+			value = getChangeString(value);
+		} catch (Exception e) {
+			
+		}
+		return value;
+	}
+	
 	public   String getChangeString(String str) throws Exception{  
         String encode = "GB2312";  
         try {  
