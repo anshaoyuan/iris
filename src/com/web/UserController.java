@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid; 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
 
-import com.entity.User;
-import com.entity.User_;
+import com.iris.entity.User;
+import com.iris.entity.User_;
 import com.validator.UserValidator;
 import com.validator.UserValidator_;
 

@@ -4,8 +4,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.entity.User;
-import com.entity.User_;
+import com.iris.entity.User_;
+
+
 
 public class UserValidator_ implements Validator{
 
