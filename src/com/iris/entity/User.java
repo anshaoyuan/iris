@@ -1,4 +1,4 @@
-package com.entity;
+package com.iris.entity;
 
 import java.util.List;
 

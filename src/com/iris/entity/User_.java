@@ -1,4 +1,4 @@
-package com.entity;
+package com.iris.entity;
 
 public class User_ {
 	
