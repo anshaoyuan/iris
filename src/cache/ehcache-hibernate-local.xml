@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="hibernateCache">
+
+	<diskStore path="java.io.tmpdir/ehcache/iris/hibernate" />
+
+	<!-- DefaultCache setting. -->
+	<defaultCache maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="600"
+		overflowToDisk="true" maxEntriesLocalDisk="100000" />
+
+	<!-- Special objects setting. -->
+	<!-- <cache name="com.visionet.sloth.cmcc.entity.account.User" maxEntriesLocalHeap="500" eternal="true"
+		overflowToDisk="true" maxEntriesLocalDisk="10000" /> -->
+		
+</ehcache>
