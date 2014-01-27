@@ -215,11 +215,11 @@ public class FormToEntityHttpMessageConverter extends
 	}
 
 	private String changeStrToUTF8(String value) {
-		try {
+		/*try {
 			value = getChangeString(value);
 		} catch (Exception e) {
 			
-		}
+		}*/
 		return value;
 	}
 	
