@@ -103,7 +103,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/{id}/{pid}")
-	public String getId_P(@PathVariable(value="id") String id,@PathVariable(value="pid") String pid){
+	public @ResponseBody String getId_P(@PathVariable(value="id") String id,@PathVariable(value="pid") String pid){
 		return id;
 	}
 	
