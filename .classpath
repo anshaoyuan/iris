@@ -55,5 +55,12 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang3-3.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tomcat-jdbc-7.0.42.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tomcat-juli-7.0.42.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-core-1.2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-spring-1.2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-web-1.2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="D:/workdir/apache-tomcat-6.0.29/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/workdir/apache-tomcat-6.0.29/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-ehcache-1.2.2.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
