@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="hello">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="angular.js"></script>
+<script src="test.js"></script>
+</head>
+
+<body>
+
+<div ng-controller="helloCtrl2">
+	<input type="button" value="test" ng-click="getData()"> 
+<div>
+{{'hello world'}}
+
+<div ng-controller="tanzq" ng-init="num=2">
+
+	<form name="userForm" novalidate ng-submit="sub()">
+		姓名：<input type="text" name="name" required ng-maxlength="6" ng-minlength="2" ng-model="user.name" /><br>
+		<span ng-cloak ng-show="subMark && userForm.name.$invalid">姓名出错啦</span>
+		昵称：<input type="text" name="alais" ng-model="user.alais"/><br>
+		性别 ：<input type="radio" name="gender" ng-model="user.gender" value="fale"> 男 
+		<input type="radio" name="gender" value="mafale" ng-model="user.gender"> 女<br>
+		年龄:<input name="age",type="number",ng-model="user.age",max="100",min="18"/>
+			<span ng-cloak ng-show="subMark&& userForm.age.$invalid">年龄必须在18-100之间</span>
+			<br>
+		爱好：<input type="checkbox" name="hobby" > 吃
+			  <input type="checkbox" name="hobby"> 喝 
+			  <input type="checkbox" name="hobby"> 玩
+			  <input type="checkbox" name="hobby"> 乐
+		<br>学历 <select name="education" ng-model="user.education">
+			<option value="xx">小学</option>
+			<option value="cz">初中</option>
+			<option value="gz">高中</option>
+			<option value="dx">大学</option>
+			</select>
+		<br>邮箱 <input type="text" name="email"/>
+		<br>主页<input type="text" name="homePage"/>
+			
+		<br>描述 <textarea name="describe"></textarea>
+		
+		<br><input type="button" value="编译 " id="complie" />
+		<input type="button" value="链链" id="link" />
+		<input type="submit" value ="提交" />		
+		</select>	 
+		
+	</form>
+<input type="button" ng-click="title='test'" />
+	{{title}}
+	{{ "abc daDSF ASDF" |f1:num }}
+	
+	<input my-model="title">	
+	<!-- <image-panel img-list="imgs"> -->	
+	
+			
+
+
+</div>
+
+
+<div class="container">
+	<div ng-init="friends = [{name:'John',phone:'555-1276'},
+							 {name:'Mary',phone:'000-BIG-MAR'},
+							 {name:'Mike',phone:'555-4321'},
+							 {name:'Adam',phone:'555-5678'}
+							]">
+		Search:<input ng-model="searchText"	>	
+		<table id="searchTextResult">
+			<tr><th>Name</th><th>Phone</th></tr>
+			<tr ng-repeat="friend in friends | filter:searchText">
+				<td>{{friend.name}}</td>
+				<td>{{friend.phone}}</td>
+			</tr>
+		</table>			
+	</div>
+			
+</div>
+</body>
+</html>
