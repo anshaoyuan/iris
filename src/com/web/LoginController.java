@@ -36,4 +36,10 @@ public class LoginController {
 		map.put("code", "10000");
 		return new ResponseEntity<Map<String,String>>(map,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String login(){
+		return "/login";
+	}
+
 }
