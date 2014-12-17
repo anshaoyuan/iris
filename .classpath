@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aopalliance-1.0.jar"/>
@@ -59,8 +58,9 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-spring-1.2.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-web-1.2.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.5.jar"/>
-	<classpathentry kind="lib" path="D:/workdir/apache-tomcat-6.0.29/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="D:/workdir/apache-tomcat-6.0.29/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-ehcache-1.2.2.jar"/>
+	<classpathentry kind="lib" path="E:/apache-tomcat-7.0.53/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="E:/apache-tomcat-7.0.53/lib/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

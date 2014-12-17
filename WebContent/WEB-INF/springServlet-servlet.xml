@@ -47,12 +47,12 @@ http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
   <!--视图解析-->
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
             <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-            <property name="prefix" value="/pages/"/>
+            <property name="prefix" value="/WEB-INF/views/"/>
             <property name="suffix" value=".jsp"/>
   </bean>
   <!--静态文件的访问-->
   <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>
-  <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
+  <mvc:resources mapping="/js/**" location="/WEB-INF/js/" cache-period="31556921"/>
   <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>
   
 </beans>
