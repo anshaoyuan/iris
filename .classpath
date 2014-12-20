@@ -62,5 +62,6 @@
 	<classpathentry kind="lib" path="E:/apache-tomcat-7.0.53/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="E:/apache-tomcat-7.0.53/lib/servlet-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/apache-commons.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

@@ -26,9 +26,36 @@ http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
 			    	<constructor-arg value="UTF-8" />
 				</bean>
 				<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
-				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	                <property name="prettyPrint" value="true"/>
-	            </bean>
+	                <property name="objectMapper">
+					<bean class="com.utils.json.JacksonObjectMapper">
+						<property name="modelName" value="JacksonObjectMapper"></property>
+						<property name="version" value="0.0.1"></property>
+						<property name="serializers">
+							<list>
+								<bean class="com.utils.json.JacksonSerializer">
+									<property name="type" value="java.lang.String"></property>
+									<property name="serializer">
+										<bean class="com.utils.json.ContextualObjectSerializer">
+											<property name="config">
+												<list>
+													<bean class="com.utils.json.AnnotationSerializerConfig">
+														<property name="annotation" value="com.utils.annotation.DateFormat" />
+														<property name="serializer" value="com.utils.annotation.JsonDateSerializerAnno" />
+													</bean>
+													
+												</list>
+											</property>
+										</bean>
+									</property>
+								</bean>
+							</list>
+						</property>
+					</bean>
+				</property>
+	            </bean> 
+	           
         		<!-- FormToEntityHttpMessageConverter是自定义的httpMessageConverter ，用来处理表单提交数据，使得json与from 数据结合使用-->
         		<bean class="com.httpMessageConvert.FormToEntityHttpMessageConverter" /> 
         	</mvc:message-converters>
