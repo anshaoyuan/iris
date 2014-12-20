@@ -1,0 +1,52 @@
+.container
+    .row
+        .col-md-12
+            section.search-bar.clearfix
+                ul.nav.nav-pills.pull-left
+                    li(class="{{currNav == 'blog' ? 'active' : ''}}"): a(href="",ng-click="switchNav('blog')") 分享
+                    li(class="{{currNav == 'question' ? 'active' : ''}}"): a(href="",ng-click="switchNav('question')") 问答
+                  
+    .row
+      .col-md-8
+        article.article.list.clearfix(ng-repeat="blog in blogArray")
+          section.avatar.pull-right
+            a(ng-href="#/me/{{blog.createBy}}"): img(ng-src="../{{blog.userImgUrl}}")
+          section.entity.pull-left
+            h4.title: a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName}}
+            .clearfix
+              .excerpt-image.pull-left
+                img(ng-src="{{blog.picture}}",ng-show="blog.picture!=''")
+              p.excerpt {{blog.streamText | omitFilter:200}}
+            footer.meta.clearfix
+              strong: a(ng-href="#/me/{{blog.createBy}}") {{blog.userNickname}}
+              | &nbsp;/&nbsp;
+              time(datetime="{{blog.createDate}}") {{blog.createDate | timeFilter}}
+              | &nbsp;/&nbsp;赞：{{blog.praiseCount}}
+              | &nbsp;/&nbsp;评论：{{blog.commentCount}}
+
+    .row
+      .col-md-8
+        div(ng-repeat='question in questionList')
+          .qa-item
+            ul.stats.list-inline
+              li
+                .score.answer {{question.answerCount}}
+                | 答案
+              li
+                .score.agree {{question.praiseCount}}
+                | 赞同
+            .brief
+              time.timestamp(datetime="{{question.createDate}}") {{question.createDate | timeFilter}}
+              //-h5.title: a(ng-show="question.isSolution",ng-href="#/questions/show/{{question.id}}") {{question.titleName | omitFilter:60}}(已解决)
+              .avatar
+                a(href="#/me/{{question.createBy}}"): img(ng-src="..{{question.userImgUrl}}")
+              .content
+                h5.title: a(ng-href="#/questions/show/{{question.id}}") {{question.titleName | omitFilter:60}}
+                .extra
+                  a(ng-href="#/me/{{question.createBy}}")
+                    span.bicon.bicon-user
+                    | {{question.userNickname}}
+            img.solved(ng-show="question.isSolution", ng-src="image/solved.jpg")
+                      
+        include _pagination
+

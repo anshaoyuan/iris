@@ -1,0 +1,20 @@
+article(ng-show="loadOver",ng-repeat="message in msgList",ng-class="message.msgClass")
+  header.row(ng-click="msgExtend(message)",ng-hide="message.p_extend || message.moreType")
+    .col-md-2(ng-cloak) {{message.userNickname}}
+    .col-md-7(ng-cloak) {{message.streamText | omitFilter:30}}
+    small.text-muted.col-md-3(ng-cloak)
+      .pull-right {{message.createTimestamp | timeFilter}}
+
+  header.text-center(ng-show="message.moreType",ng-cloak,ng-click="msgExtendMore(message.moreType)") 展开隐藏的{{message.moreCount}}个消息
+
+  header.clearfix(ng-click="msgExtend(message,$event)",ng-show="message.p_extend && !message.moreType")
+    include _header
+  section.message-body(ng-show="message.p_extend && !message.moreType")
+    section(ng-bind-html="message.p_streamContentSce")
+    section.addition
+      include _voting_content
+      include _agenda_content
+      include _lottery_content
+
+.text-center(ng-show="loading",style="padding-top:250px;")
+  i.fa.fa-spinner.fa-spin.fa-4x

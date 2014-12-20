@@ -1,0 +1,57 @@
+doctype html
+<!--[if IE 9]> <html class="ie" lang="zh" xmlns:ng="http://angularjs.org" id="ng-app" ng-app="vsApp" ng-controller="vsRootController as root"><![endif]-->
+html(lang="zh", ng-app="vsApp", ng-controller="vsRootController as root")
+
+  head
+
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatiable", content="IE=Edge,chrome=1")
+    title 淘智汇 2.0
+
+    <!--[if lte IE 7]> <script src="json3.min.js"> <script src="ui-utils-ieshiv.min.js> <script src="ui-utils.min.js"> <![endif]-->
+
+    //-<!--[if lte IE 8]> <script> document.createElement('ng-include'); document.createElement('ng-pluralize'); document.createElement('ui-view'); document.createElement('ng:include'); document.createElement('ng:pluralize'); document.createElement('ng:view'); </script> <![endif]-->
+
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="description", content="淘智汇 2.0")
+
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-50444946-1', 'anji.com');
+      ga('require', 'linkid', 'linkid.js');
+
+    block stylesheets
+      if env === 'pub'
+        link(href="common/bootstrap.min.css", rel="stylesheet")
+        link(href="common/vendor.min.css", rel="stylesheet")
+        link(href="sloth.min.css", rel="stylesheet")
+      else
+        link(href="common/bootstrap.css", rel="stylesheet")
+        link(href="common/vendor.css", rel="stylesheet")
+        link(href="sloth.css", rel="stylesheet")
+
+  body.pushable-to(ng-class="{ right: navMenuOpen }")
+
+    //- BEGIN: Header
+    header(role="banner")
+      include common/jade/_navbar
+      include common/jade/_navmenu
+    //- END: Header
+
+    ui-view
+
+    block javascripts
+      script.
+        window.sysPath = '#{sysPath}'
+
+      if env === 'pub'
+        script(src="common/vendor.min.js")
+        script(src="common/angular.min.js")
+        script(src="sloth.min.js")
+      else
+        script(src="common/vendor.js")
+        script(src="common/angular.js")
+        script(src="sloth.js")

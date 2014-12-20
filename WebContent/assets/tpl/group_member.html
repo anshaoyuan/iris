@@ -1,0 +1,26 @@
+<ul class="member-list">
+	{{each userList as user}}
+	<li class="member">
+		<div class="pull-left list-avatar">
+			<a href="{{sysPath}}/user/toUserDetail/{{user.id}}"><img src="{{sysPath}}/{{user.userInfo.userImgUrl}}" alt="{{user.aliasName}}" /></a>
+		</div>
+		<div class="pull-left list-detail">
+			<div>
+				<a href="{{sysPath}}/user/toUserDetail/{{user.id}}"><strong>{{user.aliasName}}</strong></a>
+			</div>
+			<div>
+				{{user.phoneNumber}}
+				<a href="{{sysPath}}/mobile/stream/topub-sms/{{user.phoneNumber}}" class="btn btn-link btn-small">
+					<i class="fa fa-mobile fa-lg"></i> 发短信
+				</a>
+			</div>
+			<div>{{user.userInfo.address}}</div>
+			<div>
+				{{each user.roleList as role}}
+					{{role.name}}
+				{{/each}}
+			</div>
+		</div>
+	</li>
+	{{/each}}
+</ul>

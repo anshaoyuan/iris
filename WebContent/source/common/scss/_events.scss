@@ -1,0 +1,52 @@
+.event .item-title a { color: #545454; text-shadow: 0 1px 0 white; }
+
+.event .text-muted { text-shadow: 0 1px 0 white; }
+
+.event {
+  .item-figure {
+    margin-bottom: 20px; max-height: 100%; overflow-y: hidden;
+    &:hover { max-height: 100%; @include transition(max-height 2s linear); }
+  }
+  .item-figure img { width: 100%; }
+  .item-info {
+    .comment { margin-left: 10px; }
+    .fa-fw { width: 2em; }
+  }
+}
+
+.event.aside-panel { background-color: white; }
+
+.event .program {
+  @include border-radius($border-radius-base);
+  margin-bottom:10px; padding: 10px;
+  background-color: whitesmoke;
+  .program-title { position: relative; margin: 0 0 10px; }
+  .program-date-range { margin-bottom: 10px; }
+  .program-signup-count { position: absolute; top: -3px; right: 0; }
+}
+
+form.event {
+  margin: 30px 0; padding: 15px 0;
+  background-color: whitesmoke;
+  @include border-radius($border-radius-base);
+  @include box-shadow(0 0 3px 0 $lighter-shadow-color);
+
+  legend {
+    border-bottom-color: silver;
+    @include box-shadow(0 1px 0 white);
+    button { margin-top: -9px; }
+  }
+
+  textarea { resize: vertical; }
+  .program-group {
+    position: relative;
+    margin-bottom: 20px; padding: 10px;
+    border: 1px dashed silver;
+    @include border-radius($border-radius-base);
+    .program-operation { position: absolute; bottom: 10px; right: 10px; }
+    .half-part { float: left; width: 50%; }
+    .preview img { height: 200px; }
+  }
+}
+
+form.enroll .btn-enroll { margin-top: 27px; padding: 32px 72px; font-size: 32px; }

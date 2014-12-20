@@ -1,0 +1,105 @@
+<form id="formEditTeam" class="form-horizontal" action="#">
+    <div class="control-group">
+        <label class="control-label" for="teamName">群组名称：</label>
+
+        <div class="controls">
+            <input type="text" name="teamName" id="teamName" value="{{groupName}}"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="parentId">所属分类：</label>
+
+        <div class="controls">
+            <select name="parentId" id="parentId" data-placeholder="请选择群组成员">
+                {{if parentId === 0}}
+                <option value="0">没有分类（顶级群组）</option>
+                {{/if}}
+                {{each parents}}
+                <option value="{{$value.id}}" {{if parentId === $value.id}}selected{{/if}}>
+                    {{$value.teamName}}{{if parentId === $value.id}}（当前分类）{{/if}}
+                </option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="memberIds">选择成员：</label>
+
+        <div class="controls">
+            <select id="memberIds" name="userList" class="span3" multiple>
+                {{each users}}
+                    <option value="{{$value.id}}"
+                        {{each members as val idx}}
+                        {{if val.id === $value.id}}selected{{/if}}
+                        {{/each}}
+                        >{{$value.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="control-group">
+        <label class="control-label" for="isJoinable">允许自由加入群组？</label>
+
+        <div class="controls">
+            <label class="radio">
+                <input type="radio" name="isOpen" id="isJoinable" value="1" {{if options.isJoinable ===1}}checked{{/if}}>
+                是，所有人都可以加入本群组
+            </label>
+            <label class="radio">
+                <input type="radio" name="isOpen" id="unJoinable" value="0" {{if options.isJoinable ===0}}checked{{/if}}>
+                不，只有我自己可以添加成员
+            </label>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="isWritable">允许给群组发消息？</label>
+
+        <div class="controls">
+            <label class="radio">
+                <input type="radio" name="isWrite" id="isWritable" value="1" {{if options.isWritable ===1}}checked{{/if}}>
+                是，所有人都可以给群组发消息
+            </label>
+            <label class="radio">
+                <input type="radio" name="isWrite" id="unWritable" value="0" {{if options.isWritable ===0}}checked{{/if}}>
+                不，只有群组成员才可以发消息
+            </label>
+        </div>
+    </div>
+    <div id="rolesListDiv">
+    {{if roles.length>0}}
+    {{each roles as role index}}
+    <div class="control-group control-group-item">
+        <label class="control-label"><input class="reoleKey" value="{{role.key}}" style="margin-top: -4px;padding-bottom: 3px;width: 120px;"></label>
+        <div class="controls">
+            <input type="text" class="rolesValue" value="{{role.value}}"/>
+             {{if index==roles.length-1}}
+		    	<a class="btn role-add-btn firstAdd btn-link"><i class="fa fa-plus fa-fw"></i></a>
+		    {{/if}}
+        </div>
+    </div>
+   	{{/each}}
+   	{{else}}
+   	 <div class="control-group control-group-item">
+        <label class="control-label"><input class="reoleKey" placeholder="请输入职位" style="margin-top: -4px;padding-bottom: 3px;width: 120px;"></label>
+        <div class="controls">
+            <input type="text" class="rolesValue" placeholder="请输入人员"/>
+		    <a class="btn role-add-btn firstAdd btn-link"><i class="fa fa-plus fa-fw"></i></a>
+        </div>
+    </div>
+   	{{/if}}
+   	</div>
+   	<div class="control-group">
+        <div class="well well-large">
+            <a id="submitEdit" type="submit" class="btn btn-success btn-large btn-block">提交修改</a>
+            <a id="cancelEdit" type="button" class="btn btn-large btn-block">取消修改</a>
+            <hr/>
+            <a id="dismissTeam" type="button" data-teamid="{{id}}" class="btn btn-danger btn-large btn-block">解散群组</a>
+        </div>
+    </div>
+</form>

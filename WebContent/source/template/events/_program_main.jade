@@ -1,0 +1,51 @@
+article.item.event
+  h3.item-title {{project.projectName}}
+  figure.item-figure: img(ng-src="{{project.maxImageUrl}}")
+  p 描述:{{project.projectDesc}}	
+  form.enroll.row(novalidate name="enroll")(ng-if="!isSignUp&&project.status==3")
+
+    fieldset.col-md-8
+      .row
+        .col-md-6
+          .form-group
+            label 真实姓名 
+            input.form-control(type="text" ,name="reamName",ng-model="realName",required)
+          .form-group
+            label 手机号码
+            input.form-control(type="phone",name="phoneNumber", ng-model="phoneNumber",required)
+            .pull-left(ng-cloak, ng-show="submited")
+              span(ng-cloak)
+                  | {{errorMsg}}
+        .col-md-6
+          .form-group
+            label 所属单位
+            input.form-control(type="text",name="orgInfo", ng-model="orgInfo",required)
+          .form-group
+            label 职位名称
+            input.form-control(type="text",name="title", ng-model="title",required)
+    fieldset.col-md-4
+      .form-group
+        button.btn.btn-warning.btn-lg.btn-enroll(type="submit",ng-click="signUpSub()") 我要报名
+
+  .table-responsive(ng-if="isShow")
+    h2: small 已报名人员名单
+    
+    a.btn.btn-warning.btn-back(ng-if="isCreate",href="../mobile/signup/downloadSignUser/{{project.id}}")
+        | 点击导出
+        i.fa.fa-fw.fa-arrow-right
+    table.table.table-condensed.table-hover
+      thead
+        tr
+          th 编号
+          th 真实姓名
+          th(ng-if="isCreate") 手机号码
+          th 所属单位
+          th(ng-if="isCreate") 职位名称
+      tbody
+        tr(ng-repeat="signup in signList")
+          td {{$index+1}}
+          td {{signup.realName}}
+          td(ng-if="isCreate") {{signup.phoneNumber}}
+          td {{signup.orgInfo}}
+          td(ng-if="isCreate") {{signup.title}}
+

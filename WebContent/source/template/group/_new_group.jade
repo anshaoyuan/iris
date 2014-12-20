@@ -1,0 +1,12 @@
+form.group-new(name="newTeamForm")
+    h3.title 创建新群组
+    include _basic
+    include _member
+    fieldset.action
+        .row
+            .form-group.col-md-12
+                button.btn.btn-warning(type="submit",ng-click="newTeamInfo()")
+                    span.bicon.bicon-ok
+                    | 创建
+                span(ng-cloak, ng-show="submited && newTeamForm.teamName.$invalid") 群组名称不能为空而且长度不能大于20个字符!
+                span(ng-cloak, ng-show="checkName") 群组名称已经被使用!

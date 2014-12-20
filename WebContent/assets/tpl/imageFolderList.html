@@ -1,0 +1,84 @@
+<div class="span10 offset1">
+	<div class="alert alert-success hide alert-meaage-div">
+		<strong>提示：</strong>相册已经创建成功，请按 F5 刷新页面
+	</div>
+	<h3 class="page-header">
+		<i class="fa fa-camera-retro fa-fw fa-lg"></i> 
+			<span class="imagefolderTypeSapn">我的相册 </span>
+		<a href="#newFolderForm" id="newFolderBtn" class="btn btn-large btn-warning pull-right" data-toggle="modal">
+			<i class="fa fa-plus fa-fw"></i> 新建相册
+		</a>
+	</h3>
+	<form id="newFolderForm" class="modal hide fade" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>创建相册</h3>
+		</div>
+		<div class="modal-body">
+			<label class="inline" for="newFolderName"> 请输入相册名称： <input
+				id="newFolderName" type="text"
+				class="input-xlarge createImageFolderName" />
+			</label> <input name="folderType" class="folderType" type="hidden" value="3" />
+			<div class="alert alert-error hide">
+				<strong>提示：</strong>相册名称不能为空
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class="btn" data-dismiss="modal">取消</a>
+			<a class="btn btn-primary saveImageFolderBtn">创建</a>
+		</div>
+	</form>
+</div>
+<div class="span10 offset1 folder-list">
+	{{if folderList.length>0}}
+	{{each folderList as userfolder}}
+	<div class="item text-center" id="imageFolderList_{{userfolder.id}}">
+		<div class="cover">
+			<!--这个链接进入相册-->
+			<a class="inner myImageFolderNav" data-path="个人相册  > {{userfolder.folderName}}" data-folderid="{{userfolder.id}}" data-foldertype="{{userfolder.folderType}}"> 
+				<i class="fa fa-camera-retro fa-5x"></i> <br /> <span class="folderName_{{userfolder.id}}">{{userfolder.folderName}}</span>
+				{{if userfolder.imageList != undefined}} 
+					<span>({{userfolder.imageList.length}})</span>
+				{{else}} 
+					<span>(0)</span> 
+				{{/if}}
+			</a>
+		</div>
+		<div class="action">
+			<a class="btn btn-link updateImageFolderLink" data-folderid="{{userfolder.id}}"> <i class="fa fa-pencil fa-fw">
+			</i> 改名</a>
+			{{if userfolder.isDefault != '1'}}
+			 <a class="btn btn-link deleteImageFolderLink" data-folderid="{{userfolder.id}}"> <i class="fa fa-times fa-fw"></i>
+				删除
+			</a>
+			{{/if}}
+		</div>
+	</div>
+	{{/each}}
+	{{else}}
+		<div class="item text-center">
+		<div class="cover">
+			暂无该类型相册
+		</div>
+	</div>
+	{{/if}}
+</div>
+
+<!-- 修改相册弹出层 -->
+<form id="updateImageFolderModal" class="modal hide fade in">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>修改相册</h3>
+	</div>
+	<div class="modal-body">
+		<div>
+			相册名称：<input class="updateImageFolderName"><br> 
+			<input type="hidden" class="imageFolderId">
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a class="btn" data-dismiss="modal">关闭</a>
+		<a class="btn btn-primary saveUpdataImageFolderBtn">修改</a>
+	</div>
+</form>
+<!-- 修改相册弹出层 -->

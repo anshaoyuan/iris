@@ -1,0 +1,60 @@
+.vcard-avatar: a(href=""): img(ng-src="..{{user.userImgUrl}}")
+h2.vcard-name {{user.userName}}
+h4.vcard-name {{user.title}}
+.vcard-title(ng-cloak) {{user.signature}}
+
+hr.vcard-divider
+
+ul.vcard-stats.list-inline
+  li.vcard-stats-item
+    a(href="", ng-click="showAllBlog()")
+      strong {{user.blogCount}}
+      | 分享
+  li.vcard-stats-item
+    a(href="", ng-click="showAllQuestion()")
+      strong {{user.questionCount}}
+      | 问答
+  li.vcard-stats-item
+    a(href="")
+      strong {{user.integral}}
+      | 积分
+
+hr.vcard-divider
+
+ul.vcard-info.list-unstyled
+  li.vcard-info-item
+    span.bicon.bicon-gift(ng-cloak)
+    | {{user.trueName}}
+  li.vcard-info-item
+    span.bicon.bicon-gift(ng-cloak)
+    | {{user.birthdayFormat}}
+  li.vcard-info-item
+    span.bicon.bicon-globe(ng-cloak)
+    | {{user.address}}
+  li.vcard-info-item
+    span.bicon.bicon-phone(ng-cloak)
+    | {{isCurrUser ? user.phoneNumber : user.intimatePhone}}
+  li.vcard-info-item
+    span.bicon.bicon-envelope
+    a(href="", ng-show="isCurrUser") {{user.email}}
+    a(href="", ng-click="sendMsg()", ng-show="!isCurrUser") {{user.email}}
+  li.vcard-info-item
+    span.bicon.bicon-gift(ng-cloak)
+    | {{user.departmentName}}
+
+hr.vcard-divider
+
+.operations
+  button.btn.btn-warning(type="button", ng-show="!isCurrUser && hasAtt", ng-click="cancel(user.id)") 取消关注
+  button.btn.btn-warning(type="button", ng-show="!isCurrUser && !hasAtt", ng-click="attention(user.id)") 关注用户
+  button.btn.btn-warning(type="button", ng-show="!isCurrUser", ng-click="sendMsg()") 发送消息
+
+  button.btn.btn-warning(type="button", ng-show="isCurrUser", ng-click="updateUserImg()") 更换头像
+
+
+  button.btn.btn-warning(type="button", ng-show="isCurrUser", ng-click="editUser()") 编辑资料
+  span(ng-show="!sinaValid")
+    button.btn.btn-warning(type="button", ng-show="isCurrUser", ng-click="bindSina()") 绑定新浪
+  span(ng-show="sinaValid")
+    button.btn.btn-warning(type="button", ng-show="isCurrUser", ng-click="toSinaPage()") 查看新浪
+  button.btn.btn-warning(type="button", ng-show="isCurrUser", ng-click="viewRss()") 查看RSS

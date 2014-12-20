@@ -1,0 +1,233 @@
+//
+// Glyphicons for Bootstrap
+//
+// Since icons are fonts, they can be placed anywhere text is placed and are
+// thus automatically sized to match the surrounding child. To use, create an
+// inline element with the appropriate classes, like so:
+//
+// <a href="#"><span class="glyphicon glyphicon-star"></span> Star</a>
+
+// Import the fonts
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.eot'), '#{$icon-font-path}#{$icon-font-name}.eot'));
+  src: url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.eot?#iefix'), '#{$icon-font-path}#{$icon-font-name}.eot?#iefix')) format('embedded-opentype'),
+       url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.woff'), '#{$icon-font-path}#{$icon-font-name}.woff')) format('woff'),
+       url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.ttf'), '#{$icon-font-path}#{$icon-font-name}.ttf')) format('truetype'),
+       url(if($bootstrap-sass-asset-helper, twbs-font-path('#{$icon-font-path}#{$icon-font-name}.svg##{$icon-font-svg-id}'), '#{$icon-font-path}#{$icon-font-name}.svg##{$icon-font-svg-id}')) format('svg');
+}
+
+// Catchall baseclass
+.bicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Individual icons
+.bicon-asterisk               { &:before { content: "\2a"; } }
+.bicon-plus                   { &:before { content: "\2b"; } }
+.bicon-euro                   { &:before { content: "\20ac"; } }
+.bicon-minus                  { &:before { content: "\2212"; } }
+.bicon-cloud                  { &:before { content: "\2601"; } }
+.bicon-envelope               { &:before { content: "\2709"; } }
+.bicon-pencil                 { &:before { content: "\270f"; } }
+.bicon-glass                  { &:before { content: "\e001"; } }
+.bicon-music                  { &:before { content: "\e002"; } }
+.bicon-search                 { &:before { content: "\e003"; } }
+.bicon-heart                  { &:before { content: "\e005"; } }
+.bicon-star                   { &:before { content: "\e006"; } }
+.bicon-star-empty             { &:before { content: "\e007"; } }
+.bicon-user                   { &:before { content: "\e008"; } }
+.bicon-film                   { &:before { content: "\e009"; } }
+.bicon-th-large               { &:before { content: "\e010"; } }
+.bicon-th                     { &:before { content: "\e011"; } }
+.bicon-th-list                { &:before { content: "\e012"; } }
+.bicon-ok                     { &:before { content: "\e013"; } }
+.bicon-remove                 { &:before { content: "\e014"; } }
+.bicon-zoom-in                { &:before { content: "\e015"; } }
+.bicon-zoom-out               { &:before { content: "\e016"; } }
+.bicon-off                    { &:before { content: "\e017"; } }
+.bicon-signal                 { &:before { content: "\e018"; } }
+.bicon-cog                    { &:before { content: "\e019"; } }
+.bicon-trash                  { &:before { content: "\e020"; } }
+.bicon-home                   { &:before { content: "\e021"; } }
+.bicon-file                   { &:before { content: "\e022"; } }
+.bicon-time                   { &:before { content: "\e023"; } }
+.bicon-road                   { &:before { content: "\e024"; } }
+.bicon-download-alt           { &:before { content: "\e025"; } }
+.bicon-download               { &:before { content: "\e026"; } }
+.bicon-upload                 { &:before { content: "\e027"; } }
+.bicon-inbox                  { &:before { content: "\e028"; } }
+.bicon-play-circle            { &:before { content: "\e029"; } }
+.bicon-repeat                 { &:before { content: "\e030"; } }
+.bicon-refresh                { &:before { content: "\e031"; } }
+.bicon-list-alt               { &:before { content: "\e032"; } }
+.bicon-lock                   { &:before { content: "\e033"; } }
+.bicon-flag                   { &:before { content: "\e034"; } }
+.bicon-headphones             { &:before { content: "\e035"; } }
+.bicon-volume-off             { &:before { content: "\e036"; } }
+.bicon-volume-down            { &:before { content: "\e037"; } }
+.bicon-volume-up              { &:before { content: "\e038"; } }
+.bicon-qrcode                 { &:before { content: "\e039"; } }
+.bicon-barcode                { &:before { content: "\e040"; } }
+.bicon-tag                    { &:before { content: "\e041"; } }
+.bicon-tags                   { &:before { content: "\e042"; } }
+.bicon-book                   { &:before { content: "\e043"; } }
+.bicon-bookmark               { &:before { content: "\e044"; } }
+.bicon-print                  { &:before { content: "\e045"; } }
+.bicon-camera                 { &:before { content: "\e046"; } }
+.bicon-font                   { &:before { content: "\e047"; } }
+.bicon-bold                   { &:before { content: "\e048"; } }
+.bicon-italic                 { &:before { content: "\e049"; } }
+.bicon-text-height            { &:before { content: "\e050"; } }
+.bicon-text-width             { &:before { content: "\e051"; } }
+.bicon-align-left             { &:before { content: "\e052"; } }
+.bicon-align-center           { &:before { content: "\e053"; } }
+.bicon-align-right            { &:before { content: "\e054"; } }
+.bicon-align-justify          { &:before { content: "\e055"; } }
+.bicon-list                   { &:before { content: "\e056"; } }
+.bicon-indent-left            { &:before { content: "\e057"; } }
+.bicon-indent-right           { &:before { content: "\e058"; } }
+.bicon-facetime-video         { &:before { content: "\e059"; } }
+.bicon-picture                { &:before { content: "\e060"; } }
+.bicon-map-marker             { &:before { content: "\e062"; } }
+.bicon-adjust                 { &:before { content: "\e063"; } }
+.bicon-tint                   { &:before { content: "\e064"; } }
+.bicon-edit                   { &:before { content: "\e065"; } }
+.bicon-share                  { &:before { content: "\e066"; } }
+.bicon-check                  { &:before { content: "\e067"; } }
+.bicon-move                   { &:before { content: "\e068"; } }
+.bicon-step-backward          { &:before { content: "\e069"; } }
+.bicon-fast-backward          { &:before { content: "\e070"; } }
+.bicon-backward               { &:before { content: "\e071"; } }
+.bicon-play                   { &:before { content: "\e072"; } }
+.bicon-pause                  { &:before { content: "\e073"; } }
+.bicon-stop                   { &:before { content: "\e074"; } }
+.bicon-forward                { &:before { content: "\e075"; } }
+.bicon-fast-forward           { &:before { content: "\e076"; } }
+.bicon-step-forward           { &:before { content: "\e077"; } }
+.bicon-eject                  { &:before { content: "\e078"; } }
+.bicon-chevron-left           { &:before { content: "\e079"; } }
+.bicon-chevron-right          { &:before { content: "\e080"; } }
+.bicon-plus-sign              { &:before { content: "\e081"; } }
+.bicon-minus-sign             { &:before { content: "\e082"; } }
+.bicon-remove-sign            { &:before { content: "\e083"; } }
+.bicon-ok-sign                { &:before { content: "\e084"; } }
+.bicon-question-sign          { &:before { content: "\e085"; } }
+.bicon-info-sign              { &:before { content: "\e086"; } }
+.bicon-screenshot             { &:before { content: "\e087"; } }
+.bicon-remove-circle          { &:before { content: "\e088"; } }
+.bicon-ok-circle              { &:before { content: "\e089"; } }
+.bicon-ban-circle             { &:before { content: "\e090"; } }
+.bicon-arrow-left             { &:before { content: "\e091"; } }
+.bicon-arrow-right            { &:before { content: "\e092"; } }
+.bicon-arrow-up               { &:before { content: "\e093"; } }
+.bicon-arrow-down             { &:before { content: "\e094"; } }
+.bicon-share-alt              { &:before { content: "\e095"; } }
+.bicon-resize-full            { &:before { content: "\e096"; } }
+.bicon-resize-small           { &:before { content: "\e097"; } }
+.bicon-exclamation-sign       { &:before { content: "\e101"; } }
+.bicon-gift                   { &:before { content: "\e102"; } }
+.bicon-leaf                   { &:before { content: "\e103"; } }
+.bicon-fire                   { &:before { content: "\e104"; } }
+.bicon-eye-open               { &:before { content: "\e105"; } }
+.bicon-eye-close              { &:before { content: "\e106"; } }
+.bicon-warning-sign           { &:before { content: "\e107"; } }
+.bicon-plane                  { &:before { content: "\e108"; } }
+.bicon-calendar               { &:before { content: "\e109"; } }
+.bicon-random                 { &:before { content: "\e110"; } }
+.bicon-comment                { &:before { content: "\e111"; } }
+.bicon-magnet                 { &:before { content: "\e112"; } }
+.bicon-chevron-up             { &:before { content: "\e113"; } }
+.bicon-chevron-down           { &:before { content: "\e114"; } }
+.bicon-retweet                { &:before { content: "\e115"; } }
+.bicon-shopping-cart          { &:before { content: "\e116"; } }
+.bicon-folder-close           { &:before { content: "\e117"; } }
+.bicon-folder-open            { &:before { content: "\e118"; } }
+.bicon-resize-vertical        { &:before { content: "\e119"; } }
+.bicon-resize-horizontal      { &:before { content: "\e120"; } }
+.bicon-hdd                    { &:before { content: "\e121"; } }
+.bicon-bullhorn               { &:before { content: "\e122"; } }
+.bicon-bell                   { &:before { content: "\e123"; } }
+.bicon-certificate            { &:before { content: "\e124"; } }
+.bicon-thumbs-up              { &:before { content: "\e125"; } }
+.bicon-thumbs-down            { &:before { content: "\e126"; } }
+.bicon-hand-right             { &:before { content: "\e127"; } }
+.bicon-hand-left              { &:before { content: "\e128"; } }
+.bicon-hand-up                { &:before { content: "\e129"; } }
+.bicon-hand-down              { &:before { content: "\e130"; } }
+.bicon-circle-arrow-right     { &:before { content: "\e131"; } }
+.bicon-circle-arrow-left      { &:before { content: "\e132"; } }
+.bicon-circle-arrow-up        { &:before { content: "\e133"; } }
+.bicon-circle-arrow-down      { &:before { content: "\e134"; } }
+.bicon-globe                  { &:before { content: "\e135"; } }
+.bicon-wrench                 { &:before { content: "\e136"; } }
+.bicon-tasks                  { &:before { content: "\e137"; } }
+.bicon-filter                 { &:before { content: "\e138"; } }
+.bicon-briefcase              { &:before { content: "\e139"; } }
+.bicon-fullscreen             { &:before { content: "\e140"; } }
+.bicon-dashboard              { &:before { content: "\e141"; } }
+.bicon-paperclip              { &:before { content: "\e142"; } }
+.bicon-heart-empty            { &:before { content: "\e143"; } }
+.bicon-link                   { &:before { content: "\e144"; } }
+.bicon-phone                  { &:before { content: "\e145"; } }
+.bicon-pushpin                { &:before { content: "\e146"; } }
+.bicon-usd                    { &:before { content: "\e148"; } }
+.bicon-gbp                    { &:before { content: "\e149"; } }
+.bicon-sort                   { &:before { content: "\e150"; } }
+.bicon-sort-by-alphabet       { &:before { content: "\e151"; } }
+.bicon-sort-by-alphabet-alt   { &:before { content: "\e152"; } }
+.bicon-sort-by-order          { &:before { content: "\e153"; } }
+.bicon-sort-by-order-alt      { &:before { content: "\e154"; } }
+.bicon-sort-by-attributes     { &:before { content: "\e155"; } }
+.bicon-sort-by-attributes-alt { &:before { content: "\e156"; } }
+.bicon-unchecked              { &:before { content: "\e157"; } }
+.bicon-expand                 { &:before { content: "\e158"; } }
+.bicon-collapse-down          { &:before { content: "\e159"; } }
+.bicon-collapse-up            { &:before { content: "\e160"; } }
+.bicon-log-in                 { &:before { content: "\e161"; } }
+.bicon-flash                  { &:before { content: "\e162"; } }
+.bicon-log-out                { &:before { content: "\e163"; } }
+.bicon-new-window             { &:before { content: "\e164"; } }
+.bicon-record                 { &:before { content: "\e165"; } }
+.bicon-save                   { &:before { content: "\e166"; } }
+.bicon-open                   { &:before { content: "\e167"; } }
+.bicon-saved                  { &:before { content: "\e168"; } }
+.bicon-import                 { &:before { content: "\e169"; } }
+.bicon-export                 { &:before { content: "\e170"; } }
+.bicon-send                   { &:before { content: "\e171"; } }
+.bicon-floppy-disk            { &:before { content: "\e172"; } }
+.bicon-floppy-saved           { &:before { content: "\e173"; } }
+.bicon-floppy-remove          { &:before { content: "\e174"; } }
+.bicon-floppy-save            { &:before { content: "\e175"; } }
+.bicon-floppy-open            { &:before { content: "\e176"; } }
+.bicon-credit-card            { &:before { content: "\e177"; } }
+.bicon-transfer               { &:before { content: "\e178"; } }
+.bicon-cutlery                { &:before { content: "\e179"; } }
+.bicon-header                 { &:before { content: "\e180"; } }
+.bicon-compressed             { &:before { content: "\e181"; } }
+.bicon-earphone               { &:before { content: "\e182"; } }
+.bicon-phone-alt              { &:before { content: "\e183"; } }
+.bicon-tower                  { &:before { content: "\e184"; } }
+.bicon-stats                  { &:before { content: "\e185"; } }
+.bicon-sd-video               { &:before { content: "\e186"; } }
+.bicon-hd-video               { &:before { content: "\e187"; } }
+.bicon-subtitles              { &:before { content: "\e188"; } }
+.bicon-sound-stereo           { &:before { content: "\e189"; } }
+.bicon-sound-dolby            { &:before { content: "\e190"; } }
+.bicon-sound-5-1              { &:before { content: "\e191"; } }
+.bicon-sound-6-1              { &:before { content: "\e192"; } }
+.bicon-sound-7-1              { &:before { content: "\e193"; } }
+.bicon-copyright-mark         { &:before { content: "\e194"; } }
+.bicon-registration-mark      { &:before { content: "\e195"; } }
+.bicon-cloud-download         { &:before { content: "\e197"; } }
+.bicon-cloud-upload           { &:before { content: "\e198"; } }
+.bicon-tree-conifer           { &:before { content: "\e199"; } }
+.bicon-tree-deciduous         { &:before { content: "\e200"; } }

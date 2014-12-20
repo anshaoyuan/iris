@@ -1,0 +1,33 @@
+section.page-header
+  .container
+    h2.col-md-8 <small>来自RSS</small>
+    div.page-header-action.col-md-4.clearfix
+    
+.container
+  .docs-navbar.clearfix
+    span RSS名称:
+      input(type="text", ng-model="rssModel.rssName")
+    span RSS地址:
+      input(type="text", ng-model="rssModel.rssUrl", max-length="40")
+    span
+      input.btn.btn-default(ng-disabeld="btnFlag", type="button", ng-click="addRss()", value="新增")    
+
+.container
+  ul.list-inline
+    li(ng-repeat="rss in rssArray")
+      a(href="", ng-click="viewRss(rss.rssName)") {{rss.rssName}}
+      | &nbsp;&nbsp;
+      a(href="", confirm-directive="", title="确认删除吗?", ok-fn="delRss(config,attr)", data-rssname="{{rss.rssName}}") x
+
+.container(ng-repeat="blog in rssDetailList")
+  article.article.list.col-md-8
+    section.entity.pull-left
+      h4.title: a(ng-href="") {{blog.titleName}}
+      p.excerpt(ng-bind-html="blog.streamContent") 
+      footer.meta.clearfix
+        strong: a(ng-href="") {{blog.createBy}}
+        | &nbsp;/&nbsp;
+        time(datetime="{{blog.createDate}}") {{blog.createDate | timeFilter}}
+        | &nbsp;
+        a.btn.btn-warning(href="", ng-click="shareRss(blog)") 分享
+

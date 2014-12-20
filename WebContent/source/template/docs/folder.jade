@@ -1,0 +1,70 @@
+.container
+  
+  .docs-navbar.clearfix
+    img.pull-left(src="image/t_doc.png")
+    ul.list-inline.pull-left
+      li(ng-class="currTab == 'm' ? 'active' : ''", ng-show="!teamTabVisible"): a.btn.btn-link(href="", ng-click="changeTab(1)") 我的文档
+      li(ng-class="currTab == 'p' ? 'active' : ''", ng-show="!teamTabVisible"): a.btn.btn-link(href="", ng-click="changeTab(2)") 公共文档
+      li(ng-class="currTab == 't' ? 'active' : ''", ng-show="teamTabVisible"): a.btn.btn-link(href="", ng-click="changeTab(3)") 群组文档
+      li: input.form-control(placeholder="根据文件名称/类型过滤", ng-model="searchSurfix", ng-show="showFileList")
+    ul.list-inline.pull-right
+      li: a.btn.btn-warning(href="", ng-show="showCreateButton", ng-click="showCreateDiv()") 创建目录
+      li
+        div(ng-show="showUploadButton") 
+          a.btn.btn-success(href="", uploadify-directive="fileUpload", id="fileUpload") 上传文档
+  
+  .docs-navbar.clearfix(ng-show="showCreateFolderDiv")
+    span 文件夹名称:
+      input(type="text", ng-model="addFolder.folderName")
+    span 文件夹描述:
+      input(type="text", ng-model="addFolder.remark")
+    span
+      input.btn.btn-default(ng-disabled="addFolderBtnFlag", type="button" ng-click="addFolder()" value="新增文件夹")
+      
+      
+  .docs-navbar.clearfix(ng-show="showUpdateFolderDiv")
+    span 文件夹名称:
+      input(type="text", ng-model="folder.folderName")
+    span 文件夹描述:
+      input(type="text", ng-model="folder.remark")
+    span
+      input(ng-disabled="updateFolderBtnFlag", type="button" ng-click="folderUpdate()" value="更新")  
+  
+  .docs-grid(ng-show="showMyFolder")
+    .docs-folder.col-md-2(ng-repeat="f in myFolders")
+      .inner
+        a.avatar-grid(href="", ng-click="initFileList(f.id)")
+          img.item(ng-src="..{{f.folderCoverUrl}}")
+        .name.text-center: a(href="", title="{{f.folderName}}", ng-click="initFileList(f.id)") {{f.folderName}}
+        .action.btn-group
+          a.btn.btn-link.btn-sm(href="", ng-click="showFolder(f.id)")
+            span.fa.fa-pencil.fa-fw
+            | 改名
+          a.btn.btn-link.btn-sm(ng-show="{{f.isDefault != 1}}", href="", confirm-directive="", title="确认删除吗?", data-folderid="{{f.id}}" ok-fn="delFolder(config,attr)")
+            span.fa.fa-trash-o.fa-fw
+            | 删除
+            
+  .docs-grid(ng-show="showSystemFolder")
+    .docs-folder.col-md-2(ng-repeat="f in systemFolders")
+      .inner
+        a.avatar-grid(href="", ng-click="initFileList(f.id)")
+          img.item(ng-src="..{{f.folderCoverUrl}}")
+        .name.text-center: a(href="", title="{{f.folderName}}", ng-click="initFileList(f.id)") {{f.folderName}}
+        
+  .docs-grid(ng-show="showSystemFolder")
+    .docs-folder.col-md-2(ng-repeat="f in teamFolder")
+      .inner
+        a.avatar-grid(href="", ng-click="initFileList(f.id)")
+          img.item(ng-src="..{{f.folderCoverUrl}}")
+        .name.text-center: a(href="", title="{{f.folderName}}", ng-click="initFileList(f.id)") {{f.folderName}}
+
+  .docs-grid(ng-show="showFileList")
+    .docs-file.col-md-2(ng-repeat="f in fileList | filter:searchSurfix ")
+      div
+        a(href="", ng-click="downloadFile(f.id)") 
+          img(ng-src="../uploadFile/avatar/{{f.fileType}}.jpg")        
+        .name.text-left: a(href="", ng-click="downloadFile(f.id)") {{f.resourceName}}
+        .action.btn-group(ng-show="showDelBtn")
+          a.btn.btn-link.btn-sm(href="", confirm-directive="", title="确认删除吗?", data-folderid="{{currFolderId}}", data-fileid="{{f.id}}", ok-fn="delFile(config,attr)")
+            span.fa.fa-trash-o.fa-fw
+            | 删除

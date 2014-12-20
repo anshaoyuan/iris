@@ -1,0 +1,63 @@
+.docs-navbar {
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: hsl(0, 0%, 96%);
+  @include border-radius($border-radius-base);
+  @include box-shadow(0 0 3px 0 $lighter-shadow-color);
+
+  .list-inline {
+    margin: 5px 0 0 10px;
+    li.active a {
+      color: $link-hover-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+//.docs-folder .inner {
+//  background: hsl(0, 0%, 96%) url(image/icon-folder.png) center 0 no-repeat;
+//}
+//
+//.docs-file .inner {
+//  background: hsl(0, 0%, 96%) url(image/icon-file.png) center 0 no-repeat;
+//}
+
+.docs-folder .inner,
+.docs-file .inner {
+  margin-bottom: 30px;
+  padding: 8px 13px;
+  @include border-radius($border-radius-large);
+  @include box-shadow(0 0 3px 0 $lighter-shadow-color);
+  @include transition(all .3s ease-out);
+  &:hover {
+    background-color: white;
+    @include box-shadow(0 0 9px 0 $light-shadow-color);
+  }
+  .avatar-grid {
+    display: block;
+    max-width: 100px;
+    margin: 0 auto;
+    .item {
+      width: 100px;
+      height: 100px;
+      @include border-radius($border-radius-large);
+    }
+  }
+  .action a {
+    color: $normal-shadow-color;
+    font-weight: bold;
+    @include transition(color .3s ease-out);
+    &:hover {
+      color: $dark-shadow-color;
+      text-decoration: none;
+    }
+  }
+}
+
+.docs-file .name a {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 16px;
+  font-weight: bold;
+  @include text-overflow();
+}

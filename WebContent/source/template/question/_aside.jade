@@ -1,0 +1,10 @@
+section.qa-mine(ng-show="myQuestionShow")
+    h5 我的问答
+        a.more(href="",ng-click = "clickMyMenu()") 全部
+    ul.list-unstyled(ng-repeat='question in myQuestions')
+        li: a(ng-href="#/questions/show/{{question.id}}") {{question.titleName | omitFilter:60}}
+section.qa-hot(ng-show="hotQuestionShow")
+    h5 热门问答
+        a.more(href="", ng-click = "clickHotMenu()") 全部
+    ul.list-unstyled(ng-repeat="question in hotQuestions")
+        li: a(href="#questions/show/{{question.id}}") {{question.titleName | omitFilter:60}}

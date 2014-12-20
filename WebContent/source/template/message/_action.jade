@@ -1,0 +1,15 @@
+fieldset.action
+    .form-group
+        .col-md-12
+            button.btn.btn-warning.pull-right(type="submit",ng-if="!editMessage",ng-disabled="isSubmit")
+                span(class="{{sendSubmit ? 'fa fa-spinner fa-spin' : 'bicon bicon-ok'}}")
+                | &nbsp;&nbsp;发送
+            //button.btn.btn-default.pull-right(type="button",ng-if="!editMessage",ng-disabled="isSubmit",ng-click="subForm('draft')")
+            //    span(class="{{draftSubmit ? 'fa fa-spinner fa-spin' : 'bicon bicon-floppy-save'}}")
+            //    | &nbsp;&nbsp;暂存
+            button.btn.btn-warning.pull-right(type="button",ng-if="editMessage",ng-disabled="isSubmit",ng-click="subForm('draft')")
+                span(class="{{isSubmit ? 'fa fa-spinner fa-spin' : 'bicon bicon-floppy-save'}}")
+                | &nbsp;&nbsp;保存
+            //- label.as-mail.pull-right
+                input(type="checkbox",ng-model="sendEmail")
+                | &nbsp;同时发送邮件副本

@@ -1,0 +1,15 @@
+.section(ng-class="users-tool clearfix", ng-show="userList == ''")
+  | 没有找到您要找的用户!
+.user-card(ng-repeat="u in userList", ng-class="{self: u.id == currUserId}")
+  section.avatar
+    a(ng-href="#/me/{{u.id}}"): img(src="..{{u.userImgUrl}}")
+  section.info
+    .pull-right(style="color: #FF4500; font-weight:bold;", title="用户积分") {{u.integral}}
+    a(ng-href="#/me/{{u.id}}")
+      h4.name {{u.userNickname}}
+    small.title.text-muted {{u.title}} 
+    input(type="hidden")
+  section.action(ng-show="!u.isAttention && u.id != currUserId")
+    button.btn.btn-warning.btn-sm.btn-block(type="button", ng-click="attention(u.id)") 关注
+  section.action(ng-show="u.isAttention && u.id != currUserId")
+    button.btn.btn-danger.btn-sm.btn-block(type="button", ng-click="cancel(u.id)") 取消关注

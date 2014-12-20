@@ -1,0 +1,33 @@
+.container
+  .row
+    .col-md-12
+      section.article-header
+        h4.title
+          img(src="image/t_art.png")
+          small: a(href="#/articles/new") 发分享
+  .row
+    .col-md-8
+      article.article.list.clearfix(ng-show="noticeList != undefinde")
+        img-slide-directive(width="710",direction="h",speed="4",list="noticeList")
+      article.article.list.clearfix(ng-repeat="blog in blogArray")
+        section.avatar.pull-right
+          a(ng-href="#/me/{{blog.createBy}}"): img(ng-src="../{{blog.userImgUrl}}")
+        section.entity.pull-left
+          h4.title: a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName}}
+          .clearfix
+            .excerpt-image.pull-left
+              img(ng-src="{{blog.picture}}",ng-show="blog.picture!=''")
+            p.excerpt {{blog.streamText | omitFilter:200}}
+          footer.meta.clearfix
+            strong: a(ng-href="#/me/{{blog.createBy}}") {{blog.userNickname}}
+            | &nbsp;/&nbsp;
+            time(datetime="{{blog.createDate}}") {{blog.createDate | timeFilter}}
+            | &nbsp;/&nbsp;赞：{{blog.praiseCount}}
+            | &nbsp;/&nbsp;评论：{{blog.commentCount}}
+      .text-center
+        pagination(boundary-links="true", ng-click="paging()",max-size="maxSize",rotate="false", total-items="totalItems",items-per-page="itemsPerPage", page="currentPage", class="pagination-sm" ,previous-text="<", next-text=">" ,first-text="<<" ,last-text=">>")
+    include _aside_index
+
+  //-a.speed-new-button(href="#/articles/new")
+    span.bicon.bicon-pencil
+    | 发分享

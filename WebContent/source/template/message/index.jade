@@ -1,0 +1,12 @@
+.message.wrapper.clearfix
+  section.message.list.pull-left(ng-controller="messageListController")
+    //- section.toolbox
+      input.form-control(type="text",ui-keypress="{'enter':'searchMsg()'}",ng-model="msgSearch",placeholder="输入用户名／群组名过滤",ng-trim)
+      a.btn.btn-link.dropdown-toggle(ng-cloak) {{currMenu.name}}
+        span.fa.fa-angle-double-down.fa-fw
+      ul.dropdown-menu
+        li(ng-repeat="menu in menuList"): a(ng-cloak,href="",ng-click="selectMenu($index)") {{menu.name}}
+          span.badge(ng-if="menu.total > 0",ng-cloak) {{menu.total}}
+    include _toolbox
+    include _message_item
+  section.message.detail.pull-left(ui-view="index-detail")

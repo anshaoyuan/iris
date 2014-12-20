@@ -1,0 +1,21 @@
+.text-center(ng-cloak,ng-if="!!message.lotteryVo && !message.lotteryVo.finished")
+    img(ng-cloak,ng-if="message.lotteryVo.run",ng-src="image/lottery_run.gif",style="cursor:pointer")
+    img(ng-cloak,ng-if="!message.lotteryVo.run",ng-src="image/lottery_stop.png",ng-click="message.lotteryVo.lottery()",style="cursor:pointer")
+.alert.alert-danger.text-center(ng-cloak,ng-if="!!message.lotteryVo && !!message.lotteryVo.resultDes")
+    | {{message.lotteryVo.resultDes}}
+
+section.voting-results(ng-cloak,ng-if="!!message.lotteryVo")
+    h4.title
+        span 获奖结果
+        .small.pull-right 截止日期&nbsp;:&nbsp;{{message.lotteryVo.endDate.substr(0,10)}}
+    dl
+        dt(ng-repeat="lotteryOption in message.lotteryVo.lotteryOptionVoList")
+            h4
+                small {{lotteryOption.content}}
+                    span(ng-if="lotteryOption.showDetailBtn"): a(href="",ng-init="lotteryOption.showDetail = false",ng-click="lotteryOption.showDetail = !lotteryOption.showDetail") 查看获奖人员详情
+            .image(ng-show="lotteryOption.showDetail"): img(ng-if="lotteryOption.downloadImageUri",ng-src="{{'..' + lotteryOption.downloadImageUri}}")
+            ul(ng-show="lotteryOption.showDetail").list-inline
+                li: strong 获奖用户：
+                li {{lotteryOption.userNames}}
+                //li: a(href="") 张三
+            progressbar.progress-striped.active(value="lotteryOption.numberPeople - lotteryOption.surplus", max="lotteryOption.numberPeople", type="") {{(lotteryOption.numberPeople - lotteryOption.surplus) + '/' + lotteryOption.numberPeople}}

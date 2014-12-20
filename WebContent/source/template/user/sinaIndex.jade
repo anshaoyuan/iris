@@ -1,0 +1,33 @@
+section.page-header
+  .container
+    h2.col-md-8   <small>来自新浪的新鲜事</small>
+    div.page-header-action.col-md-4.clearfix
+
+.container
+  div 切换新浪类型
+    select(ng-change="changeSinaType()", ng-model="sinaType")
+      option(value="1" ng-selected="optionSelectedValue == 1") 我的关注
+      option(value="2" ng-selected="optionSelectedValue == 2") @提到我的
+      option(value="5" ng-selected="optionSelectedValue == 5") 我的收藏
+    button.btn.btn-warning(ng-click="unbind()") 解除绑定
+  br
+  div.page-header-action.col-md-4.clearfix
+
+.container(ng-repeat="blog in blogArray")
+  article.article.list.col-md-8
+    section.avatar.pull-right
+      a(ng-href=""): img(ng-src="{{blog.userImg}}")
+    section.entity.pull-left
+      h4.title: a(ng-href="") {{blog.titleName}}
+      p(ng-bind-html="blog.content")
+      footer.meta.clearfix
+        strong: a(ng-href="") {{blog.author}}
+        | &nbsp;/&nbsp;
+        time(datetime="{{blog.createDate}}") {{blog.createDate | timeFilter}}
+        | &nbsp;
+        button.btn.btn-warning(ng-click="shareSina(blog)") 分享 
+        
+.container
+  article.col-md-8
+    input(type="button", value="上一页", ng-show="pageNum > 1", ng-click="previewPage()")        
+    input.pull-right(type="button", value="下一页", ng-click="nextPage()")        

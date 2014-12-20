@@ -1,0 +1,17 @@
+form.group-new(name="newTeamForm")
+  h3.title 群组详情
+    a.btn.btn-warning.pull-right(ng-href="#messages?q={{team.teamName}}",ng-show="team.isTeamMember==1") 查看消息
+  fieldset.basic
+    legend
+    .row
+      .form-group.col-md-12
+        p 群组名称：{{team.teamName}}
+
+  fieldset.member
+    legend 成员列表
+    .user-filter.col-md-4
+    ul.user-list.list-unstyled.row
+      li.col-md-2(ng-repeat="userinfo in userList ")
+        .checkbox
+          label
+            a(ng-href="#/me/{{userinfo.id}}") {{userinfo.aliasName}}

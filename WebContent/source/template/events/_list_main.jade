@@ -1,0 +1,20 @@
+article.event-item.event(ng-repeat="blog in blogArray")
+  h3
+    a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName}}
+  figure.item-figure
+    a(ng-href="#/articles/show/{{blog.id}}"): img(ng-src="{{blog.picture}}")
+  footer.item-info.clearfix
+    .pull-left
+      a.author(ng-href="#/me/{{blog.createBy}}")
+        img.avatar(ng-src="../{{blog.userImgUrl}}")
+        | {{blog.userNickname}}
+      span.text-muted. <time datetime="{{blog.createDate}}">{{blog.createDate | timeFilter}}</time>
+    .pull-right
+      a.praise(ng-href="#/articles/show/{{blog.id}}" title="赞")
+        i.fa.fa-fw.fa-thumbs-o-up
+        small {{blog.praiseCount}}
+      a.comment(ng-href="#/articles/show/{{blog.id}}" title="评论")
+        i.fa.fa-fw.fa-comment-o
+        small {{blog.commentCount}}
+.text-center 
+        pagination(boundary-links="true", ng-click="paging()",max-size="maxSize",rotate="false", total-items="totalItems",items-per-page="itemsPerPage", page="currentPage", class="pagination-sm" ,previous-text="<", next-text=">" ,first-text="<<" ,last-text=">>")

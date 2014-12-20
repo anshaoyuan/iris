@@ -1,0 +1,35 @@
+form.voting-content(ng-cloak,ng-if="message.vote && !message.vote.voted")
+    filedset: legend 投票
+    .radio(ng-if="message.vote.voteType == 0",ng-repeat="voteOption in message.vote.voteOptionList")
+        label
+            input(type="radio", name="s_voting", ng-model="message.vote.selectVoteOption",value="{{voteOption.id}}")
+            | {{voteOption.content}}
+        .image: img(ng-if="voteOption.downloadImageUri",ng-src="{{'..' + voteOption.downloadImageUri}}")
+    .checkbox(ng-if="message.vote.voteType == 1",ng-repeat="voteOption in message.vote.voteOptionList")
+        label
+            input(type="checkbox", name="m_voting", ng-model="message.vote.selectVoteOption",value="{{voteOption.id}}")
+            | {{voteOption.content}}
+        .image: img(ng-if="voteOption.downloadImageUri",ng-src="{{'..' + voteOption.downloadImageUri}}")
+    .control-group.clearfix
+        button.pull-right.btn.btn-primary(ng-click="message.vote.vote()",ng-disabled="message.vote.isSubmit",type="button")
+            i(ng-cloak,ng-show="message.vote.isSubmit",class="fa fa-spinner fa-spin")
+            | 提交投票
+        label.pull-left
+            input(type="checkbox",ng-model="message.vote.anonymity",ng-true-value="1",ng-false-value="0")
+            | &nbsp;匿名投票
+        span.help-block.pull-right <strong>注意：</strong>每个人只能投票一次，并且不能修改！
+
+section.voting-results(ng-cloak,ng-if="message.vote && message.vote.voted")
+    h4.title 投票结果
+    dl
+        dt(ng-repeat="voteOption in message.vote.voteOptionList")
+            h4
+                | {{$index + 1}}.
+                small {{voteOption.content}}
+                    span(ng-if="voteOption.showDetailBtn"): a(href="",ng-init="voteOption.showDetail = false",ng-click="voteOption.showDetail = !voteOption.showDetail") 查看投票详情
+            .image(ng-show="voteOption.showDetail"): img(ng-if="voteOption.downloadImageUri",ng-src="{{'..' + voteOption.downloadImageUri}}")
+            ul(ng-show="voteOption.showDetail && message.vote.showMember").list-inline
+                li: strong 投票用户：
+                li {{voteOption.voter}}
+                //li: a(href="") 张三
+            progressbar.progress-striped.active(value="voteOption.count", max="message.vote.voteTotal", type="") {{voteOption.count + '/' + message.vote.voteTotal}}

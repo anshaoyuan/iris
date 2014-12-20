@@ -1,0 +1,38 @@
+aside.article.aside
+
+  section.author
+    h4.title 作者
+    .clearfix
+      .avatar.pull-left
+        a(ng-href="#/me/{{createBy}}"): img(ng-src="../{{createImg}}")
+      .info.pull-left
+        h4 {{createName}}
+        small {{createTitle}}
+
+  section.hot(ng-show="isSignup==0 && hotBlogLength >= 1")
+    h4.title 最热分享
+    ul.list-unstyled(ng-repeat="blog in hotBlogs")
+      li: a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName | omitFilter:20}}
+      
+section.aside-panel.event(ng-show="isSignup==1")
+  h4.aside-panel-title 报名项目
+
+  .program(ng-repeat="project in projects")
+    h5.program-title {{$index+1}}. {{project.projectName|omitFilter:20}}
+      i.badge.program-signup-count {{project.signupCount}}
+    .program-date-range
+      .start-date 报名开始时间：<time datatime="{{project.startDate}}">{{project.startDate }}</time>
+      .close-date 报名结束时间：<time datatime="{{project.endDate}}">{{project.endDate }}</time>
+    .program-status.clearfix(ng-if="project.status ==2")
+      span.label.label-danger.pull-left 报名尚未开始
+      button.btn.btn-default.btn-sm.pull-right(type="button" ,ng-click="showProjectDetail(project.id)") 查看详情
+        i.fa.fa-fw.fa-arrow-right
+    .program-status.clearfix(ng-if="project.status ==3")
+      span.label.label-success.pull-left 报名正在进行
+      button.btn.btn-warning.btn-sm.pull-right(type="button",ng-click="showProjectDetail(project.id)",ng-if="project.isSignUp==0") 现在报名
+      button.btn.btn-warning.btn-sm.pull-right(type="button",ng-click="showProjectDetail(project.id)",ng-if="project.isSignUp==1") 查看详情
+        i.fa.fa-fw.fa-arrow-right
+    .program-status.clearfix(ng-if="project.status ==1")
+      span.label.label-default.pull-left 报名已经结束
+      button.btn.btn-default.btn-sm.pull-right(type="button" ,ng-click="showProjectDetail(project.id)") 查看详情
+        i.fa.fa-fw.fa-arrow-right    

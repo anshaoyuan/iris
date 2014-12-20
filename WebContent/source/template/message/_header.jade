@@ -1,0 +1,38 @@
+.col-md-9
+  strong.text-muted 作者：
+  a(ng-href="#/me/{{message.createBy}}",ng-cloak) {{message.userNickname}}
+  small.text-muted(ng-cloak) &nbsp;{{message.createByEmail ? '<' + message.createByEmail + '>' : ''}}
+.col-md-3
+  time.pull-right
+    small.text-muted(ng-cloak) {{message.createTimestamp | timeFilter}}
+.col-md-10
+  strong.text-muted 发给：
+  a(ng-repeat="receiver in message.p_toReceiver",ng-cloak,ng-href="{{receiver.receiverId ? (receiver.receiverType == 'U' ? '#/me/' : '#/groups/show/') + receiver.receiverId : ''}}", title="{{receiver.receiverEmail}}")
+    | {{receiver.receiverName}}&nbsp;
+.col-md-10(ng-if="message.p_ccReceiver && message.p_ccReceiver.length > 0")
+  strong.text-muted 抄送给：
+    a(ng-repeat="receiver in message.p_ccReceiver",ng-cloak,ng-href="{{receiver.receiverId ? (receiver.receiverType == 'U' ? '#/me/' : '#/groups/show/') + receiver.receiverId : ''}}", title="{{receiver.receiverEmail}}")
+      | {{receiver.receiverName}}&nbsp;
+.col-md-10(ng-if="message.p_bcReceiver && message.p_bcReceiver.length > 0")
+  strong.text-muted 密送给：
+    a(ng-repeat="receiver in message.p_bcReceiver",ng-cloak,ng-href="{{receiver.receiverId ? (receiver.receiverType == 'U' ? '#/me/' : '#/groups/show/') + receiver.receiverId : ''}}", title="{{receiver.receiverEmail}}")
+      | {{receiver.receiverName}}&nbsp;
+
+//- 只是占位，没有用处
+.col-md-2 &nbsp;
+//- 只是占位，没有用处
+.col-md-8
+  h4(ng-cloak) {{message.titleName}}
+.col-md-4
+  .actions
+    //a(href="", title="快捷回复"): span.fa.fa-comment.fa-fw.fa-lg
+    a(href="#/new?rid={{message.id}}", title="回复"): span(only-click-self).fa.fa-reply.fa-fw.fa-lg
+    a(href="#/new?rid={{message.id}}&allReply=true", title="回复全部"): span(only-click-self).fa.fa-reply-all.fa-fw.fa-lg
+    a(href="#/new?pid={{message.id}}", title="转发"): span(only-click-self).fa.fa-share.fa-fw.fa-lg
+    a(ng-href="#/new?id={{message.id}}", title="编辑",ng-if="showEditBtn && message.streamType == 'D'"): span(only-click-self).fa.fa-pencil.fa-fw
+    a(href="", title="删除",confirm-directive="delMessageConfig",data-message-id="{{message.id}}"): span(only-click-self).fa.fa-trash-o.fa-fw.fa-lg
+    a(href="", title="星标"): span.fa.fa-fw.fa-lg(class="{{!!message.starTag ? 'fa-star' : 'fa-star-o'}}",ng-click="switchStar(message)",only-click-self)
+.col-md-12
+  ul.nav.nav-pills(ng-if="message.attaList && message.attaList.length > 0")
+    li(ng-repeat="atta in message.attaList")
+      a(ng-href="{{sysPath + atta.resourceUri}}",ng-cloak) {{atta.resourceName}}

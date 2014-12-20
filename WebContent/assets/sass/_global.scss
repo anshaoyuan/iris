@@ -1,0 +1,181 @@
+@import "utilities";
+@import "widget";
+
+body {
+  padding-top: 60px;
+
+  &.cmcc {
+    background: transparent url(../img/bg-global.jpg);
+  }
+
+  /*  .container {
+      width: 940px;
+    }*/
+
+  &.admin {
+    padding-top: 0;
+    background-color: $grayLighter;
+    background-image: none;
+  }
+
+  /*
+    @media (min-width: 1200px) {
+      padding-top: 60px;
+
+      .container {
+        width: 940px;
+      }
+    }
+
+    @media (max-width: 1199px) and (min-width: 980px) {
+      padding-top: 60px;
+
+      .container {
+        width: 940px;
+      }
+    }
+  */
+  @media (max-width: 979px) and (min-width: 768px) {
+    padding-top: 0;
+  }
+
+  @media (max-width: 767px) {
+    padding-top: 0;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+// navbar
+.navbar {
+  ul.nav > .counter > a {
+    margin-top: 7px;
+    padding: 1px 9px;
+    @include border-radius($baseBorderRadius);
+
+    &:hover {
+      color: $white;
+    }
+
+    &.nothing {
+      @include gradient-radial($grayLighter, $grayLight);
+      color: $gray;
+    }
+
+    &.anything {
+      @include gradient-radial(lighten($red, 20%), lighten($red, 5%));
+      color: $grayLighter;
+    }
+  }
+}
+
+// wrapper
+.wrapper {
+  @include box-sizing(border-box);
+  margin-bottom: 20px;
+
+  > .row > .span12 {
+    @include box-sizing(border-box);
+    @include box-shadow(0 0 10px 1px rgba(0, 0, 0, .25));
+    background-color: $white;
+  }
+
+  hr.page-divider {
+    margin: 20px;
+    margin-right: 0;
+    border-top: 1px solid #e3f4fa;
+    border-bottom: 1px solid #e3f4fa;
+  }
+
+  .pagination {
+    margin: 20px;
+    margin-right: 0;
+
+    ul > li > a,
+    ul > li > span {
+      margin-right: 5px;
+      padding: 4px 10px;
+      background-color: #e3f4fa;
+      border: 1px solid #b9ddf0;
+    }
+  }
+}
+
+.wrapper-header {
+  height: 40px;
+  background-color: #0175c1;
+  @include border-top-left-radius($baseBorderRadius);
+  @include border-top-right-radius($baseBorderRadius);
+
+  .page-title {
+    margin: 0 0 0 10px;
+    color: $white;
+    line-height: 40px;
+  }
+
+  .breadcrumb {
+    background-color: transparent;
+    li {
+      text-shadow: none;
+      a {
+        color: $white;
+      }
+      .divider,
+      &.active {
+        color: $grayLight;
+      }
+    }
+  }
+
+  ul.nav {
+    border-bottom: 1px solid #c8e7fb;
+  }
+
+  ul.nav li {
+    margin: 6px 0 -1px 6px;
+
+    a {
+      padding: 3px 12px 5px;
+      color: $grayLighter;
+      @include border-top-left-radius($baseBorderRadius);
+      @include border-top-right-radius($baseBorderRadius);
+
+      &:hover {
+        color: $grayDark;
+        background-color: #c8e7fb;
+        border: 1px solid #c8e7fb;
+        border-bottom-color: $white;
+      }
+    }
+
+    &.active a {
+      border: 1px solid #c8e7fb;
+      border-bottom-color: transparent;
+      color: $grayDarker;
+
+      &:hover {
+        background-color: $white;
+      }
+    }
+  }
+}
+
+// Footer
+footer {
+  margin-bottom: 20px;
+
+  .cmcc-logo {
+    margin: 0;
+    text-shadow: 1px 1px 2px $grayLighter;
+
+    img {
+      width: 30px;
+    }
+  }
+
+  .menu {
+    margin-top: 12px;
+  }
+}

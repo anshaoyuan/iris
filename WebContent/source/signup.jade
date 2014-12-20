@@ -1,0 +1,81 @@
+extends layout
+block content
+  section.signup.col-md-5.col-md-offset-3(ng-controller="signupController")
+
+    form.form-horizontal(novalidate,name="signupForm",ng-submit="signup()")
+
+      fieldset.title
+        legend 注册
+          a.btn.btn-link.pull-right(href="../login") 登录
+
+      fieldset.addition
+        legend 必填项
+
+        .form-group
+          label.control-label.col-md-3 手机号：
+          .col-md-9
+            input.form-control(type="text",autocomplete="off",name="loginName",ng-model="register.loginName", placeholder="请输入您的手机号",ng-pattern="/^\\d+$/",required,ng-trim)
+
+        .form-group
+          label.control-label.col-md-3 密码：
+          .col-md-9
+            input.form-control(type="password",autocomplete="off",name="plainPassword",ng-model="register.plainPassword", placeholder="请输入您的密码",required,ng-trim,ng-pattern="/^.{6,20}$/")
+
+        .form-group
+          label.control-label.col-md-3 重复密码：
+          .col-md-9
+            input.form-control(type="password",autocomplete="off",name="repassword",ng-model="repassword", placeholder="请再次输入您的密码",required,ng-trim)
+
+        .form-group
+          label.control-label.col-md-3
+            | 昵称：
+          .col-md-9
+            input.form-control(type="text",autocomplete="off",name="aliasName",ng-model="register.aliasName", placeholder="请输入全名大家才好记得您",required,ng-trimng-trim,ng-pattern="/^.{2,10}$/")
+
+        .form-group
+          label.control-label.col-md-3
+            | 真实姓名：
+          .col-md-9
+            input.form-control(type="text",autocomplete="off",name="trueName",ng-model="register.trueName", placeholder="请输入你的真实姓名",required,ng-trimng-trim,ng-pattern="/^.{2,10}$/")
+
+        .form-group
+          label.control-label.col-md-3
+            | 所属部门：
+          .col-md-9
+            input.form-control(type="text",autocomplete="off",name="dep",ng-model="register.department", placeholder="所属部门",typeahead="state as state.departmentName for state in depList | filter:{departmentName:$viewValue}" )
+
+        .form-group
+          label.control-label.col-md-3 验证码：
+          .col-md-5
+            input.form-control(type="text",autocomplete="off",name="validateCode",ng-model="register.validateCode", placeholder="请输入验证码",required,ng-trim,ng-pattern="/^\\w{6}$/")
+          .col-md-4
+            button.form-control.btn.btn-warning(type="button",ng-disabled="sendValidateCode",ng-click="getValidateCode()",ng-init="validateCodeText = '获取验证码'",ng-cloak)
+              | {{validateCodeText}}
+
+      fieldset.addition
+        legend 选填项
+
+
+        .form-group
+          label.control-label.col-md-3 生日：
+          .col-md-9
+            input.form-control(ui-mask="9999-99-99",autocomplete="off",ng-pattern="/\\d{4}-\\d{2}-\\d{2}/",type="text",name="birthday",placeholder="xxxx-xx-xx",ng-model="register.birthday")
+
+        .form-group
+          label.control-label.col-md-3 所在地：
+          .col-md-9
+            input.form-control(type="text",autocomplete="off",ng-maxlength="150",name="address",placeholder="输入您的所在地",ng-model="register.address",ng-trim)
+
+
+        .form-group
+          label.control-label.col-md-3 电子邮件：
+          .col-md-9
+            input.form-control(type="email",autocomplete="off",ng-maxlength="150",name="email",placeholder="输入您的电子邮件地址",ng-model="register.email",ng-trim)
+
+      fieldset.action.clearfix
+        .form-group
+          .col-md-12
+            .pull-left.col-md-offset-3(style="color:red;",ng-cloak) &nbsp;&nbsp;{{validInfo}}
+            button.btn.btn-warning.pull-right(type="submit",ng-disabled="submitting")
+              span.bicon.bicon-ok
+              | 注册

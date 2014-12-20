@@ -1,0 +1,26 @@
+.banner .tiyan { width:650px;height:550px;margin:0 auto;}
+#adam-eff { text-align:left; position:relative; }
+#adam-tabs { height:25px; position:absolute; top:160px; left:285px; }
+#adam-tabs dd,#adam-tabs dt{ width:80px; height:25px; line-height:25px; float:left; margin-left:11px; _display:inline;}
+#adam-tabs dt { text-align:center; width:40px;}
+#adam-tabs dt samp,#adam-tabs dt span { color:#646464; font-size:13px; }
+#adam-tabs dd a { display:block; height:25px; width:80px; text-align:center; line-height:25px; font-size:13px; color:#646464;  }
+#adam-tabs dd.curr a,#adam-tabs dd:hover a { background:#fff; cursor:pointer; color:#001f58; }
+#adam-tabs dd.curr { font-weight:bold; }
+#adam-tabsContent { position:absolute; width:500px; }
+.adam-tabs-list { position:absolute; left:0; right:0; height:330px; display:none; }
+.adam-scroll { width:600px; position:relative; overflow:hidden; }
+.adam-big-img ul { width:9999%; max-height:450px; overflow:hidden; position:relative; }
+.adam-big-img,.adam-big-img ul li  { width:600px; max-height:450px; overflow:hidden; background:#eee; }
+.adam-big-img ul li { float:left; }
+.adam-scroll a { display:block; max-height:450px; width:600px; }
+.adam-scroll b { cursor:pointer; height:450px; line-height:450px; text-align:center; width:32px; position:absolute; top:0;  z-index:2; font-size:18px; font-family:"ËÎÌו"; background:#fff;}
+.adam-scroll b:hover { background:#eee; }
+.adam-scroll b.adam-scroll-next { right:0; } 
+.adam-scroll img{width: 100%}
+.adam-small-imglist { height:56px; margin-top:10px;  position:relative; left:-10px; width:9999%;}
+.adam-small-imglist dd { float:left; height:56px; width:105px; overflow:hidden; margin-left:10px; _display:inline; }
+.adam-small-imglist dd a { display:block; height:54px; width:103px; border:1px solid #d2d2d2; }
+.adam-small-imglist dd a:hover { border:1px solid #fff; cursor:pointer; }
+.adam-small-imglist dd.curr a { border:1px solid #666; }
+

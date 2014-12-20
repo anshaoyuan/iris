@@ -1,0 +1,18 @@
+fieldset.member
+    legend 选择成员
+    .user-filter.col-md-4
+        input.input-sm.form-control(type="text",ng-model="searchUser",ng-keyup="searchAllUser()" placeholder="搜索用户")
+    h5 {{discribe}}
+    ul.user-list.list-unstyled.row
+        li.col-md-3(ng-repeat="userinfo in dataObj.users")
+            .checkbox
+                label
+                    a(ng-href="#/me/{{userinfo.id}}") {{userinfo.userName}}
+                    a(ng-click="add(userinfo)"): span.bicon.bicon-ok
+    h5 已选中的用户
+    ul.user-list.list-unstyled.row
+        li.col-md-3(ng-repeat="userinfo in dataObj.selectUsers")
+            .checkbox
+                label
+                    a(ng-href="#/me/{{userinfo.id}}") {{userinfo.userName}}
+                    a(ng-click="deleteUser(userInfo,$index)"): span.bicon.bicon-remove

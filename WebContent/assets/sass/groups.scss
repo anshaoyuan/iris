@@ -1,0 +1,121 @@
+@import "global";
+@import "messages";
+
+#groupsList {
+  margin-right: 20px;
+
+  button.btn {
+    margin: 20px 0 10px;
+  }
+
+  .accordion-group {
+    margin-bottom: 10px;
+
+    ul.nav {
+      margin-bottom: 0;
+    }
+  }
+
+  a.accordion-toggle:hover {
+    text-decoration: none;
+  }
+
+  a.first-level {
+    color: $grayDarker;
+  }
+}
+
+.group {
+  position: relative;
+  margin: 20px;
+  margin-right: 0;
+  border: 1px solid darken($grayLighter, 5%);
+  @include border-radius(3px);
+
+  .group-heading {
+    padding: 10px 15px 0;
+    background-color: #e3f4fa;
+
+    ul.nav {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid $grayLight;
+    }
+
+    a.btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+  }
+
+  .group-body {
+    dt, dd {
+      line-height: 30px;
+    }
+  }
+}
+
+#groupDetail div.well {
+  margin: 20px 40px;
+}
+
+#grpMsg {
+  .media-list {
+    margin: 10px;
+    .media {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+#grpMem {
+  ul.member-list {
+    @include clearfix();
+    margin-left: 0;
+    margin-bottom: 0;
+    padding: 10px;
+    padding-bottom: 0;
+    list-style: none;
+  }
+
+  li.member {
+    @include clearfix();
+    float: left;
+    margin-bottom: 10px;
+    width: 50%;
+
+    .list-avatar {
+      width: 30%;
+    }
+
+    .list-detail {
+      width: 65%;
+      margin-left: 5%;
+
+      strong {
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+#superModal {
+  .model-header {
+
+  }
+
+  .modal-body {
+    padding: 15px 20px;
+    text-align: justify;
+  }
+
+  .modal-footer {
+
+  }
+}

@@ -1,0 +1,23 @@
+.tabular {
+	background-color: #efefef;
+	padding: 10px; 
+	border: 1px solid #cdcdcd;
+}
+.tabular fieldset {
+	padding: 10px;
+	border: 1px solid #cdcdcd;
+}
+.tabular fieldset legend {
+	display: inline;
+	width: auto;
+	margin: 0;
+	font-size: 14px;
+	border-bottom: none;
+}
+.tabular .floating {
+	float: left;
+	width: 50%;
+}
+.leftInline{
+	text-align:right;
+}

@@ -1,0 +1,8 @@
+.profile-menu
+  ul.profile-menu-group
+    li(class="{{currTabType == '1'? 'active' : ''}}"): a(href="", ng-click="showEditUserInfoFn()")
+      span.bicon.bicon-user
+      | 个人资料
+    li(class="{{currTabType == '2'? 'active' : ''}}"): a(href="", ng-click="showUpdateUserPwdFn()")
+      span.bicon.bicon-cog
+      | 账号设置

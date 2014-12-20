@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相册</title>
+
+    <link rel="stylesheet" href="../css/jquery.mobile/cmcc.css"/>
+    <link rel="stylesheet" href="../css/jquery.mobile/jquery.mobile.structure.css"/>
+    <link rel="stylesheet" href="../css/mobile/photo.css"/>
+
+    <script src="../js/require.js" data-main="../js/mobile/photo.js"></script>
+</head>
+
+<body style="visibility: hidden">
+<div data-role="page" id="initPage" data-theme="a">
+    <div id="grpTree" data-role="panel" data-display="reveal"></div>
+    <div data-role="header"><h1>选择相册</h1></div>
+    <div data-role="content">
+        <a href="#ownList" data-role="button">我的相册</a>
+        <a href="#pubList" data-role="button">公共相册</a>
+        <!--<a href="#grpTree" data-role="button">群组相册</a>-->
+    </div>
+</div>
+
+<div data-role="page" id="ownList" data-theme="a">
+    <div data-role="header">
+        <h1>我的相册</h1>
+        <a href="#newFolder" class="ui-btn-right" data-role="button" data-icon="plus" data-rel="dialog" data-transition="flip">创建相册</a>
+    </div>
+    <div data-role="content">
+        <ul id="ownFolderList" data-role="listview" data-inset="true"></ul>
+    </div>
+</div>
+
+<div data-role="page" id="pubList" data-theme="a">
+    <div data-role="header">
+        <h1>公共相册</h1>
+        <a href="#newFolder" class="ui-btn-right" data-role="button" data-icon="plus" data-rel="dialog" data-transition="flip">创建相册</a>
+    </div>
+    <div data-role="content">
+        <ul id="pubFolderList" data-role="listview" data-inset="true"></ul>
+    </div>
+</div>
+
+<div data-role="page" id="grpList" data-theme="a">
+    <div data-role="header">
+        <h1>群组相册</h1>
+        <a href="#newFolder" class="ui-btn-right" data-role="button" data-icon="plus" data-rel="dialog" data-transition="flip">创建相册</a>
+    </div>
+    <div data-role="content">
+        <ul id="grpFolderList" data-role="listview" data-inset="true"></ul>
+    </div>
+</div>
+
+<div data-role="page" id="photoList" data-theme="a">
+    <div data-role="header">
+        <h1>相片列表</h1>
+        <a href="#uploadPhoto" class="ui-btn-right" data-role="button" data-icon="plus" data-rel="dialog" data-transition="flip">上传相片</a>
+    </div>
+    <div data-role="content">
+        <ul class="photo-list"></ul>
+    </div>
+</div>
+
+<div data-role="page" id="newFolder" data-theme="a">
+    <div data-role="header">
+        <h1>创建相册</h1>
+    </div>
+    <div data-role="content">
+        <form id="newFolderForm" data-ajax="false">
+            <label for="folderName" class="ui-hidden-accessible">请输入相册名称：</label>
+            <input type="text" id="folderName" name="folderName" data-clear-btn="true" placeholder="请输入相册名称" value="">
+            <input type="submit" value="确认创建" data-icon="check">
+        </form>
+    </div>
+</div>
+
+<div data-role="page" id="uploadPhoto" data-theme="a">
+    <div data-role="header">
+        <h1>上传相片</h1>
+    </div>
+    <div data-role="content">
+        <div class="upload-note"></div>
+        <form id="uploadForm" data-ajax="false">
+            <label for="uploadFile">选择相片</label>
+            <input type="file" name="fileUpload" id="uploadFile" value="" multiple/>
+        </form>
+    </div>
+</div>
+
+<div data-role="page" id="photoView" data-theme="a">
+    <div data-role="header">
+        <a href="#photoList" data-role="button" data-icon="arrow-l" data-rel="back" data-transition="flip">返回</a>
+
+        <h1>查看相片</h1>
+        <a href="#writeComment" class="ui-btn-right" data-role="button" data-icon="edit" data-rel="dialog" data-transition="slidedown">评论</a>
+    </div>
+    <div data-role="content">
+        <div class="image-box"></div>
+        <h2></h2>
+        <ul id="commentList" data-role="listview"></ul>
+    </div>
+</div>
+
+<div data-role="page" id="writeComment" data-theme="a">
+    <div data-role="header">
+        <h1>发表评论</h1>
+    </div>
+    <div data-role="content">
+        <form id="commentForm" data-ajax="false">
+            <label for="commentContent">评论内容：</label>
+            <textarea name="commentContent" id="commentContent" placeholder="说两句吧……" rows="5"></textarea>
+            <input type="submit" value="发表评论" data-icon="check">
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+h4.title.pull-left
+    img(src="image/t_grp.png")
+    small
+        a(href="",ng-click="changeType('all')" class="{{queryType == 'all'? 'active' : ''}}") 全部群组
+        a(href="",ng-click="changeType('my')"  class="{{queryType == 'my'? 'active' : ''}}") 我的群组
+        a(href="#/groups/new") 创建群组
+form.form-inline.pull-right.groups-search
+    .form-group
+        input.form-control(type="text", placeholder="按拼音首字母或群组名称" ng-model="teamSearchName")
+    button.btn.btn-default(type="submit",ng-click="loadAllTeam(1,true)") 搜索

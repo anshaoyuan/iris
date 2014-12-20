@@ -1,0 +1,37 @@
+<div class="page-header">
+				<h2>
+					积分配置
+					<a class="btn btn-primary pull-right addTemplateBtn">
+						<i class="fa fa-plus fa-fw"></i> 新增配置
+					</a>
+				</h2>
+</div>
+<table id="integralTable" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+	        	<th colspan="1">积分类型</th>
+	            <th colspan="1">积分权值</th>
+	            <th colspan="1">操作</th>
+           	</tr>
+		</thead>
+		<tbody>
+		{{if integrals.length > 0}} {{each integrals as integral}}
+			<tr class="team-list-item" id="integral_{{integral.id}}">
+				{{if integral.integralType ==='1'}}
+				<td colspan="1">分享</td>
+				{{else}}
+				<td colspan="1">评论</td>
+				{{/if}}
+				<td colspan="1">{{tem.templateContext}}</td>
+				<td colspan="1">
+				<a class="btn updateTemplateBtn" data-baseurl="{{baseUrl}}" data-templateid="{{tem.id}}">修改</a>
+				<a class="btn deleteTemplateBtn" data-teamplatename="{{tem.templateName}}" data-templateid="{{tem.id}}">删除</a>
+				</td>
+			</tr>
+		{{/each}} {{else}}
+			<tr id="waring_tr">
+				<td colspan="4">您还没有添加任何模板</td>
+			</tr>
+		{{/if}}
+		</tbody>
+</table>

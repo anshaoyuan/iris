@@ -1,0 +1,6 @@
+section.aside-panel(ng-if="newEvents.length>0")
+  h4.aside-panel-title 最新开始报名的活动
+  ul.aside-links.list-unstyled(ng-repeat="blog in newEvents")
+    li: a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName | omitFilter:20}}
+
+

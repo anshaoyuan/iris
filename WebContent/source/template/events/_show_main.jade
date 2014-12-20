@@ -1,0 +1,19 @@
+article.item.event
+  h3.item-title
+    a(ng-href="#") 2014年度十项全能技术大比武
+  figure.item-figure
+    a(ng-href="#"): img(ng-src="image/poster/01.jpg")
+  section.item-info.clearfix
+    .pull-left
+      a.author(ng-href="#")
+        img.avatar(ng-src="image/avatar/1.jpg")
+        | 张三
+      span.text-muted. <time datetime="2014-06-01 12:00">2014-06-01</time>
+    .pull-right
+      a.praise(ng-href="#" title="赞")
+        i.fa.fa-fw.fa-thumbs-o-up
+        small 99
+      a.comment(ng-href="#" title="评论")
+        i.fa.fa-fw.fa-comment-o
+        small 99
+  include _comments

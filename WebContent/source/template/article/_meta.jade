@@ -1,0 +1,20 @@
+section.meta.clearfix
+  .action.pull-left
+    button.btn.btn-warning(ng-disabled="clickMentionValue",ng-click="clickMention()",class="{{!mentionId ? 'btn-default' : 'btn-danger'}}",title="{{mentions}}")
+      span.bicon.bicon-thumbs-up
+      | <strong>{{blogPraiseCount}}</strong>&nbsp;{{mentionId ? '已赞' : '赞'}}
+    button.btn.btn-link(ng-click="store(hasStore)",ng-if="isSignup==0")
+      span.bicon
+      | {{hasStore == 1 ? '取消收藏' : '收藏'}}  
+    button.btn.btn-link(ng-show="isOwner == 1",ng-click="to_update()",id="update_blog" )
+      span.bicon.bicon-pencil
+      | 编辑
+    button.btn.btn-link(ng-show="isOwner == 1",confirm-directive="",title="确认删除吗？",ok-fn="deleteBlog(config,attr)")
+      span.bicon.bicon-trash
+      | 删除
+    a.btn.btn-link(ng-href="#/new?bid={{blogId}}")
+      span.bicon.bicon-pencil
+      | 转发消息
+  .info.pull-right: small.text-muted
+    | 发表于：
+    time(datetime="{{blogCreateDate}}") {{blogCreateDate | timeFilter}}

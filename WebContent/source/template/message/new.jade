@@ -1,0 +1,20 @@
+.container(ng-cloak)
+    form(class="{{hideAnnexationPanel ? 'col-md-8 col-md-offset-2 message new row form-horizontal' : 'message new row form-horizontal'}}",role="form", name="newMessageForm", ng-init="newMessage.isHidden=false", ng-submit="subForm('message')", novalidate)
+        div(class="{{hideAnnexationPanel ? '' : 'col-md-7'}}")
+            include _general
+            include _action
+        .col-md-5(ng-hide="hideAnnexationPanel")
+            section.addon-select.row(ng-hide="hideAnnexationSwitchBtn")
+                .col-md-6: button.btn.btn-warning.btn-lg.btn-block(type="button",ng-disabled="annexationDisabled",ng-click="annexation = annexation != 'voting' ? 'voting' : ''")
+                    span.bicon.bicon-stats
+                    | 附加投票
+                .col-md-6: button.btn.btn-warning.btn-lg.btn-block(type="button",ng-disabled="annexationDisabled",ng-click="annexation = annexation != 'agenda' ? 'agenda' : ''")
+                    span.bicon.bicon-calendar
+                    | 附加邀请
+
+            hr(ng-hide="hideAnnexationSwitchBtn")
+
+            section.addon-body.row
+                include _voting
+                include _agenda
+                include _lottery

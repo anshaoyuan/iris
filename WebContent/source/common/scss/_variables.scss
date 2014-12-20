@@ -1,0 +1,27 @@
+// Global
+$main-bg: hsl(40, 7%, 92%) !default;
+
+$vs-link-color: hsl(0, 0%, 40%) !default;
+$vs-link-hover-color: hsl(0, 0%, 60%) !default;
+
+$lighter-shadow-color: hsla(0, 0%, 0%, .2) !default;
+$light-shadow-color: hsla(0, 0%, 0%, .33) !default;
+$normal-shadow-color: hsla(0, 0%, 0%, .5) !default;
+$dark-shadow-color: hsla(0, 0%, 0%, .66) !default;
+$darker-shadow-color: hsla(0, 0%, 0%, .7) !default;
+
+// Pushable Component
+
+$pushable-vertical-width: 180px !default;
+$pushable-z-index: 1035 !default;
+
+// Navmenu
+
+$navmenu-border-color: hsl(0, 3%, 24%) !default;
+$navmenu-border-hover-color: hsl(10, 70%, 50%) !default;
+$navmenu-border-width: 3px !default;
+$navmenu-link-color: $vs-link-color;
+$navmenu-link-hover-color: hsl(0, 0%, 80%) !default;
+$navmenu-link-hover-bg: hsl(0, 3%, 12%) !default;
+
+$snow-bg: #f5f5f5 !default;

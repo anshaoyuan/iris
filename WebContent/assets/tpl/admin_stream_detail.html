@@ -1,0 +1,143 @@
+		<div class="media main">
+		{{if id == null}}
+			<div class="alert alert-warning">该消息不存在或您无权查看该消息!</div>
+		{{/if}}
+		{{if id != null}}
+			<div class="media-body">
+				<h4 class="media-heading">
+					<a href="#">{{streamTitle}}</a>
+				</h4>
+
+				<p class="date">
+					<small>发表于：{{createDate}} &nbsp;&nbsp;来自:{{streamComefrom
+						== 0 ? 'web端' : (streamComefrom == 1 ? 'ios端' : '安卓端')}}</small>
+				</p>
+				
+				{{if parentId }}
+					<blockquote>
+						{{parentText}}&nbsp;&nbsp;<a href="{{sysPath}}/mobile/stream/detail/{{parentId}}">原文地址</a>
+					</blockquote>
+				{{/if}}
+				
+				{{echo streamContent}}
+				
+				
+				{{if schedule}}
+				<form class="media-agenda">
+                                    <div class="control-group">
+                                        <ul class="fa-ul">
+                                            <li>
+                                                <i class="fa-li fa fa-circle-o"></i><strong>时间：</strong>{{schedule.startTime}}
+                                            </li>
+                                            <li>
+                                                <i class="fa-li fa fa-circle-o"></i><strong>地点：</strong>{{schedule.place}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="control-group" data-scheduleId="{{schedule.id}}">
+                                        <a href="#attendees" class="btn btn-link" data-toggle="collapse">
+                                            <small>查看参与者</small><i class="fa fa-level-down fa-fw"></i>
+                                        </a>
+                                        <div id="attendees" class="collapse">
+                                            <h5>参加名单：</h5>
+                                            <ul class="inline well well-small">
+                                                {{each schedule.attend as user}}
+                                                <li>{{user.userName}}</li>
+                                                {{/each}}
+                                            </ul>
+                                            <h5>放弃名单：</h5>
+                                            <ul class="inline well well-small">
+                                                {{each schedule.sitOut as user}}
+                                                <li>{{user.userName}}</li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                            </form>
+				{{/if}}
+				
+				{{if vote}}
+					<form class="media-voting stream-vote">
+                                <fieldset>
+                                    <legend><small>投票选项：</small><small class="pull-right vote-total-count hide"></small></legend>
+                                    <div class="control-group vote-option-list">
+                                    	{{each vote.voteOptionList as voteOption}}
+                                        <label class={{vote.voteType == '0' ? 'radio' : 'checkbox'}}>
+                                            <input type="{{vote.voteType == '0' ? 'radio' : 'checkbox'}}" name="vote-choice" value="{{voteOption.id}}"> {{voteOption.content}}
+                                        </label>
+                                        {{/each}}
+                                        <div class="controls clearfix vote-handler hide">
+                                        	<label class="pull-left checkbox"><input type="checkbox" class="vote-anonymity-ckb">匿名投票</label>
+                                            <button type="button" class="btn btn-success pull-right">
+                                                <i class="fa fa-check fa-fw"></i>
+                                                决定了
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            
+                            
+                            <div class="media-voting stream-vote-result hide">
+								{{each vote.voteOptionList as voteOption}}                            
+                                <h5>{{voteOption.content}}
+                                    <small class="hide vote-option-voter-btn"><a href="#vote-option-voter-{{voteOption.id}}" data-toggle="collapse">查看投票人<i class="fa fa-level-down fa-fw"></i></a></small>
+                                </h5>
+                                <div id="vote-option-voter-{{voteOption.id}}" class="collapse">
+                                    <ul class="inline well well-small vote-option-voters">
+                                    </ul>
+                                </div>
+                                <div class="progress progress-info">
+                                    <div class="bar vote-option-progress-bar"></div>
+                                </div>
+								{{/each}}                                
+                            </div>
+				{{/if}}
+				
+				<div>
+					发件人：{{createByName}}
+				</div>
+				
+				
+				<div>
+					收件人: 
+					{{if sendAllPeople != 1}}
+					{{each receiverList as receiver}} 
+					<a href="#">{{receiver.name}}</a>
+					{{/each}}
+					{{/if}}
+					{{if sendAllPeople == 1}}
+						所有人
+					{{/if}}
+				</div>
+				
+				{{if attaList && attaList.length > 0}}
+				<div>
+					附件: {{each attaList as atta }} 
+					<a href="{{sysPath + '/' + atta.resourceUri}}">{{atta.resourceName}}</a>
+					{{/each}}
+				</div>
+				{{/if}}
+			</div>
+
+			<div class="media-footer">
+				<ul class="inline pull-left">
+					<li title="{{praisePeople}}">
+						<a href="#" class="feed-btn"
+							data-streamId="{{id}}" data-feedCount="{{praiseCount}}">
+							<i class="fa fa-thumbs-o-up fa-fw"></i> 赞 <small class="praiseCount">{{praiseCount}}</small>
+						</a>
+					</li>
+                    <li class="divider"><i class="fa fa-ellipsis-v fa-fw"></i></li>
+                    <li><a href="javascript:void(0);" class="stream_comment" data-streamid={{id}}><i class="fa fa-comments-o fa-fw"></i> 评论
+                        <small class="stream_comment_count_{{id}}">{{commentCount}}</small>
+                    </a></li>
+                    <li class="divider"><i class="fa fa-ellipsis-v fa-fw"></i></li>
+                    <li><a href="#" id="transmit-btn" stream-id="{{id}}" title="{{transpondPeople}}"> <i
+                        class="fa fa-retweet fa-fw"></i> 分享 <small>{{transpondCount}}</small>
+                    </a></li>
+				</ul>
+			</div>
+
+		{{/if}}
+		</div>

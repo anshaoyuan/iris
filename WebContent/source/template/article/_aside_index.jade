@@ -1,0 +1,16 @@
+.col-md-4
+    aside.article.aside
+
+      section.author
+        h4.title
+        .clearfix
+          .avatar.pull-left
+            a(ng-href="#/me/{{currId}}"): img(ng-src="../{{currImg}}")
+          .info.pull-left
+            h4
+              a(ng-href="#/me/{{currId}}") {{currName}}
+
+      section.hot(ng-show="hotBlogLength >= 1")
+        h4.title 最热分享
+        ul.list-unstyled(ng-repeat="blog in hotBlogs")
+          li: a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName | omitFilter:20}}

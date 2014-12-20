@@ -1,0 +1,31 @@
+section.detail-part
+  h4.detail-title 分享
+    small.pull-right
+  ul.detail-list.list-unstyled
+    li(ng-show="userBlog == ''")
+      | 没有相关数据
+    li(ng-repeat="b in userBlog") 
+      h4: a(href="#/articles/show/{{b.id}}")  {{b.titleName  | omitFilter:20}}
+      p: a(href="#/articles/show/{{b.id}}", ng-bind-html="b.streamText | omitFilter:40") 
+      .meta
+        a(href="#/me/{{b.createBy}}"): strong  {{b.userNickname}}
+        span.divider /
+        time.text-muted(datetime="{{b.createDate}}") {{b.createDate}}
+  .detail-title(style="text-align: center;")
+    pagination(boundary-links="true", ng-click="initUserBlog(currentPage)",max-size="maxSize",rotate="false", total-items="totalItems",items-per-page="itemsPerPage", page="currentPage", class="pagination-sm" ,previous-text="<", next-text=">" ,first-text="<<" ,last-text=">>")
+
+section.detail-part
+  h4.detail-title 问答
+    small.pull-right
+  ul.detail-list.list-unstyled
+    li(ng-show="userQuestions == ''")
+      | 没有相关数据
+    li(ng-repeat="q in userQuestions")
+      h4: a(href="#/questions/show/{{q.id}}")  {{q.titleName | omitFilter:50}}
+      p: a(href="#/questions/show/{{q.id}}", ng-bind-html="q.questionText | omitFilter:40") 
+      .meta
+        a(href="#/me/{{q.createBy}}"): strong  {{q.userNickname}}
+        span.divider /
+        time.text-muted(datetime="{{q.createDate}}") {{q.createDate}}
+  .detail-title(style="text-align: center;")
+    pagination(boundary-links="true", ng-click="initQuetionList(currentQuestionPage)",max-size="maxSize",rotate="false", total-items="questionTotalItems",items-per-page="itemsPerPage", page="currentQuestionPage", class="pagination-sm" ,previous-text="<", next-text=">" ,first-text="<<" ,last-text=">>")

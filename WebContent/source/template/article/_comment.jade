@@ -1,0 +1,21 @@
+section.comment
+    h4. <em class="text-info">{{commentLength}}</em>&nbsp;条评论
+    ul.list-unstyled
+        li.comment-item(ng-repeat="comment in comments")
+            p(ng-bind-html="comment.commentHtml")
+            section.meta
+                .clearfix
+                    .info.pull-left
+                        a(ng-href="#/me/{{comment.userId}}"): small {{comment.userNickname}}
+                        small: time.text-muted {{comment.createDate}}
+                    .action.pull-right
+                        button.btn.btn-link(ng-click="showCommentForm(comment)") 评论
+                        button.btn.btn-link(ng-show="comment.userId == currUser",confirm-directive="", title="确认删除吗?", data-commentId="{{comment.id}}",ok-fn="deleteComment(config,attr)") 删除
+                div(ng-if="comment.subFormShow")
+                    .form-group
+                        textarea.form-control(rows="5", placeholder="发表评论", ng-model="commentHtml2")
+                    .form-group.clearfix
+                        button.btn.btn-warning.pull-right(type="submit" ng-click="subComment(0,commentHtml2)")
+                            span.bicon.bicon-ok
+                            | 提交
+    include _reply_form

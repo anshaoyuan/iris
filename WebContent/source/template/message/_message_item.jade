@@ -1,0 +1,29 @@
+.item.clearfix(ng-repeat="message in msgList",style="background-color:{{message.bgColor}};cursor:pointer;",ng-click="showDetail(message)")
+  .avatar.pull-left
+    a: img(ng-src="..{{message.userImgUrl}}")
+  .detail.pull-left
+    time.timestamp
+      small.text-muted(ng-cloak) {{message.createTimestamp | timeFilter}}
+    .sender
+      strong {{message.userNickname}}
+      | &nbsp;
+      i.fa.fa-long-arrow-right(ng-if="message.shipList")
+      | &nbsp;
+      span.label.label-warning(style="margin-right:5px;",ng-repeat="ship in message.shipList",title="{{ship.receiverName}}")
+        | {{ship.receiverName | omitFilter:5}}
+    .subject
+      a.title(href="",ng-cloak,title="{{message.titleName}}") {{message.titleName | omitFilter:10}}
+      .message-state
+        span.bicon.bicon-paperclip(ng-if="message.annexation && message.annexation.indexOf('A') != -1",ng-cloak)
+        span.bicon.bicon-stats(ng-if="message.annexation && message.annexation.indexOf('C') != -1",ng-cloak)
+        span.bicon.bicon-calendar(ng-if="message.annexation && message.annexation.indexOf('B') != -1",ng-cloak)
+        span.bicon.bicon-gift(ng-if="message.annexation && message.annexation.indexOf('E') != -1",ng-cloak)
+        span.bicon.bicon-star(ng-if="!!message.starTag",ng-cloak)
+.text-center(style="padding:25px;")
+  span(ng-if="msgList.length == 0 && !loadError && !msgListLoading && loadOver") 暂无消息！
+  span(ng-if="loadError")
+    | 加载失败,
+    a(href="",ng-click="loadMsgList()") 重新加载
+  i.fa.fa-spinner.fa-spin(ng-show="msgListLoading")
+  div(ng-if="loadOver")
+    pagination(boundary-links="true", ng-click="loadMsgList()",max-size="5",total-items="msgList.totalElements",items-per-page="msgList.size", page="msgList.number", class="pagination-sm" ,previous-text="<", next-text=">" ,first-text="<<" ,last-text=">>")

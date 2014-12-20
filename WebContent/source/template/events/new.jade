@@ -1,0 +1,60 @@
+.container.page-wrapper
+
+  form.new.event.row(novalidate,role="form", name="newEvent")
+
+    fieldset.col-md-7
+
+      legend.clearfix 发表活动
+        button.btn.btn-warning.pull-right(type="submit",ng-click="eventSub()")
+          i.fa.fa-fw.fa-check
+          | 发表
+
+      .form-group
+        label 标题
+        input.form-control(type="text" name="title",ng-model="blogTitle",required,ng-maxlength="40")
+
+      .form-group
+        label 正文
+        textarea.form-control(rows="10", name="content",rich-text-directive="blogContent",config="richTextConfig",file-list="fileList",img-list="imgList",style="height:500px;")
+
+      .form-group
+        .pull-left(ng-cloak, ng-show="submited")
+          span(ng-cloak, ng-show="showWaringInfo")
+              | {{errorMsg}}
+        button.btn.btn-warning.pull-right(type="submit",ng-click="eventSub()")
+          i.fa.fa-fw.fa-check
+          | 发表
+
+    fieldset.col-md-5
+
+      legend.clearfix 项目设置
+
+      .program-group(ng-repeat="project in projects.projectList")
+        .program-operation
+          button.btn.btn-link(type="button",ng-click="deleteProject($index,project.id)",ng-if="$index>=1||projects.projectList.length>1")
+            i.fa.fa-fw.fa-times
+            | 删除项目
+          button.btn.btn-link(type="button",ng-if="$last",ng-click="addProject()")
+            i.fa.fa-fw.fa-plus
+            | 添加项目
+        .form-group
+          label 项目名称
+          input.form-control(type="hidden",ng-model="project.id")
+          input.form-control(type="text" ng-model="project.projectName")
+        .form-group
+          label 描述
+          textarea.form-control(rows=2,ng-model="project.projectDesc")  
+        .form-group.clearfix
+          .half-part
+            label 报名开始日期
+            input.form-control(type="text",datepicker-popup="yyyy-MM-dd", ng-model="project.startDate")
+          .half-part
+            label 报名结束日期
+            input.form-control(type="text",datepicker-popup="yyyy-MM-dd", ng-model="project.endDate")
+        .form-group
+          label
+            input(type="checkbox",ng-model="project.isShow")
+            | 显示已报名人员的名单
+          .btn.btn-link(id="voteUpload-{{$index}}",uploadify-directive="project.uploadConfig")
+        .preview: img(ng-src="{{project.imageUri}}",ng-show="project.imageUri")
+

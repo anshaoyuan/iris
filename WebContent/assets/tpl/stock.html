@@ -1,0 +1,24 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>股票名称</th>
+			<th>昨日收盘</th>
+			<th>今日开盘</th>
+			<th>当前价格</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{each voList as stock}}
+		<tr id="stock{{$index +1}}">
+			<td><button type="button" class="btn btn-link btn-mini deleteStockBut hide" data-id={{stock.id}}>
+					<i class="fa fa-times fa-fw"></i>
+				</button> {{stock.sharesName}}
+			</td>
+			<td>{{stock.yestodayClosePrice}}</td>
+			<td>{{stock.todayOpenPrice}}</td>
+			<td
+				class="{{if stock.todayOpenPrice > stock.currentPrice}}text-success{{else}}text-error{{/if}}">{{stock.currentPrice}}</td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>

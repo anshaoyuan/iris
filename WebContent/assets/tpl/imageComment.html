@@ -1,0 +1,28 @@
+<div id="comments" class="comments">
+	<div class="clearfix">
+		<h4 class="floatleft">
+			共有<span id="comment-list-count"> 
+			{{commentList.length}}
+			</span>条评论
+		</h4>
+		<div class="floatright" style="margin-top: 3px;"></div>
+	</div>
+	<ol id="comments-list">
+		{{each commentList as comment}}
+			<li>
+				<!-- 评论没有评论者图像
+								<a href="javascript:void(0)" > 
+									<img class="photo lazy" width="48" height="48" src="http://img1.yododo.com/files/userlogo/0125/01259B30A7C61683FF80808125991754.jpg" style="display: block;">
+								</a> 
+								 --> 
+			<span class="meta"> <cite> <span>{{comment.userName}}</span>
+				</cite> 说:
+			</span> <br />
+				<div class="commentText">{{echo comment.commentContent }}</div>
+				<p class="comments-meta">
+					发表于 <span class="rank-title">{{comment.createDate }}</span>
+				</p>
+			</li>
+		{{/each}}
+	</ol>
+</div>

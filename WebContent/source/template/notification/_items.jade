@@ -1,0 +1,15 @@
+article.details.clearfix
+  a.pull-right(href="", ng-click="setRemindHasReaded()") 全部设置为已读
+  
+article.details.clearfix(ng-show="remindList == ''") 暂无消息
+  
+article.details(ng-repeat="r in remindList", class="{{r.unread == 0 ? 'old':''}}")
+    time(datetime="{{r.createDate}}").text-muted {{r.createDate}}
+    h5
+        a(href="#/me/{{r.sendId}}") {{r.userNickname}}
+        | {{r.description}}
+    a(href="",ng-show="r.linkHtml", ng-click="showDetail(r.id, r.linkHtml, r.unread)").btn.btn-warning 查看
+
+article.details.clearfix(ng-show="showPage")
+  a.pull-left(href="", ng-show="currPage > 1", ng-click="previewPage()") 上一页
+  a.pull-right(href="", ng-show="isNotEnd", ng-click="nextPage()") 下一页

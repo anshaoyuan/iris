@@ -1,0 +1,18 @@
+.container.article-container
+  .col-md-8
+    article.article.single
+      h3.title(ng-cloak) {{blogTitle}}
+        a.btn.btn-warning.btn-back(href="javascript:history.back()") 返回列表
+      .col-md-12
+        ul.nav.nav-pills(ng-if="fileList && fileList.length > 0")
+          li(ng-repeat="atta in fileList")
+            a(href="", ng-click="downloadFile(atta.id)", ng-cloak) {{atta.resourceName}}
+              
+      div.content(ng-bind-html="blogContent" )
+
+      include _meta
+      hr
+      include _comment
+
+  .col-md-4
+    include _aside

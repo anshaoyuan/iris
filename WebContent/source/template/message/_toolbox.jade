@@ -1,0 +1,27 @@
+section.toolbox(ng-class="{ pushed: navMenuOpen }")
+  ul.list-inline
+    li
+      small.fa.fa-caret-down.fa-fw.text-muted
+      a.dropdown-toggle(ng-cloak, href="") {{currMenu.name}}
+      ul.dropdown-menu.level-one
+        li(ng-repeat="menu in menuList")
+          a(href="", ng-click="selectMenu($index)", ng-cloak) {{menu.name}}
+            span.badge(ng-if="menu.total > 0", ng-cloak) {{menu.total}}
+    li: small.fa.fa-angle-right.text-muted
+    //li
+      small.fa.fa-caret-down.fa-fw.text-muted
+      a.dropdown-toggle(ng-cloak, href="") 查看全部
+      ul.dropdown-menu.level-two
+        li
+          a(href="", ng-cloak) 查看全部
+    li(style="{{selectAnnexation == 'voting' ? 'background-color:gray' : ''}}")
+      small.bicon.bicon-stats.text-muted
+      a(href="", ng-cloak,ng-click="selectMenu('voting')") 投票
+    li(style="{{selectAnnexation == 'agenda' ? 'background-color:gray' : ''}}")
+      small.bicon.bicon-calendar.text-muted
+      a(href="", ng-cloak,ng-click="selectMenu('agenda')") 邀请
+    li: small.fa.fa-angle-right.text-muted
+    li
+      small.fa.fa-search.fa-fw.text-muted
+      a(href="",ng-init="showSearchInput = false",ng-click="showSearchInput = !showSearchInput") 搜索
+  input.form-control.input-sm(type="search",ng-show="showSearchInput",ui-keypress="{'enter':'searchMsg()'}",ng-model="msgSearch", placeholder="请输发件用户或收件群组")

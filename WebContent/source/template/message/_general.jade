@@ -1,0 +1,48 @@
+fieldset.general
+    legend {{titleName}}
+        button.btn.btn-warning.pull-right(type="submit",ng-if="!editMessage",ng-disabled="isSubmit")
+            span(ng-cloak,class="{{sendSubmit ? 'fa fa-spinner fa-spin' : 'bicon bicon-ok'}}")
+            | &nbsp;&nbsp;发送
+
+    .form-group
+        label.control-label.col-md-1
+            vs-smart-caret(vs-careta="right",
+            vs-caretb="down",
+            vs-action="click",
+            vs-baseon="newMessage.isHidden")
+            | 发给:
+        .col-md-11(ng-show="!receiverRead")
+            select.form-control(name="newTo",chosen-directive="p_to",search-callback="searchReceiver",search-list="p_toReceivers",custom-input="sendEmail",multiple,data-placeholder='  ')
+                option(ng-repeat="to in p_toReceivers",label="{{to.name + ' ' + to.firstLetter }}",search-choice-style="{{to.style}}",ng-selected="to.selected") {{to.name}}
+
+        .col-md-11(ng-show="receiverRead")
+            ul.nav.nav-pills.control-label
+                li(ng-repeat="to in p_toReceivers",style="margin-right:5px;") {{to.name}};
+
+    .form-group.animated(ng-hide="newMessage.isHidden")
+        label.control-label.col-md-1 抄送给:
+        .col-md-11(ng-show="!receiverRead")
+            select.form-control(name="newCc",chosen-directive="p_cc",search-callback="searchReceiver",search-list="p_ccReceivers",custom-input="sendEmail",multiple,data-placeholder='  ')
+                option(ng-repeat="cc in p_ccReceivers",label="{{cc.name + ' ' + cc.firstLetter }}",search-choice-style="{{cc.style}}",ng-selected="cc.selected") {{cc.name}}
+
+        .col-md-11(ng-show="receiverRead")
+            ul.nav.nav-pills.control-label
+                li(ng-repeat="cc in p_ccReceivers",style="margin-right:5px;") {{cc.name}};
+
+    .form-group.animated(ng-hide="newMessage.isHidden")
+        label.control-label.col-md-1 密送给:
+        .col-md-11(ng-show="!receiverRead")
+            select.form-control(name="newBc",chosen-directive="p_bc",search-callback="searchReceiver",search-list="p_bcReceivers",custom-input="sendEmail",multiple,data-placeholder='  ')
+                option(ng-repeat="bc in p_bcReceivers",label="{{bc.name + ' ' + bc.firstLetter }}",search-choice-style="{{bc.style}}",ng-selected="bc.selected") {{bc.name}}
+
+        .col-md-11(ng-show="receiverRead")
+            ul.nav.nav-pills.control-label
+                li(ng-repeat="bc in p_bcReceivers",style="margin-right:5px;") {{bc.name}};
+
+    .form-group
+        label.control-label.col-md-1 主题:
+        .col-md-11: input.form-control(type="text", name="subject",ng-model="subject",required,ng-maxlength="100",ng-trim)
+
+    .form-group
+        label.control-label.sr-only 正文:
+        .col-md-12: textarea.form-control(rows="5",rich-text-directive="content",file-list="fileList",img-list="imgList",style="height:500px;padding:0px;")

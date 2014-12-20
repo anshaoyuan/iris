@@ -1,0 +1,38 @@
+form.agenda-content(ng-cloak,ng-if="message.schedule")
+    filedset: legend 邀请
+    dl
+        dt 时间：
+        dd(ng-cloak) {{message.schedule.startTimestamp | date:'yyyy年MM月dd日 HH:mm分'}}
+    dl
+        dt 地点：
+        dd(ng-cloak) {{message.schedule.place}}
+    .row
+        .control-group.col-md-3
+            button.btn.btn-default.btn-lg.btn-block(type="button",ng-click="message.schedule.changeStats(1)",ng-disabled="message.schedule.disabledScheduleBtn || message.schedule.reply == 1",ng-class="message.schedule.reply == 1 ? 'btn-info' : ''")
+                i(ng-cloak,class="fa fa-spinner fa-spin",ng-show="message.schedule.replyLoading == 1")
+                | 确认参加
+        .control-group.col-md-3
+            button.btn.btn-default.btn-lg.btn-block(type="button",ng-click="message.schedule.changeStats(2)",ng-disabled="message.schedule.disabledScheduleBtn || message.schedule.reply == 2",ng-class="message.schedule.reply == 2 ? 'btn-info' : ''")
+                i(ng-cloak,class="fa fa-spinner fa-spin",ng-show="message.schedule.replyLoading == 2")
+                | 不能参加
+        .control-group.col-md-3
+            button.btn.btn-default.btn-lg.btn-block(type="button",ng-click="message.schedule.changeStats(3)",ng-disabled="message.schedule.disabledScheduleBtn || message.schedule.reply == 3",ng-class="message.schedule.reply == 3 ? 'btn-info' : ''")
+                i(ng-cloak,class="fa fa-spinner fa-spin",ng-show="message.schedule.replyLoading == 3")
+                | 暂时待定
+        .control-group.col-md-3
+            button.btn.btn-link.btn-lg.btn-block(type="button",ng-click="message.schedule.showUserStats = !message.schedule.showUserStats") 查看结果
+
+    section.user-stats(ng-show="message.schedule.showUserStats")
+        dl
+            dt 确认参加的用户：
+            dd: ul.list-inline
+                li(ng-repeat="user in message.schedule.attendList"): a(href="",ng-cloak) {{user.userName}}
+        dl
+            dt 不能参加的用户：
+            dd: ul.list-inline
+                li(ng-repeat="user in message.schedule.absentList"): a(href="",ng-cloak) {{user.userName}}
+        dl
+            dt 暂时待定的用户：
+            dd: ul.list-inline
+                li(ng-repeat="user in message.schedule.maybeList"): a(href="",ng-cloak) {{user.userName}}
+

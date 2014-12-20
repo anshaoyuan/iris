@@ -1,0 +1,14 @@
+.container.page-wrapper(ng-controller="eventsController as events")
+
+  .row
+
+    .page-nav-back.col-md-12
+      button.btn.btn-default(type="button")
+        i.fa.fa-fw.fa-arrow-left
+        | 返回列表
+
+    .single.col-md-8
+      include _show_main
+
+    .aside-list.col-md-4
+      include _show_side

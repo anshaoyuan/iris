@@ -1,0 +1,31 @@
+.container
+    .row
+        .col-md-12
+            section.search-bar.clearfix
+                ul.nav.nav-pills.pull-left
+                    li(class="{{currNav == 'BLOG' ? 'active' : ''}}"): a(href="",ng-click="switchNav('BLOG')") 分享
+                    li(class="{{currNav == 'QUESTION' ? 'active' : ''}}"): a(href="",ng-click="switchNav('QUESTION')") 问答
+                    li(class="{{currNav == 'STREAM' ? 'active' : ''}}"): a(href="",ng-click="switchNav('STREAM')") 消息
+        .col-md-12(ng-cloak, ng-hide="loading || lists.length <= 0")
+            p.text-info 你正在搜索[关键字]，以下是在[类别]中找到的结果：
+
+            article.search-result.clearfix(ng-repeat='list in lists')
+                section.pull-left
+                    h4: a(href="", ng-click="gotoDetail(currNav,list.id)", ng-bind-html="list.ss_title_name | omitFilter:50")
+                    p: a(href="", ng-click="gotoDetail(currNav,list.id)", ng-bind-html="list.ss_stream_text | omitFilter:150")  
+                    .meta
+                        a(href="#/me/{{list.sb_create_by}}"): strong  {{list.ss_create_by_name}}
+                        span.divider /
+                        time.text-muted(datetime="{{list.s_create_date}}") {{list.s_create_date.slice(0,19)}}
+
+            .text-center
+                pagination(boundary-links="true",max-size="maxSize", ng-click="paging()", total-items="totalItems",items-per-page="itemsPerPage", page="currentPage", class="pagination-sm" , rotate="false", previous-text="<", next-text=">" ,first-text="<<" ,last-text=">>")
+
+        .col-md-12.text-center(ng-cloak,ng-show="loading",style="padding-top:200px;")
+            i.fa.fa-spinner.fa-spin.fa-4x
+
+        .col-md-12.text-center(ng-cloak,ng-show="lists.length <= 0",style="color:red")
+            | 未找到你想要的结果!
+
+                         
+

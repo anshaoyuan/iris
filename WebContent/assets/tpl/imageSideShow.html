@@ -1,0 +1,7 @@
+<div class="span10 offset1 fotorama" data-nav="thumbs" data-nav-position="top" data-width="100%" data-ratio="800/600" data-allowfullscreen="true">
+	{{each imageFolder.imageList as image}}
+	<a href="{{baseUrl}}/{{image.midUri}}">
+		<img src="{{baseUrl}}/{{image.midUri}}" alt="" />
+	</a> 
+	{{/each}}
+</div>

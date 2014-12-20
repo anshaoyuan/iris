@@ -1,0 +1,78 @@
+nav.navmenu.pushable.left(role="navigation", ng-class="{ open: navMenuOpen }")
+  ul.nav
+    li: a(href="#/remind", ng-click="navMenuOpen = !navMenuOpen")
+      span.bicon.bicon-bell
+      | 提醒
+    li
+      a(href="#/articles", ng-click="navMenuOpen = !navMenuOpen")
+        span.bicon.bicon-th-large
+        | 分享
+      ul.nav
+        li: a(href="#/articles/new", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-pencil
+          | 发分享
+    li
+      a(href="#/events", ng-click="navMenuOpen = !navMenuOpen")
+        span.bicon.bicon-flag
+        | 活动
+      ul.nav
+        li: a(href="#/events/new", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-pencil
+          | 发活动
+    li
+      a(href="#/messages", ng-click="navMenuOpen = !navMenuOpen")
+        span.bicon.bicon-send
+        | 消息
+      ul.nav
+        li: a(href="#/new", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-pencil
+          | 发消息
+        li: a(href="#/new?type=voting", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-stats
+          | 发投票
+        li: a(href="#/new?type=agenda", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-calendar
+          | 发邀请
+        li: a(href="#/new?type=lottery", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-gift
+          | 发奖品
+    li
+      a(href="#/questions", ng-click="navMenuOpen = !navMenuOpen")
+        span.bicon.bicon-question-sign
+        | 问答
+      ul.nav
+        li: a(href="#/questions/new", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-pencil
+          | 提问题
+    li
+      a(href="#/users?type=0&page=1", ng-click="navMenuOpen = !navMenuOpen")
+        span.bicon.bicon-user
+        | 用户
+      ul.nav
+        li: a(href="#/me/0", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-bookmark
+          | 自己
+    li
+      a(href="#/groups", ng-click="navMenuOpen = !navMenuOpen")
+        span.bicon.bicon-tree-deciduous
+        | 群组
+      ul.nav
+        li: a(href="#/groups/new", ng-click="navMenuOpen = !navMenuOpen")
+          span.bicon.bicon-plus
+          | 新建群组
+    li: a(href="#/pics?type=1", ng-click="navMenuOpen = !navMenuOpen")
+      span.bicon.bicon-picture
+      | 相册
+    li: a(href="#/store?type=blog&page=1", ng-click="navMenuOpen = !navMenuOpen")
+      span.bicon.bicon-picture
+      | 收藏
+    //-li: a(href="#/docs", ng-click="navMenuOpen = !navMenuOpen")
+      span.bicon.bicon-briefcase
+      | 文档
+    li: a(href="../logout", ng-click="navMenuOpen = !navMenuOpen")
+      span.bicon.bicon-off
+      | 退出
+  //- END: Navigation Menu
+  //- BEGIN: Chatter
+  section.chatter
+  //- END: Chatter

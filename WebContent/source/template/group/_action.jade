@@ -1,0 +1,17 @@
+.row
+    .col-md-6
+        legend 移交群组
+        .form-group
+            input.form-control(type="text", placeholder="选择移交对象" ,ng-model="custCreator",typeahead="state as state.userName for state in dataObj.allUsers | filter:{userName:$viewValue}" typeahead-template-url="user.html")
+            span.help-block <strong>注意：</strong>移交之后，您将变成普通群组成员，且无法再管理本群组
+    .col-md-6
+        legend 解散群组
+        .form-group
+            button.btn.btn-danger.btn-block(type="button",confirm-directive="",title="确认解散吗？",ok-fn="dismiss(config,attr)")
+                span.bicon.bicon-exclamation-sign
+                | 我确定要解散群组
+    .form-group.col-md-6
+    script(type="text/ng-template",id="user.html")
+       a
+        input(type="hidden" ,ng-model="match.model.id")
+        span(bind-html-unsafe="match.label | typeaheadHighlight:query")

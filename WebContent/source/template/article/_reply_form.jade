@@ -1,0 +1,10 @@
+form.reply-form
+  h5 你的评论：
+
+  .form-group
+    textarea.form-control(rows="5", placeholder="发表评论" ng-model="commentHtml1")
+
+  .form-group.clearfix
+    button.btn.btn-warning.pull-right(type="submit" ng-click="subComment(1,commentHtml1)")
+      span.bicon.bicon-ok
+      | 提交

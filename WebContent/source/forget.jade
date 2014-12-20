@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  section.signup.forget.col-md-5.col-md-offset-3
+
+    form.form-horizontal(novalidate,name="forgetForm",ng-controller="forgetController",ng-submit="sub()")
+
+      fieldset.title
+        legend 找回密码
+          a.btn.btn-link.pull-right(href="../login") 登录
+
+        .form-group
+          label.control-label.col-md-3 手机号：
+          .col-md-9
+            input.form-control(type="text",name="loginName",ng-model="loginName", placeholder="请输入您的手机号",required,ng-trim,ng-pattern="/^\\d+$/")
+
+        .form-group
+          label.control-label.col-md-3 验证码：
+          .col-md-5
+            input.form-control(type="text",name="validateCode",ng-model="validateCode", placeholder="请输入验证码",required,ng-trim,ng-pattern="/^\\w{6}$/")
+          .col-md-4
+            button.form-control.btn.btn-warning(type="button",ng-disabled="sendValidateCode",ng-click="getValidateCode()",ng-init="validateCodeText = '获取验证码'",ng-cloak)
+              | {{validateCodeText}}
+
+        .form-group
+          label.control-label.col-md-3 重置密码：
+          .col-md-9
+            input.form-control(type="password",name="plainPassword",ng-model="plainPassword", placeholder="请输入您的密码",required,ng-trim,ng-pattern="/^.{6,20}$/")
+
+        .form-group
+          label.control-label.col-md-3 重复密码：
+          .col-md-9
+            input.form-control(type="password",name="repassword",ng-model="repassword", placeholder="请输入您的密码",required,ng-trim)
+
+      fieldset.action.clearfix
+        .form-group
+          .col-md-12
+            .pull-left.col-md-offset-3(style="color:red;",ng-cloak) &nbsp;&nbsp;{{validInfo}}
+            button.btn.btn-warning.pull-right(type="submit",ng-disabled="submitting")
+              span.bicon.bicon-ok
+              | 确定

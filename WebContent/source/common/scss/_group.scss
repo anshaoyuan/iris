@@ -1,0 +1,119 @@
+.groups-navbar {
+  padding: 10px 20px;
+  margin: 20px 0;
+  background-color: hsl(0, 0%, 96%);
+  @include border-radius($border-radius-base);
+  @include box-shadow(0 0 3px 0 $light-shadow-color);
+
+  .title {
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 1px 0 white;
+    small a {
+      margin-left: 10px;
+      &.active {
+        color: $link-hover-color;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .groups-search {
+    position: relative;
+    top: 5px;
+    input {
+      width: 240px;
+    }
+  }
+}
+
+.group-card {
+  margin-bottom: 20px;
+
+  .inner {
+    position: relative;
+    padding: 10px 10px;
+    background-color: white;
+    @include clearfix;
+    @include border-radius($border-radius-small);
+    @include box-shadow(0 0 3px 0 $lighter-shadow-color);
+    @include transition(box-shadow .3s ease-out);
+    &:hover {
+      @include box-shadow(0 0 9px 0 $light-shadow-color);
+    }
+
+    > .btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding: 3px 12px;
+      
+      &.send-message { right: 70px; }
+    }
+
+    .avatar-grid {
+      display: block;
+      width: 50px;
+      height: 50px;
+      margin: 3px 9px 0 0;
+      .avatar-grid-item {
+        width: 50px;
+        height: 50px;
+        @include border-radius($border-radius-large);
+      }
+    }
+  }
+
+  .count {
+    em {
+      margin-right: 5px;
+    }
+  }
+
+  .divider {
+    margin: 0 5px;
+  }
+}
+
+.group-new {
+  margin-bottom: 20px;
+  background-color: hsl(0, 0%, 96%);
+  @include border-radius($border-radius-base);
+  @include box-shadow(0 0 3px $lighter-shadow-color);
+  .title {
+    padding: 20px 15px;
+    background-color: #fff;
+    @include border-top-radius($border-radius-base);
+    @include box-shadow(inset 0 -1px 0 $gray-lighter);
+  }
+  fieldset {
+    position: relative;
+    padding: 0 20px;
+    legend {
+      font-size: 18px;
+      color: $vs-link-color;
+      text-shadow: 0 1px 0 white;
+      border-bottom: 1px solid #ccc;
+      @include box-shadow(0 1px 0 white);
+    }
+    .user-filter {
+      position: absolute;
+      top: -2px;
+      right: 5px;
+    }
+    .user-list {
+      padding-left: 0;
+    }
+    &.action .bicon {
+      margin-right: 10px;
+    }
+    &.member .bicon {
+      margin-left: 10px;
+      font-size: 16px;
+    }
+  }
+}
+
+.group-help {
+  margin-top: 20px;
+}

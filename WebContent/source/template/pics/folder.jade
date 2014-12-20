@@ -1,0 +1,61 @@
+.container
+
+  .pics-navbar.clearfix
+    img.pull-left(src="image/t_pic.png")
+    ul.list-inline.pull-left
+      li(ng-class="currTab == 'm' ? 'active' : ''", ng-show="!teamTabVisible"): a.btn.btn-link(href="", ng-click="changeTab(1)") 我的相册
+      li(ng-class="currTab == 'p' ? 'active' : ''", ng-show="!teamTabVisible"): a.btn.btn-link(href="", ng-click="changeTab(2)") 公共相册
+      li(ng-class="currTab == 't' ? 'active' : ''", ng-show="teamTabVisible"): a.btn.btn-link(href="", ng-click="changeTab(3)") 群组相册
+    ul.list-inline.pull-right
+      li: a.btn.btn-success(href="", ng-show="showCreateButton", ng-click="showCreateDiv()") 创建相册
+      li
+        div(ng-show="showUploadButton")
+          a.btn.btn-success(href="", uploadify-directive="fileUpload", id="fileUpload") 上传图片
+
+  .docs-navbar.clearfix(ng-show="showCreateFolderDiv")
+    span 相册名称:
+      input(type="text", ng-model="addFolder.folderName")
+    span
+      input.btn.btn-success(ng-disabled="addFolderBtnFlag", type="button", ng-click="addFolder()", value="新增相册")
+  .docs-navbar.clearfix(ng-show="showUpdateFolderDiv")
+    span 相册名称:
+      input(type="text", ng-model="imageFolder.folderName")
+    span
+      input(ng-disabled="updateFolderBtnFlag", type="button", ng-click="imageFolderUpdate()", value="更新")
+
+
+  .pics-grid(ng-show="showMyFolderAndBtn")
+    .pics-folder.col-md-2(ng-repeat="f in myFolders")
+      .inner
+        a.avatar-grid(href="", ng-click="initImageList(f.id)")
+          img.item(src="..{{f.imageFolderCover}}")
+        .name.text-center: a(href="", title="{{f.folderName}}", ng-click="initImageList(f.id)") {{f.folderName}}
+        .action.btn-group
+          a.btn.btn-link.btn-sm(href="", ng-click="showImageFolder(f.id)")
+            span.fa.fa-pencil.fa-fw
+            | 改名
+          a.btn.btn-link.btn-sm(ng-show="{{f.isDefault != 1}}", href="", confirm-directive="", title="确认删除吗?", data-folderid="{{f.id}}" ok-fn="delImageFolder(config,attr)")
+            span.fa.fa-trash-o.fa-fw
+            | 删除
+
+  .pics-grid(ng-show="showSystemFolder")
+    .pics-folder.col-md-2(ng-repeat="f in systemFolders")
+      .inner
+        a.avatar-grid(href="", ng-click="initImageList(f.id)")
+          img.item(src="..{{f.imageFolderCover}}")
+        .name.text-center: a(href="", title="{{f.folderName}}", ng-click="initImageList(f.id)") {{f.folderName}}
+  .pics-grid(ng-show="showTeamImageFolder")
+    .pics-folder.col-md-2(ng-repeat="f in teamImageFolder")
+      .inner
+        a.avatar-grid(href="", ng-click="initImageList(f.id)")
+          img.item(src="..{{f.imageFolderCover}}")
+        .name.text-center: a(href="", title="{{f.folderName}}", ng-click="initImageList(f.id)") {{f.folderName}}
+  .pics-grid(ng-show="showFileList")
+    .pics-folder.col-md-2(ng-repeat="i in imageList")
+      div
+        a(href="../{{i.maxUri}}", target="_blank")
+          img(ng-src="../{{i.minUri}}")
+        .action.btn-group
+          a.btn.btn-link.btn-sm(ng-show="showDelBtn || (isManager == '1')", confirm-directive="", title="确认删除吗?", data-folderid="{{currFolderId}}", data-imageid="{{i.id}}", ok-fn="delImg(config,attr)") 删除
+          a.btn.btn-link.btn-sm(ng-click="shareImage(i)") 分享
+          a.btn.btn-link.btn-sm(ng-click="transImage(i)") 转发

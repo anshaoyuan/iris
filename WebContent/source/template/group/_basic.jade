@@ -1,0 +1,29 @@
+fieldset.basic
+    legend 基本信息
+    .row
+        .form-group.col-md-12
+            label 群组名称：
+            input.form-control(type="text",ng-model="team.teamName",required, ng-maxlength="20",name="teamName",ng-click="changeCheckNameBeTrue()")
+    .row
+        .form-group.col-md-6
+            label 你希望如何控制群组消息？
+            .radio
+                label
+                    input(type="radio", name="writable",ng-model="team.isWrite",value="0",ng-click="changeIsOpen(0)")
+                    | 我希望群组外的人看不到本群（默认）
+            .radio
+                label
+                    input(type="radio", name="writable" ,ng-model="team.isWrite",value="1",ng-click="changeIsOpen(1)")
+                    | 我希望所有人都能看到本群
+            span.help-block 默认选项意味着只有群组成员才能给群组发消息，所有人可见说明都能往该群发消息<strong>意见反馈</strong>等
+        .form-group.col-md-6(ng-show="team.isWrite == 1")
+            label 你希望如何管理群组成员？
+            .radio
+                label
+                    input(type="radio", name="joinable",ng-model="team.isOpen" value="1")
+                    | 我希望所有人可以自由加入此群组（默认）
+            .radio
+                label
+                    input(type="radio", name="joinable",ng-model="team.isOpen",value="0")
+                    | 我希望由我自己管理群组内的成员                    
+            span.help-block 相当于<strong>开放群组</strong>或<strong>管理员自行添加</strong>            

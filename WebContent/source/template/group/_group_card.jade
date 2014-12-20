@@ -1,0 +1,16 @@
+.group-card.col-md-4(ng-repeat="team in teams")
+    .inner
+        a.btn.btn-default.btn-sm.send-message(ng-href="#/new?totid={{team.id}}&totname={{team.teamName}}",ng-show="team.isTeamMember==1 || team.isWrite==1") 发消息
+        button.btn.btn-success.btn-sm(ng-show="team.isTeamMember==0 && team.isOpen == 1" ng-click="joinTeam(team)") 加入
+        button.btn.btn-warning.btn-sm(ng-show="team.isTeamMember==1 && team.createId!=currUser",ng-click="quitTeam(team)") 退出
+        button.btn.btn-info.btn-sm(ng-show="team.createId==currUser",ng-click="toUpdate(team)") 修改
+        button.btn.btn-default.btn-sm(disabled="disabled" ng-show="team.isTeamMember==0 && team.isOpen == 0") 私密
+        .pull-left
+            a.avatar-grid(href="", ng-click="todetail(team)")
+                img.avatar-grid-item(ng-src="../{{team.teamImgUrl}}")
+        .body.pull-left
+            h5.name: a(href="", ng-click="todetail(team)") {{team.teamName  | omitFilter:15}}
+            .text-muted 群主：
+                a(ng-href="#/me/{{team.createId}}") {{team.userNickname}}
+            .text-muted 成员：
+                strong {{team.userList.length}}

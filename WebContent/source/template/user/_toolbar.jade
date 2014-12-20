@@ -1,0 +1,11 @@
+h4.title.pull-left
+    img(src="image/t_usr.png")
+    small
+        a(href="", ng-click="changeListType(0, 1)", class="{{tabType == 'att' ? 'active':''}}") 我关注的人
+        a(href="", ng-click="changeListType(1, 1)", class="{{tabType == 'my' ? 'active':''}}") 全部用户
+        a(href="", ng-click="changeListType(2, 1)", class="{{tabType == 'integral' ? 'active':''}}") 按积分排序
+
+form.form-inline.pull-right.users-search(ng-show="initListType!=2")
+  .form-group
+    input.form-control(placeholder="按拼音首字母，姓名", ng-model="searchUserVal")
+  button.btn.btn-default(type="button", ng-click="searchUser()") 搜索

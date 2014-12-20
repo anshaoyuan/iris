@@ -1,0 +1,80 @@
+form.profile-form(ng-show="showEdit", novalidate, name="userUpdateForm", ng-submit="userSub()")
+  .form-group
+    label 昵称：
+    input.form-control(type="text", ng-model="user.userName", name="userName", required,ng-minlength="2", ng-maxlength="10")
+    span(ng-cloak,ng-show="subMark && userUpdateForm.userName.$invalid") 昵称不能为空,且长度为2-10个字符
+    span(ng-hide="userValidFlag") 该昵称已经存在!
+    
+  .form-group
+    label.control-label 真实姓名:
+    input.form-control(type="text", ng-model="user.trueName")
+    
+  .form-group
+    label.control-label 职位:
+    input.form-control(type="text", ng-model="user.title")
+
+  .form-group
+    label.control-label 所属部门:
+    select.form-control(ng-model="user.departmentId")
+      option(value="") 请选择...
+      option(ng-repeat="d in deptList", value="{{d.id}}", ng-selected="{{d.id == user.departmentId}}") {{d.departmentName}}
+
+  .form-group
+    label.control-label 生日:
+    input.form-control(type="text", datepicker-popup="yyyy-MM-dd", ng-model="user.birthdayFormat")
+
+  .form-group
+    p: strong 性别:
+    label.radio-inline
+      input(name="gender",type="radio",ng-model="user.gender",value="1")
+      | 男
+    label.radio-inline
+      input(name="gender",type="radio",ng-model="user.gender",value="0")
+      | 女
+
+  .form-group
+    label.control-label 地址:
+    input.form-control(type="text", ng-model="user.address")
+
+  .form-group
+    label.control-label 邮箱:
+    input.form-control(type="text", ng-model="user.email")
+
+  .form-group
+    label.control-label QQ:
+    input.form-control(type="text", ng-model="user.qq")
+
+  .form-group
+    label.control-label 签名:
+    input.form-control(type="text", ng-model="user.signature")
+
+  .form-group
+    label.control-label 手机:
+    input.form-control(type="text", name="phoneNumber" ng-model="user.phoneNumber", ng-pattern="validPhone()")
+    span(ng-cloak="ng-cloak", ng-show="subMark && userUpdateForm.phoneNumber.$invalid") 手机号码格式不正确!
+
+  .form-group
+    p: strong 是否公开手机:
+    label.radio-inline
+      input(name="viewPhone",type="radio",ng-model="user.viewPhone",value="1")
+      | 公开
+    label.radio-inline
+      input(name="viewPhone",type="radio",ng-model="user.viewPhone",value="0")
+      | 不公开
+
+  .form-group
+    button.btn.btn-warning(type="submit", ng-disabled="infoBtnDisabled") 更新
+
+form.profile-form(ng-show="showPwd")
+  .form-group
+    label.control-label 原密码:
+    input.form-control(type="password", ng-model="user.oldPwd")
+  .form-group
+    label.control-label 新密码:
+    input.form-control(type="password", ng-model="user.newPwd")
+  .form-group
+    label.control-label 重复新密码:
+    input.form-control(type="password", ng-model="user.repeatNewPwd")
+  .form-group
+    button.btn.btn-warning(type="submit", ng-click="updateUserPwd()", ng-disabled="pwdBtnDisabled") 更新
+

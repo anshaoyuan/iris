@@ -1,0 +1,23 @@
+fieldset.voting(ng-show="annexation == 'lottery'")
+  .col-md-12
+    legend 添加奖品
+  .addon-info.col-md-12
+    .alert.alert-warning
+      strong 提示：
+      | 下方可以添加奖品名称或者为奖品附上图片。整个抽奖活动的描述请在左边的正文处填写
+  .addon-group.col-md-12
+    label.col-md-3.control-label(style="text-align:center;") 结束日期
+    .col-md-9(style="padding:0px;")
+      input.form-control(type="text",datepicker-popup="yyyy-MM-dd",ng-model="lottery.ed")
+  .addon-group.col-md-12(ng-repeat="lotteryOption in lottery.lotteryOptionList")
+    .col-md-9(style="padding:0px")
+      input.form-control(type="text",placeholder="奖品名称",ng-model="lotteryOption.content")
+    .col-md-2.col-md-offset-1(style="padding:0px")
+      input.form-control(min="1",type="number",placeholder="人数",ng-model="lotteryOption.numberPeople")
+    section.col-md-12.addon-action.clearfix(style="padding:0px")
+      .pull-left
+        .btn.btn-link(id="lotteryUpload-{{$index}}",uploadify-directive="lotteryOption.uploadConfig")
+        img(ng-if="lotteryOption.imageUri",style="max-width:120px;max-height:200px;",ng-src="{{lotteryOption.imageUri}}")
+      .pull-right
+        a.btn.btn-link(ng-if="$index >= 2",ng-click="lottery.lotteryOptionList.splice($index,1)") 删除本奖项
+        a.btn.btn-link(ng-if="$last && $index < 9",ng-click="addLotteryOption()") 添加新奖项

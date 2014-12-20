@@ -1,0 +1,37 @@
+section.comment
+  h4. <em class="text-info">{{answerLength}}</em>&nbsp;条回答
+  ul.list-unstyled
+    li.comment-item(ng-repeat="answer in answers | orderBy:isSolution:true")
+      p(ng-bind-html="answer.answerHtml")
+      section.meta.clearfix
+        .clearfix
+          .avatar.pull-left
+            a(ng-href="#/me/{{answer.userId}}"): img(ng-src="..{{answer.userImgUrl}}")
+          .info.pull-left
+            a(ng-href="#/me/{{answer.userId}}"): small {{answer.userName}}
+            small: time.text-muted {{answer.createDate}}
+          .action.pull-right
+            button.btn.btn-link(ng-show="answer.isSolution") 已解决
+            button.btn.btn-link(ng-show="solution",ng-click="solutionQuestion(answer.id)") 最佳答案
+            button.btn.btn-link(ng-click="showAnswerForm(answer)") 回复
+            button.btn.btn-link(ng-show="answer.userId == currUser",confirm-directive="", title="确认删除吗?", data-answerId="{{answer.id}}",ok-fn="deleteAnswer(config,attr)") 删除
+            button.btn(ng-click="clickMentionAnswer(answer.id)",class="{{answer.mentionId==null ? 'btn-default' : 'btn-danger'}}")
+              span.bicon.bicon-thumbs-up
+              | <strong>{{answer.praiseCount}}</strong>&nbsp;{{answer.mentionId==null ? '赞' : '已赞'}}
+        div(ng-if="answer.subFormShow")
+          .form-group
+            textarea.form-control(rows="5", placeholder="发表回答", name="content2",rich-text-directive="answerHtml2",config="richTextConfig",rich-text-writer="answerHtml2_value",file-list="fileList",img-list="imgList")
+          .form-group.clearfix
+            button.btn.btn-warning.pull-right(type="submit" ng-click="answerSub(0,answerHtml2)")
+              span.bicon.bicon-ok
+              | 提交
+  form.reply-form
+    h5 你的回答：
+
+    .form-group
+      textarea.form-control(rows="5", placeholder="发表回答", name="content",rich-text-directive="answerContent1",config="richTextConfig",file-list="fileList",rich-text-writer="answerContent1_value", img-list="imgList")
+
+    .form-group.clearfix
+      button.btn.btn-warning.pull-right(type="submit",ng-click="answerSub(1,answerContent1)")
+        span.bicon.bicon-ok
+        | 提交

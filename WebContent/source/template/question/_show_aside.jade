@@ -1,0 +1,21 @@
+aside.article.aside.qa
+
+    section.author
+        h4.title 作者
+        .clearfix
+            .avatar.pull-left
+                a(ng-href="#/me/{{createBy}}"): img(ng-src="../{{createImg}}")
+            .info.pull-left
+                h4 {{createName}}
+                small {{createTitle}}
+
+        .clearfix
+            h4.title 邀请作答
+            select.form-control.pull-left(name="newTo",chosen-directive="newTo",search-callback="searchReceiver",search-list="newToList",multiple,data-placeholder='  ')
+                option(ng-repeat="to in newToList",ng-selected="to.selected",value="{{to.id}}") {{to.name}}
+            button.btn.btn-warning.pull-right(ng-click="askQuestion(users)")
+                span.bicon.bicon-ok 邀请
+    section.hot(ng-show="hotQuestionLength >= 1")
+        h4.title 最热问答
+        ul.list-unstyled(ng-repeat="question in hotQuestions")
+            li: a(href="#questions/show/{{question.id}}") {{question.titleName}}

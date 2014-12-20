@@ -1,0 +1,18 @@
+fieldset.agenda(ng-show="annexation == 'agenda'")
+  .col-md-12
+    legend 添加邀请细节
+  .addon-info.col-md-12
+    .alert.alert-warning
+      strong 提示：
+      | 邀请的受邀者是左边的收件人，约会的描述是左边的正文。请在下方补充约会的时间和地点描述
+  .addon-group.col-md-12
+    .input-group.col-md-8.pull-left(style="padding-top:35px")
+      input.form-control(type="text",datepicker-popup="yyyy-MM-dd",ng-model="schedule.date")
+      //span.input-group-btn
+      //    button.btn.btn-default(type="button"): i.fa.fa-calendar
+    .col-md-4.pull-right
+      div(ng-model="schedule.time")
+        timepicker(show-meridian="false")
+
+  .addon-group.col-md-12
+    textarea.form-control(rows=2, placeholder="地点描述",ng-model="schedule.place")

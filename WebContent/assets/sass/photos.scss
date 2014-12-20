@@ -1,0 +1,50 @@
+@import "global";
+
+.folder-list {
+  .item {
+    float: left;
+    width: 23%;
+    margin: 1%;
+
+    .cover {
+      padding: 2px;
+      background-color: rgba(0, 0, 0, .05);
+
+      .inner {
+        display: block;
+        background-color: $white;
+        padding: 20px 0;
+        border: 1px solid darken($grayLighter, 10%);
+
+        &:hover {
+          @include box-shadow(0 0 10px 0 rgba(0, 0, 0, .1));
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.photos-list {
+  .item {
+    float: left;
+    width: 18%;
+    margin: 1%;
+
+    .cover {
+      padding: 2px;
+      background-color: rgba(0, 0, 0, .05);
+
+      .inner {
+        display: block;
+        background-color: $white;
+        border: 1px solid darken($grayLighter, 10%);
+
+        &:hover {
+          @include box-shadow(0 0 10px 0 rgba(0, 0, 0, .1));
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

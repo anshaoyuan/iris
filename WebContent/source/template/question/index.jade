@@ -1,0 +1,45 @@
+.container
+  .row
+    .col-md-12
+      section.qa-header
+        h4.title
+          img(src="image/t_qna.png")
+          small: a(href="#/questions/new") 提问题
+        .qa-filters.btn-group
+          button.btn.btn-link(class="{{title == '最新问题' ? 'disabled' : ''}}", type="button", ng-click = "clickNewMenu()")
+            span.bicon.bicon-time
+            | 最新问题
+          button.btn.btn-link(class="{{title == '最热问题' ? 'disabled' : ''}}", type="button", ng-click = "clickHotMenu()")
+            span.bicon.bicon-fire
+            | 最热问题
+          button.btn.btn-link(class="{{title == '未答问题' ? 'disabled' : ''}}", type="button", ng-click = "clickUnMenu()")
+            span.bicon.bicon-screenshot
+            | 未答问题
+  .row
+    .col-md-8
+      div(ng-repeat='question in questionList')
+        .qa-item
+          ul.stats.list-inline
+            li
+              .score.answer {{question.answerCount}}
+              | 答案
+            li
+              .score.agree {{question.praiseCount}}
+              | 赞同
+          .brief
+            time.timestamp(datetime="{{question.createDate}}") {{question.createDate | timeFilter}}
+            //-h5.title: a(ng-show="question.isSolution",ng-href="#/questions/show/{{question.id}}") {{question.titleName | omitFilter:60}}(已解决)
+            .avatar
+              a(href="#/me/{{question.createBy}}"): img(ng-src="..{{question.userImgUrl}}")
+            .content
+              h5.title: a(ng-href="#/questions/show/{{question.id}}") {{question.titleName | omitFilter:60}}
+              .extra
+                a(ng-href="#/me/{{question.createBy}}")
+                  span.bicon.bicon-user
+                  | {{question.userNickname}}
+          img.solved(ng-show="question.isSolution", ng-src="image/solved.jpg")
+      div(style="text-align:center;")
+        pagination(boundary-links="true",max-size="maxSize", ng-click="getQuestions(currentPage)", total-items="totalItems",items-per-page="itemsPerPage", page="currentPage", class="pagination-sm" , rotate="false", previous-text="<", next-text=">" ,first-text="<<" ,last-text=">>")
+    .col-md-4
+      include _aside
+

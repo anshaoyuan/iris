@@ -1,0 +1,167 @@
+// variables
+$primary-text-color: hsl(37, 4%, 36%);
+$altered-text-color: hsl(15, 2%, 60%);
+$punchin-text-color: hsl(175, 32%, 49%);
+$punchin-dark-color: darken(hsl(175, 32%, 49%), 10%);
+
+// placeholder
+%box-wrapper {
+  position: relative;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  @include clearfix;
+  @include border-radius($border-radius-base);
+  @include box-shadow(0 0 3px 0 $lighter-shadow-color);
+}
+
+.qa-header {
+  @extend %box-wrapper;
+  margin-top: 30px;
+  background-color: hsl(0, 0%, 96%);
+
+  .title {
+    margin: 0;
+    color: $primary-text-color;
+    & > small {
+      position: relative;
+      top: 3px;
+      margin-left: 10px;
+    }
+    a {
+      color: $punchin-text-color;
+      &:hover {
+        color: $punchin-dark-color;
+      }
+    }
+  }
+
+  .qa-filters {
+    position: absolute;
+    top: 15px;
+    right: 7px;
+    .btn {
+      color: $primary-text-color;
+      .bicon {
+        margin-right: 5px;
+        font-size: 13px;
+      }
+      &.disabled {
+        color: $altered-text-color;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.qa-item {
+  @extend %box-wrapper;
+  background-color: #fff;
+  @include clearfix;
+  @include transition(box-shadow .3s ease-out);
+  &:hover {
+    @include box-shadow(0 0 6px $light-shadow-color);
+  }
+
+  .stats, .brief {
+    float: left;
+  }
+
+  .stats {
+    width: 15%;
+    margin-bottom: 0;
+    border-right: 1px solid $gray-lighter;
+    li {
+      padding: 4px 10px 5px;
+      color: $gray-light;
+      .score {
+        font-size: 20px;
+        text-align: center;
+        &.answer {
+          color: hsl(37, 56%, 70%);
+        }
+        &.agree {
+          color: $punchin-text-color;
+        }
+        &.view {
+//          color: hsl(4, 83%, 68%);
+        }
+      }
+    }
+  }
+
+  .brief {
+    margin-left: 3%;
+    width: 64%;
+    @include clearfix;
+    .timestamp {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      color: $altered-text-color;
+      font-size: 12px;
+    }
+    .title a {
+      color: $primary-text-color;
+    }
+    .extra {
+      a {
+        margin-right: 10px;
+        color: $altered-text-color;
+        &:hover {
+          color: $primary-text-color;
+        }
+      }
+      a .bicon {
+        margin-right: 2px;
+        font-size: 11px;
+      }
+    }
+    .avatar, .content {
+      float: left;
+    }
+
+    .avatar img {
+      width: 36px;
+      margin: 12px 10px 0 0;
+      @include border-radius(18px);
+      @include box-shadow(0 0 3px 0 $lighter-shadow-color);
+    }
+
+    .content {
+      width: 400px;
+    }
+  }
+  .solved {
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+  }
+}
+
+.qa-mine,
+.qa-favourites,
+.qa-hot {
+  @extend %box-wrapper;
+  background-color: #fff;
+  h5 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid lighten($gray-light, 20%);
+    color: $primary-text-color;
+    @include text-overflow;
+    .more {
+      position: absolute;
+      right: 20px;
+    }
+  }
+  a {
+    color: $punchin-text-color;
+    &:hover {
+      color: $punchin-dark-color;
+    }
+  }
+}
+
+.article.single.qa,
+.article.aside.qa {
+  margin-top: 30px;
+}

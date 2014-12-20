@@ -1,0 +1,13 @@
+.container
+  .col-md-8
+    article.article.single.qa
+      h3.title(ng-cloak) {{questionTitle}}
+        a.btn.btn-warning.btn-back(href="javascript:history.back()") 返回列表
+      div(ng-bind-html="questionContent" ) 
+
+      include _meta
+      hr
+      include _comment
+
+  .col-md-4
+    include _show_aside

@@ -1,0 +1,30 @@
+.container
+    .row
+        form.article.new.col-md-8.col-md-offset-2(novalidate, role="form", name="newArticleForm")
+
+            fieldset
+                legend 发表新分享
+                  button.btn.btn-warning(type="submit", ng-click="blogSub('0')")
+                    span.bicon.bicon-ok
+                    | &nbsp;&nbsp;发表
+
+                .form-group
+                    label 标题：
+                    input.form-control(type="text", name="title", ng-model="blogTitle", required, ng-maxlength="40")
+                .form-group
+                    label 正文：
+                    textarea.form-control(rows="10", name="content",rich-text-directive="blogContent",config="richTextConfig",file-list="fileList",img-list="imgList",style="height:500px;")
+
+            fieldset.action
+                .form-group
+                    .pull-left(ng-cloak, ng-show="submited")
+                        span(ng-cloak, ng-show="submited && newArticleForm.title.$invalid")
+                            | 标题不能为空而且长度不能大于40个字符!
+                        span(ng-cloak, ng-show="submited && newArticleForm.title.$valid && contentValid")
+                            | 内容不能为空!
+                    button.btn.btn-warning.pull-right(type="submit",ng-click="blogSub('0')")
+                        span.bicon.bicon-ok
+                        | &nbsp;&nbsp;发表
+                    //- button.btn.btn-default.pull-right(type="button",ng-click="blogSub('1')")
+                        span.bicon.bicon-floppy-save
+                        | &nbsp;&nbsp;草稿

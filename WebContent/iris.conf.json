@@ -1,0 +1,67 @@
+{
+    "name": "iris",
+    "version": "0.1.0",
+    "env": "dev",
+    "browser": "Google Chrome",
+    "date": "<%= grunt.template.today('yyyymmdd') %>",
+    "namespace": "vn",
+    "sysPath": "/iris",
+    "path": {
+        "source": "source/",
+        "iris": [
+	        "source/module/**/*.js",
+	        "!source/module/app_prop_test.js",
+	        "!source/module/app_prop_local.js",
+            "source/common/vs-angular-patch/vs-angular-patch.js",
+            "source/filter/**/*.js",
+            "source/service/**/*.js",
+            "source/directive/**/*.js",
+            "source/controller/**/*.js"
+        ],
+        "public": "public/",
+        "vendor": "vendor/",
+        "spec": "test/spec/",
+        "doc": "doc/"
+    },
+    "vendor": {
+        "bootstrap": {
+            "base": "vendor/bootstrap-sass/",
+            "load": "vendor/bootstrap-sass/stylesheets/",
+            "sass": "vendor/bootstrap-sass/stylesheets/bootstrap.scss"
+        },
+        "plugin_css": [
+            "vendor/font-awesome/font-awesome.css",
+            "vendor/animate.css/animate.css",
+            "vendor/uploadify/uploadify.css",
+            "vendor/wysihtml5/stylesheet.css",
+            "vendor/bootstrap-wysihtml5/bootstrap-wysihtml5.css",
+            "vendor/chosen/public/chosen.css",
+            "vendor/jcrop/css/jquery.Jcrop.css",
+            "vendor/jcrop/css/show.css",
+            "vendor/angular/angular-csp.css"
+        ],
+        "plugin_js": [
+            "vendor/jquery/jquery.js",
+            "vendor/bootstrap-sass/javascripts/bootstrap/*.js",
+            "!vendor/bootstrap-sass/javascripts/bootstrap/popover.js",
+            "vendor/bootstrap-sass/javascripts/bootstrap/popover.js",
+            "vendor/uploadify/jquery.uploadify.js",
+            "vendor/wysihtml5/wysihtml5-0.3.0.js",
+            "vendor/bootstrap-wysihtml5/bootstrap-wysihtml5.js",
+            "vendor/chosen/public/chosen.jquery.js",
+            "vendor/jcrop/js/jquery.Jcrop.js",
+	        "vendor/underscore/underscore.js",
+	        "vendor/socket.io-client/dist/socket.io.js"
+        ],
+        "angular": [
+            "vendor/angular/angular.js",
+	        "vendor/angular-ui-router/release/angular-ui-router.js",
+            "vendor/angular-resource/angular-resource.js",
+            "vendor/angular-animate/angular-animate.js",
+            "vendor/angular-cookies/angular-cookies.js",
+            "vendor/angular-sanitize/angular-sanitize.js",
+            "vendor/angular-ui-utils/ui-utils.js",
+            "vendor/angular-bootstrap/ui-bootstrap-tpls.js"
+        ]
+    }
+}

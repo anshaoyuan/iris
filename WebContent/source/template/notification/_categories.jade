@@ -1,0 +1,9 @@
+section.categories
+    h5 提醒类别
+    ul.list-unstyled
+        li
+            a(href="", ng-click="changeTag(1)") 我的提醒
+            span.badge {{myRemindCount}}
+        li
+            a(href="", ng-click="changeTag(2)") 群组提醒
+            span.badge {{teamRemindCount}}

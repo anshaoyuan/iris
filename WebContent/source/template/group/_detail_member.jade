@@ -1,0 +1,8 @@
+fieldset.member
+    legend 成员列表
+    .user-filter.col-md-4
+    ul.user-list.list-unstyled.row
+        li.col-md-2(ng-repeat="userinfo in userList ")
+            .checkbox
+                label
+                    a(ng-href="#/me/{{userinfo.id}}") {{userinfo.aliasName}}

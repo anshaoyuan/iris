@@ -1,0 +1,51 @@
+.notifications {
+  margin-top: 30px;
+}
+
+.notifications .categories {
+  padding: 10px 20px;
+  background-color: #fff;
+  @include border-radius($border-radius-base);
+  @include box-shadow(0 0 3px 0 $lighter-shadow-color);
+  h5 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    color: #5f5d58;
+    @include text-overflow;
+  }
+  ul li {
+    position: relative;
+    border-bottom: 1px solid hsl(0, 0%, 96%);
+    a {
+      display: block;
+      padding: 10px;
+      @include transition(all .3s ease-out);
+      &:hover {
+        text-decoration: none;
+        background-color: hsl(0, 0%, 96%);
+      }
+    }
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+  }
+}
+
+.notifications .details {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #fff;
+  @include border-radius($border-radius-base);
+  @include box-shadow(0 0 3px 0 $lighter-shadow-color);
+  &.old {
+    opacity: .6
+  }
+  .btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}

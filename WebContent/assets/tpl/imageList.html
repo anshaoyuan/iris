@@ -1,0 +1,53 @@
+<div class="span10 offset1">
+	<h3 class="page-header">
+		<i class="fa fa-camera-retro fa-fw fa-lg"></i> <span class="sapnImagefolderType">{{folderName}}</span>
+		<a class="btn btn-warning pull-right showUploadImageDivBtn" data-folderid="{{folderId}}" data-path="{{folderPath}}"> 
+			<i class="fa fa-upload fa-fw"></i> 上传相片
+		</a> 
+		<a href="{{sysPath}}/mobile/imageFolder/toMyImage/{{folderId}}" class="btn btn-success pull-right showBigImageLink">
+			<i class="fa fa-picture-o fa-fw"></i> 浏览大图
+		</a>
+	</h3>
+</div>
+<div class="span10 offset1 photos-list">
+	{{each imageList as img index}}
+	<div class="item text-center" id="image_{{img.id}}" style="width:23%">
+		<div class="cover">
+			<a href="{{sysPath}}/mobile/imageFolder/toImageComment/{{img.id}}" class="inner">
+				<img style="max-height: 130px" src="{{sysPath}}/{{img.midUri}}" alt="" />
+			</a>
+		</div>
+		<div class="action">
+			<a title="赞:加载中..." class="btn btn-link btn-small praiseImageBtn" data-ownerid="{{img.createId}}" data-imageid="{{img.id}}">
+				<i class="fa fa-heart fa-fw"></i>(<span class="imagepraiseCount_{{img.id}}">{{img.praiseCount}}</span>) 
+			</a>
+			<a title="评论" href="{{sysPath}}/mobile/imageFolder/toImageComment/{{img.id}}" class="btn btn-link btn-small">
+				<i class="fa fa-comments-o fa-fw"></i>({{img.imageList.length}}) 
+			</a>
+			{{if userId===img.createId}}
+			<a title="删除" class="btn btn-link btn-small deleteImageBtn" data-folderid="{{folderId}}" data-imageid="{{img.id}}">
+				<i class="fa fa-times fa-fw"></i> 
+			</a>
+			{{/if}}
+		</div>
+	</div>
+	{{/each}}
+</div>
+
+<!-- 上传照片弹出层 -->
+<div id="uploadImageModal" class="modal hide fade in">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>上传照片</h3>
+	</div>
+	<div class="modal-body">
+		<input type="file" name="uploadify" id="uploadify" /><span>可以按住Ctrl键选择多张图</span>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal">关闭</button> 
+		<!-- 
+		<button class="btn btn-primary imageUploadSumitBtn">上传</button>
+		 -->
+	</div>
+</div>
+<!-- 上传照片弹出层 -->

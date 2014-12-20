@@ -1,0 +1,25 @@
+fieldset.voting(ng-show="annexation == 'voting'")
+  .col-md-12
+    legend 添加投票选项
+  .addon-info.col-md-12
+    .alert.alert-warning
+      strong 提示：
+      | 下方可以添加各选项的描述或者为选项附上图片。整个投票的综合描述请在左边的正文处填写
+  .addon-group.col-md-12(ng-repeat="voteOption in vote.voteOptionList")
+    textarea.form-control(rows=2, placeholder="描述选项",ng-model="voteOption.content")
+    section.addon-action.clearfix
+      .pull-left
+        .btn.btn-link(id="voteUpload-{{$index}}",uploadify-directive="voteOption.uploadConfig")
+        img(ng-if="voteOption.imageUri",style="max-width:120px;max-height:200px;",ng-src="{{voteOption.imageUri}}")
+      .pull-right
+        a.btn.btn-link(ng-if="$index >= 2",ng-click="vote.voteOptionList.splice($index,1)") 删除本选项
+        a.btn.btn-link(ng-if="$last && $index < 9",ng-click="addVoteOption()") 添加新选项
+  section.col-md-12
+    | 单选 / 多选:&nbsp;
+    label
+      input(type="radio",name="voteType",ng-model="vote.voteType",ng-value='0')
+      | 单选
+    | &nbsp;
+    label
+      input(type="radio",name="voteType",ng-model="vote.voteType",ng-value='1')
+      | 多选

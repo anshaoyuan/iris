@@ -1,0 +1,34 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "plugins": ["plugins/markdown"],
+    "source": {
+        "include": ["Gruntfile.js", "./source/"]
+    },
+    "opts": {
+        "destination": "./doc/",
+        "template": "vendor/docstrap/template",
+        "recurse": true,
+        "private": true
+    },
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": false,
+        "default": {
+            "outputSourceFiles": true
+        },
+        "systemName": "IRIS - 前端 API",
+        "footer": "",
+        "copyright": "IRIS Copyright © 2014 The contributors to the iris projects.",
+        "navType": "vertical",
+        "theme": "cerulean",
+        "linenums": true,
+        "collapseSymbols": true,
+        "inverseNav": true
+    },
+    "markdown": {
+        "parser": "gfm",
+        "hardwrap": true
+    }
+}

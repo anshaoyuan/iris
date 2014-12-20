@@ -1,0 +1,40 @@
+.pushable {
+  position: fixed;
+  &.left,
+  &.right {
+    top: 0;
+    z-index: $pushable-z-index;
+    height: 100%;
+    width: $pushable-vertical-width;
+  }
+  &.left {
+    left: -$pushable-vertical-width;
+    &.open {
+      left: 0;
+    }
+  }
+  &.right {
+    right: -$pushable-vertical-width;
+    &.open {
+      right: 0;
+    }
+  }
+}
+
+.pushable-to {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  left: 0;
+  &.left {
+    left: -$pushable-vertical-width;
+  }
+  &.right {
+    left: $pushable-vertical-width;
+  }
+}
+
+.pushable,
+.pushable-to {
+  @include transition(all .2s ease-in-out);
+}
