@@ -1,0 +1,57 @@
+
+<div class="container page-wrapper">
+  <form novalidate="novalidate" role="form" name="newEvent" class="new event row">
+    <fieldset class="col-md-7">
+      <legend class="clearfix">发表活动
+        <button type="submit" ng-click="eventSub()" class="btn btn-warning pull-right"><i class="fa fa-fw fa-check"></i>发表</button>
+      </legend>
+      <div class="form-group">
+        <label>标题</label>
+        <input type="text" name="title" ng-model="blogTitle" required="required" ng-maxlength="40" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label>正文</label>
+        <textarea rows="10" name="content" rich-text-directive="blogContent" config="richTextConfig" file-list="fileList" img-list="imgList" style="height:500px;" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <div ng-cloak="ng-cloak" ng-show="submited" class="pull-left"><span ng-cloak="ng-cloak" ng-show="showWaringInfo">{{errorMsg}}</span></div>
+        <button type="submit" ng-click="eventSub()" class="btn btn-warning pull-right"><i class="fa fa-fw fa-check"></i>发表</button>
+      </div>
+    </fieldset>
+    <fieldset class="col-md-5">
+      <legend class="clearfix">项目设置</legend>
+      <div ng-repeat="project in projects.projectList" class="program-group">
+        <div class="program-operation">
+          <button type="button" ng-click="deleteProject($index,project.id)" ng-if="$index&gt;=1||projects.projectList.length&gt;1" class="btn btn-link"><i class="fa fa-fw fa-times"></i>删除项目</button>
+          <button type="button" ng-if="$last" ng-click="addProject()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i>添加项目</button>
+        </div>
+        <div class="form-group">
+          <label>项目名称</label>
+          <input type="hidden" ng-model="project.id" class="form-control"/>
+          <input type="text" ng-model="project.projectName" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>描述</label>
+          <textarea rows="2" ng-model="project.projectDesc" class="form-control"> </textarea>
+        </div>
+        <div class="form-group clearfix">
+          <div class="half-part">
+            <label>报名开始日期</label>
+            <input type="text" datepicker-popup="yyyy-MM-dd" ng-model="project.startDate" class="form-control"/>
+          </div>
+          <div class="half-part">
+            <label>报名结束日期</label>
+            <input type="text" datepicker-popup="yyyy-MM-dd" ng-model="project.endDate" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" ng-model="project.isShow"/>显示已报名人员的名单
+          </label>
+          <div id="voteUpload-{{$index}}" uploadify-directive="project.uploadConfig" class="btn btn-link"></div>
+        </div>
+        <div class="preview"><img ng-src="{{project.imageUri}}" ng-show="project.imageUri"/></div>
+      </div>
+    </fieldset>
+  </form>
+</div>

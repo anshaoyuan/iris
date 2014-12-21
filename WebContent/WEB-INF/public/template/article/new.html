@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="row">
+    <form novalidate="novalidate" role="form" name="newArticleForm" class="article new col-md-8 col-md-offset-2">
+      <fieldset>
+        <legend>发表新分享
+          <button type="submit" ng-click="blogSub('0')" class="btn btn-warning"><span class="bicon bicon-ok"></span>&nbsp;&nbsp;发表</button>
+        </legend>
+        <div class="form-group">
+          <label>标题：</label>
+          <input type="text" name="title" ng-model="blogTitle" required="required" ng-maxlength="40" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>正文：</label>
+          <textarea rows="10" name="content" rich-text-directive="blogContent" config="richTextConfig" file-list="fileList" img-list="imgList" style="height:500px;" class="form-control"></textarea>
+        </div>
+      </fieldset>
+      <fieldset class="action">
+        <div class="form-group">
+          <div ng-cloak="ng-cloak" ng-show="submited" class="pull-left"><span ng-cloak="ng-cloak" ng-show="submited &amp;&amp; newArticleForm.title.$invalid">标题不能为空而且长度不能大于40个字符!</span><span ng-cloak="ng-cloak" ng-show="submited &amp;&amp; newArticleForm.title.$valid &amp;&amp; contentValid">内容不能为空!</span></div>
+          <button type="submit" ng-click="blogSub('0')" class="btn btn-warning pull-right"><span class="bicon bicon-ok"></span>&nbsp;&nbsp;发表</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

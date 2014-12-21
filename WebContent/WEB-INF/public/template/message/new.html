@@ -1,0 +1,165 @@
+
+<div ng-cloak="ng-cloak" class="container">
+  <form role="form" name="newMessageForm" ng-init="newMessage.isHidden=false" ng-submit="subForm('message')" novalidate="novalidate" class="{{hideAnnexationPanel ? 'col-md-8 col-md-offset-2 message new row form-horizontal' : 'message new row form-horizontal'}}">
+    <div class="{{hideAnnexationPanel ? '' : 'col-md-7'}}">
+      <fieldset class="general">
+        <legend>{{titleName}}
+          <button type="submit" ng-if="!editMessage" ng-disabled="isSubmit" class="btn btn-warning pull-right"><span ng-cloak="ng-cloak" class="{{sendSubmit ? 'fa fa-spinner fa-spin' : 'bicon bicon-ok'}}"></span>&nbsp;&nbsp;发送</button>
+        </legend>
+        <div class="form-group">
+          <label class="control-label col-md-1">
+            <vs-smart-caret vs-careta="right" vs-caretb="down" vs-action="click" vs-baseon="newMessage.isHidden"></vs-smart-caret>发给:
+          </label>
+          <div ng-show="!receiverRead" class="col-md-11">
+            <select name="newTo" chosen-directive="p_to" search-callback="searchReceiver" search-list="p_toReceivers" custom-input="sendEmail" multiple="multiple" data-placeholder="  " class="form-control">
+              <option ng-repeat="to in p_toReceivers" label="{{to.name + ' ' + to.firstLetter }}" search-choice-style="{{to.style}}" ng-selected="to.selected">{{to.name}}</option>
+            </select>
+          </div>
+          <div ng-show="receiverRead" class="col-md-11">
+            <ul class="nav nav-pills control-label">
+              <li ng-repeat="to in p_toReceivers" style="margin-right:5px;">{{to.name}};</li>
+            </ul>
+          </div>
+        </div>
+        <div ng-hide="newMessage.isHidden" class="form-group animated">
+          <label class="control-label col-md-1">抄送给:</label>
+          <div ng-show="!receiverRead" class="col-md-11">
+            <select name="newCc" chosen-directive="p_cc" search-callback="searchReceiver" search-list="p_ccReceivers" custom-input="sendEmail" multiple="multiple" data-placeholder="  " class="form-control">
+              <option ng-repeat="cc in p_ccReceivers" label="{{cc.name + ' ' + cc.firstLetter }}" search-choice-style="{{cc.style}}" ng-selected="cc.selected">{{cc.name}}</option>
+            </select>
+          </div>
+          <div ng-show="receiverRead" class="col-md-11">
+            <ul class="nav nav-pills control-label">
+              <li ng-repeat="cc in p_ccReceivers" style="margin-right:5px;">{{cc.name}};</li>
+            </ul>
+          </div>
+        </div>
+        <div ng-hide="newMessage.isHidden" class="form-group animated">
+          <label class="control-label col-md-1">密送给:</label>
+          <div ng-show="!receiverRead" class="col-md-11">
+            <select name="newBc" chosen-directive="p_bc" search-callback="searchReceiver" search-list="p_bcReceivers" custom-input="sendEmail" multiple="multiple" data-placeholder="  " class="form-control">
+              <option ng-repeat="bc in p_bcReceivers" label="{{bc.name + ' ' + bc.firstLetter }}" search-choice-style="{{bc.style}}" ng-selected="bc.selected">{{bc.name}}</option>
+            </select>
+          </div>
+          <div ng-show="receiverRead" class="col-md-11">
+            <ul class="nav nav-pills control-label">
+              <li ng-repeat="bc in p_bcReceivers" style="margin-right:5px;">{{bc.name}};</li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-1">主题:</label>
+          <div class="col-md-11">
+            <input type="text" name="subject" ng-model="subject" required="required" ng-maxlength="100" ng-trim="ng-trim" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label sr-only">正文:</label>
+          <div class="col-md-12">
+            <textarea rows="5" rich-text-directive="content" file-list="fileList" img-list="imgList" style="height:500px;padding:0px;" class="form-control"></textarea>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="action">
+        <div class="form-group">
+          <div class="col-md-12">
+            <button type="submit" ng-if="!editMessage" ng-disabled="isSubmit" class="btn btn-warning pull-right"><span class="{{sendSubmit ? 'fa fa-spinner fa-spin' : 'bicon bicon-ok'}}"></span>&nbsp;&nbsp;发送</button>
+            <!--button.btn.btn-default.pull-right(type="button",ng-if="!editMessage",ng-disabled="isSubmit",ng-click="subForm('draft')")-->
+            <!--    span(class="{{draftSubmit ? 'fa fa-spinner fa-spin' : 'bicon bicon-floppy-save'}}")-->
+            <!--    | &nbsp;&nbsp;暂存-->
+            <button type="button" ng-if="editMessage" ng-disabled="isSubmit" ng-click="subForm('draft')" class="btn btn-warning pull-right"><span class="{{isSubmit ? 'fa fa-spinner fa-spin' : 'bicon bicon-floppy-save'}}"></span>&nbsp;&nbsp;保存</button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div ng-hide="hideAnnexationPanel" class="col-md-5">
+      <section ng-hide="hideAnnexationSwitchBtn" class="addon-select row">
+        <div class="col-md-6">
+          <button type="button" ng-disabled="annexationDisabled" ng-click="annexation = annexation != 'voting' ? 'voting' : ''" class="btn btn-warning btn-lg btn-block"><span class="bicon bicon-stats"></span>附加投票</button>
+        </div>
+        <div class="col-md-6">
+          <button type="button" ng-disabled="annexationDisabled" ng-click="annexation = annexation != 'agenda' ? 'agenda' : ''" class="btn btn-warning btn-lg btn-block"><span class="bicon bicon-calendar"></span>附加邀请</button>
+        </div>
+      </section>
+      <hr ng-hide="hideAnnexationSwitchBtn"/>
+      <section class="addon-body row">
+        <fieldset ng-show="annexation == 'voting'" class="voting">
+          <div class="col-md-12">
+            <legend>添加投票选项</legend>
+          </div>
+          <div class="addon-info col-md-12">
+            <div class="alert alert-warning"><strong>提示：</strong>下方可以添加各选项的描述或者为选项附上图片。整个投票的综合描述请在左边的正文处填写</div>
+          </div>
+          <div ng-repeat="voteOption in vote.voteOptionList" class="addon-group col-md-12">
+            <textarea rows="2" placeholder="描述选项" ng-model="voteOption.content" class="form-control"></textarea>
+            <section class="addon-action clearfix">
+              <div class="pull-left">
+                <div id="voteUpload-{{$index}}" uploadify-directive="voteOption.uploadConfig" class="btn btn-link"></div><img ng-if="voteOption.imageUri" style="max-width:120px;max-height:200px;" ng-src="{{voteOption.imageUri}}"/>
+              </div>
+              <div class="pull-right"><a ng-if="$index &gt;= 2" ng-click="vote.voteOptionList.splice($index,1)" class="btn btn-link">删除本选项</a><a ng-if="$last &amp;&amp; $index &lt; 9" ng-click="addVoteOption()" class="btn btn-link">添加新选项</a></div>
+            </section>
+          </div>
+          <section class="col-md-12">单选 / 多选:&nbsp;
+            <label>
+              <input type="radio" name="voteType" ng-model="vote.voteType" ng-value="0"/>单选
+            </label>&nbsp;
+            <label>
+              <input type="radio" name="voteType" ng-model="vote.voteType" ng-value="1"/>多选
+            </label>
+          </section>
+        </fieldset>
+        <fieldset ng-show="annexation == 'agenda'" class="agenda">
+          <div class="col-md-12">
+            <legend>添加邀请细节</legend>
+          </div>
+          <div class="addon-info col-md-12">
+            <div class="alert alert-warning"><strong>提示：</strong>邀请的受邀者是左边的收件人，约会的描述是左边的正文。请在下方补充约会的时间和地点描述</div>
+          </div>
+          <div class="addon-group col-md-12">
+            <div style="padding-top:35px" class="input-group col-md-8 pull-left">
+              <input type="text" datepicker-popup="yyyy-MM-dd" ng-model="schedule.date" class="form-control"/>
+              <!--span.input-group-btn-->
+              <!--    button.btn.btn-default(type="button"): i.fa.fa-calendar-->
+            </div>
+            <div class="col-md-4 pull-right">
+              <div ng-model="schedule.time">
+                <timepicker show-meridian="false"></timepicker>
+              </div>
+            </div>
+          </div>
+          <div class="addon-group col-md-12">
+            <textarea rows="2" placeholder="地点描述" ng-model="schedule.place" class="form-control"></textarea>
+          </div>
+        </fieldset>
+        <fieldset ng-show="annexation == 'lottery'" class="voting">
+          <div class="col-md-12">
+            <legend>添加奖品</legend>
+          </div>
+          <div class="addon-info col-md-12">
+            <div class="alert alert-warning"><strong>提示：</strong>下方可以添加奖品名称或者为奖品附上图片。整个抽奖活动的描述请在左边的正文处填写</div>
+          </div>
+          <div class="addon-group col-md-12">
+            <label style="text-align:center;" class="col-md-3 control-label">结束日期</label>
+            <div style="padding:0px;" class="col-md-9">
+              <input type="text" datepicker-popup="yyyy-MM-dd" ng-model="lottery.ed" class="form-control"/>
+            </div>
+          </div>
+          <div ng-repeat="lotteryOption in lottery.lotteryOptionList" class="addon-group col-md-12">
+            <div style="padding:0px" class="col-md-9">
+              <input type="text" placeholder="奖品名称" ng-model="lotteryOption.content" class="form-control"/>
+            </div>
+            <div style="padding:0px" class="col-md-2 col-md-offset-1">
+              <input min="1" type="number" placeholder="人数" ng-model="lotteryOption.numberPeople" class="form-control"/>
+            </div>
+            <section style="padding:0px" class="col-md-12 addon-action clearfix">
+              <div class="pull-left">
+                <div id="lotteryUpload-{{$index}}" uploadify-directive="lotteryOption.uploadConfig" class="btn btn-link"></div><img ng-if="lotteryOption.imageUri" style="max-width:120px;max-height:200px;" ng-src="{{lotteryOption.imageUri}}"/>
+              </div>
+              <div class="pull-right"><a ng-if="$index &gt;= 2" ng-click="lottery.lotteryOptionList.splice($index,1)" class="btn btn-link">删除本奖项</a><a ng-if="$last &amp;&amp; $index &lt; 9" ng-click="addLotteryOption()" class="btn btn-link">添加新奖项</a></div>
+            </section>
+          </div>
+        </fieldset>
+      </section>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,99 @@
+
+<div class="container article-container">
+  <div class="col-md-8">
+    <article class="article single">
+      <h3 ng-cloak="ng-cloak" class="title">{{blogTitle}}<a href="javascript:history.back()" class="btn btn-warning btn-back">返回列表</a></h3>
+      <div class="col-md-12">
+        <ul ng-if="fileList &amp;&amp; fileList.length &gt; 0" class="nav nav-pills">
+          <li ng-repeat="atta in fileList"><a href="" ng-click="downloadFile(atta.id)" ng-cloak="ng-cloak">{{atta.resourceName}}</a></li>
+        </ul>
+      </div>
+      <div ng-bind-html="blogContent" class="content"></div>
+      <section class="meta clearfix">
+        <div class="action pull-left">
+          <button ng-disabled="clickMentionValue" ng-click="clickMention()" title="{{mentions}}" class="btn btn-warning {{!mentionId ? 'btn-default' : 'btn-danger'}}"><span class="bicon bicon-thumbs-up"></span><strong>{{blogPraiseCount}}</strong>&nbsp;{{mentionId ? '已赞' : '赞'}}</button>
+          <button ng-click="store(hasStore)" ng-if="isSignup==0" class="btn btn-link"><span class="bicon"></span>{{hasStore == 1 ? '取消收藏' : '收藏'}}  </button>
+          <button ng-show="isOwner == 1" ng-click="to_update()" id="update_blog" class="btn btn-link"><span class="bicon bicon-pencil"></span>编辑</button>
+          <button ng-show="isOwner == 1" confirm-directive="" title="确认删除吗？" ok-fn="deleteBlog(config,attr)" class="btn btn-link"><span class="bicon bicon-trash"></span>删除</button><a ng-href="#/new?bid={{blogId}}" class="btn btn-link"><span class="bicon bicon-pencil"></span>转发消息</a>
+        </div>
+        <div class="info pull-right"><small class="text-muted">发表于：
+            <time datetime="{{blogCreateDate}}">{{blogCreateDate | timeFilter}}</time></small></div>
+      </section>
+      <hr/>
+      <section class="comment">
+        <h4><em class="text-info">{{commentLength}}</em>&nbsp;条评论</h4>
+        <ul class="list-unstyled">
+          <li ng-repeat="comment in comments" class="comment-item">
+            <p ng-bind-html="comment.commentHtml"></p>
+            <section class="meta">
+              <div class="clearfix">
+                <div class="info pull-left"><a ng-href="#/me/{{comment.userId}}"><small>{{comment.userNickname}}</small></a><small>
+                    <time class="text-muted">{{comment.createDate}}</time></small></div>
+                <div class="action pull-right">
+                  <button ng-click="showCommentForm(comment)" class="btn btn-link">评论</button>
+                  <button ng-show="comment.userId == currUser" confirm-directive="" title="确认删除吗?" data-commentId="{{comment.id}}" ok-fn="deleteComment(config,attr)" class="btn btn-link">删除</button>
+                </div>
+              </div>
+              <div ng-if="comment.subFormShow">
+                <div class="form-group">
+                  <textarea rows="5" placeholder="发表评论" ng-model="commentHtml2" class="form-control"></textarea>
+                </div>
+                <div class="form-group clearfix">
+                  <button type="submit" ng-click="subComment(0,commentHtml2)" class="btn btn-warning pull-right"><span class="bicon bicon-ok"></span>提交</button>
+                </div>
+              </div>
+            </section>
+          </li>
+        </ul>
+        <form class="reply-form">
+          <h5>你的评论：</h5>
+          <div class="form-group">
+            <textarea rows="5" placeholder="发表评论" ng-model="commentHtml1" class="form-control"></textarea>
+          </div>
+          <div class="form-group clearfix">
+            <button type="submit" ng-click="subComment(1,commentHtml1)" class="btn btn-warning pull-right"><span class="bicon bicon-ok"></span>提交</button>
+          </div>
+        </form>
+      </section>
+    </article>
+  </div>
+  <div class="col-md-4">
+    <aside class="article aside">
+      <section class="author">
+        <h4 class="title">作者</h4>
+        <div class="clearfix">
+          <div class="avatar pull-left"><a ng-href="#/me/{{createBy}}"><img ng-src="../{{createImg}}"/></a></div>
+          <div class="info pull-left">
+            <h4>{{createName}}</h4><small>{{createTitle}}</small>
+          </div>
+        </div>
+      </section>
+      <section ng-show="isSignup==0 &amp;&amp; hotBlogLength &gt;= 1" class="hot">
+        <h4 class="title">最热分享</h4>
+        <ul ng-repeat="blog in hotBlogs" class="list-unstyled">
+          <li><a ng-href="#/articles/show/{{blog.id}}">{{blog.titleName | omitFilter:20}}</a></li>
+        </ul>
+      </section>
+    </aside>
+    <section ng-show="isSignup==1" class="aside-panel event">
+      <h4 class="aside-panel-title">报名项目</h4>
+      <div ng-repeat="project in projects" class="program">
+        <h5 class="program-title">{{$index+1}}. {{project.projectName|omitFilter:20}}<i class="badge program-signup-count">{{project.signupCount}}</i></h5>
+        <div class="program-date-range">
+          <div class="start-date">报名开始时间：<time datatime="{{project.startDate}}">{{project.startDate }}</time></div>
+          <div class="close-date">报名结束时间：<time datatime="{{project.endDate}}">{{project.endDate }}</time></div>
+        </div>
+        <div ng-if="project.status ==2" class="program-status clearfix"><span class="label label-danger pull-left">报名尚未开始</span>
+          <button type="button" ng-click="showProjectDetail(project.id)" class="btn btn-default btn-sm pull-right">查看详情<i class="fa fa-fw fa-arrow-right"></i></button>
+        </div>
+        <div ng-if="project.status ==3" class="program-status clearfix"><span class="label label-success pull-left">报名正在进行</span>
+          <button type="button" ng-click="showProjectDetail(project.id)" ng-if="project.isSignUp==0" class="btn btn-warning btn-sm pull-right">现在报名</button>
+          <button type="button" ng-click="showProjectDetail(project.id)" ng-if="project.isSignUp==1" class="btn btn-warning btn-sm pull-right">查看详情<i class="fa fa-fw fa-arrow-right"></i></button>
+        </div>
+        <div ng-if="project.status ==1" class="program-status clearfix"><span class="label label-default pull-left">报名已经结束</span>
+          <button type="button" ng-click="showProjectDetail(project.id)" class="btn btn-default btn-sm pull-right">查看详情<i class="fa fa-fw fa-arrow-right">   </i></button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
