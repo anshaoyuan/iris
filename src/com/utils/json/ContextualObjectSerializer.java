@@ -6,6 +6,8 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,6 +21,7 @@ import com.utils.annotation.JsonDateSerializerAnno;
 
 public class ContextualObjectSerializer extends JsonSerializer<String>
 implements ContextualSerializer{
+	Logger log = LoggerFactory.getLogger(ContextualObjectSerializer.class);
 	private List<AnnotationSerializerConfig> config;
 
 	  public void setConfig(List<AnnotationSerializerConfig> config) {
@@ -44,7 +47,8 @@ implements ContextualSerializer{
 			JsonDateSerializerAnno date = new JsonDateSerializerAnno();
 			//date.setAnno(new DateFormat);
 	    } catch (Exception e) {
-	      e.printStackTrace();
+	    	log.error("输出出误：beanproperty==>"+property);
+	    //  e.printStackTrace();
 	    }
 		return new SimpleStringSerializer();
 

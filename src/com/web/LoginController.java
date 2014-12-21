@@ -39,7 +39,12 @@ public class LoginController {
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(){
-		return "/login";
+		return "redirect:/public/signin.html";
+	}
+	
+	@RequestMapping("/index")
+	public String index(){
+		 return "redirect:/public/index.html#/articles";
 	}
 
 }

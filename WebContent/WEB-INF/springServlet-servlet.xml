@@ -80,6 +80,7 @@ http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
   <!--静态文件的访问-->
   <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>
   <mvc:resources mapping="/js/**" location="/WEB-INF/js/" cache-period="31556921"/>
+  <mvc:resources mapping="/public/**" location="/WEB-INF/public/" cache-period="31556921"/>
   <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>
   
 </beans>

@@ -5,27 +5,27 @@ html(lang="zh", ng-app="vsApp")
 
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatiable", content="IE=Edge,chrome=1")
-    title 淘智汇 2.0
+    title iris
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(name="creator", content="Visionet Inc <http://www.visionet.com.cn/>")
+    meta(name="creator", content="iris")
 
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-50444946-1', 'anji.com');
+      ga('create', 'UA-50444946-1', 'six4.org');
       ga('require', 'linkid', 'linkid.js');
 
     block stylesheets
       if env === 'pub'
         link(href="common/bootstrap.min.css", rel="stylesheet")
         link(href="common/vendor.min.css", rel="stylesheet")
-        link(href="sloth.min.css", rel="stylesheet")
+        link(href="iris.min.css", rel="stylesheet")
       else
         link(href="common/bootstrap.css", rel="stylesheet")
         link(href="common/vendor.css", rel="stylesheet")
-        link(href="sloth.css", rel="stylesheet")
+        link(href="iris.css", rel="stylesheet")
   body.signin-page
     block content
 
@@ -33,8 +33,8 @@ html(lang="zh", ng-app="vsApp")
       if env === 'pub'
         script(src="common/vendor.min.js")
         script(src="common/angular.min.js")
-        script(src="sloth.min.js")
+        script(src="iris.min.js")
       else
         script(src="common/vendor.js")
         script(src="common/angular.js")
-        script(src="sloth.js")
+        script(src="iris.js")

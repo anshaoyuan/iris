@@ -29,6 +29,13 @@
 				/help/** = anon
 				/static/** = anon
 				/js/** = anon
+                /public/** = anon
+                /public/common/angular.js = anon
+                /public/common/vendor.js = anon
+                /public/common/vendor.css = anon
+                /public/common/bootstrap.css = anon
+                /public/common/font/** = anon
+                /public/image/** = anon
                 /assets/** = anon
                 /html/** = anon
 				/register/** = anon

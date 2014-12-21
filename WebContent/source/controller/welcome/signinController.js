@@ -33,7 +33,7 @@ angular.module('vsController')
                 if($scope.remember){
                     $cookies.lastLoginName = $scope.username;
                 }
-                window.location.href = 'mobile/index' ;
+                window.location.href = '../index' ;
 			}else{
 				alertBoxFactory(result.msg,{width : 400,textAlign: 'center'});
 			}

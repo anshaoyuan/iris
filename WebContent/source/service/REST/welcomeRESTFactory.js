@@ -1,7 +1,7 @@
 angular.module('vsREST').factory('welcomeRESTFactory',['$resource',function($resource){
     var actions = {
         login : {
-            url : 'weblogin',
+            url : '../weblogin',
             method : 'post'
         },
 	    signup : {

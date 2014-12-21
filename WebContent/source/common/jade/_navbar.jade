@@ -1,5 +1,5 @@
 section.navbar.navbar-default.navbar-fixed-top(ng-class="{ pushed: navMenuOpen }")
-  a.navbar-brand(href="", title="点击显示／隐藏菜单", ng-click="navMenuOpen = !navMenuOpen"): span.bicon.bicon-align-justify
+ // a.navbar-brand(href="", title="点击显示／隐藏菜单", ng-click="navMenuOpen = !navMenuOpen"): span.bicon.bicon-align-justify
 
   ul.nav.navbar-nav.navbar-left
       li: a.logo(href="#/articles")
@@ -17,11 +17,11 @@ section.navbar.navbar-default.navbar-fixed-top(ng-class="{ pushed: navMenuOpen }
   //- END: Breadcrumb
   //- BEGIN: Global Search & Chatter Trigger
   form.navbar-form.navbar-right(role="search", ng-controller="searchHeaderController", ng-submit="search()", ng-class="{ pushed: navMenuOpen }")
-    section.form-group
-      label.sr-only(for="navbarSearch") 搜索
-      input#navbarSearch.form-control(type="search", name="navbarSearch", placeholder="搜索",ng-model="searchInput",ng-trim)
-    button.btn.btn-default(type="submit") 搜索
+  //  section.form-group
+  //    label.sr-only(for="navbarSearch") 搜索
+  //    input#navbarSearch.form-control(type="search", name="navbarSearch", placeholder="搜索",ng-model="searchInput",ng-trim)
+  //  button.btn.btn-default(type="submit") 搜索
   ul.nav.navbar-nav.navbar-right
-    li(ng-controller="remindController"): a.notification.active(href="#/remind", ng-bind="totalRemindCount")
+   // li(ng-controller="remindController"): a.notification.active(href="#/remind", ng-bind="totalRemindCount")
   //- END: Global Search & Chatter Trigger
 //- BEGIN: Navigation Menu
