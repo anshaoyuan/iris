@@ -1,6 +1,9 @@
 'use strict';
-angular.module('vsController').controller('blogListController',['$scope','blogRESTFactory','alertBoxFactory','$location','$cookies','userRESTFactory','$state','noticeRestFactory',
-                                                                function($scope,blogRESTFactory,alertBoxFactory,$location,$cookies,userRESTFactory,$state,noticeRestFactory){
+//angular.module('vsController').controller('blogListController',['$scope','blogRESTFactory','alertBoxFactory','$location','$cookies','$state','noticeRestFactory',
+//                                                                function($scope,blogRESTFactory,alertBoxFactory,$location,$cookies,$state,noticeRestFactory){
+angular.module('vsController').controller('blogListController',['$scope','blogRESTFactory','alertBoxFactory','$location','$cookies','$state',
+                                                                function($scope,blogRESTFactory,alertBoxFactory,$location,$cookies,$state){	
+	
 	$scope.blogArray = [];
 	//blog's max id
 	$scope.blogShow = true;
@@ -41,7 +44,7 @@ angular.module('vsController').controller('blogListController',['$scope','blogRE
 	};
 		
 //	$scope.myInterval = 1000;
-	function initNoticeList(){
+/*	function initNoticeList(){
 		noticeRestFactory.noticeList({},function(data){
 			$scope.noticeList = [];
 			for(var i=0; i< data.length; i++){
@@ -53,7 +56,7 @@ angular.module('vsController').controller('blogListController',['$scope','blogRE
 		});
 	}	
 	initNoticeList();	
-	
+	*/
 	$scope.myInterval = 5000;
     var slides = $scope.slides = [];
     $scope.addSlide = function() {
@@ -80,7 +83,7 @@ angular.module('vsController').controller('blogListController',['$scope','blogRE
 			
 		});
 	}
-	loadHotBlog();
+	//loadHotBlog();
 
 	$scope.currId = $cookies.userId;
 	$scope.currName = decodeURI($cookies.userName);
@@ -191,10 +194,10 @@ angular.module('vsController').controller('blogEditController',['$scope','blogRE
 	
 }]);
 angular.module('vsController').controller('blogDetailController',['$scope','blogRESTFactory','alertBoxFactory',
-                                                                  '$location','$sce','userRESTFactory','blogCommentRESTFactory',
-                                                                  '$cookies','utilService','storeService','eventsRESTFactory',
-                                                                function($scope,blogRESTFactory,alertBoxFactory,$location,$sce,userRESTFactory,
-                                                                		commentRESTFactory,$cookies,utilService,storeService,eventsRESTFactory){
+                                                                  '$location','$sce','blogCommentRESTFactory',
+                                                                  '$cookies','utilService','eventsRESTFactory',
+                                                                function($scope,blogRESTFactory,alertBoxFactory,$location,$sce,
+                                                                		commentRESTFactory,$cookies,utilService,eventsRESTFactory){
 		
 		$scope.currUser = $cookies.userId;
 		$scope.blogId =  $location.absUrl().substring($location.absUrl().lastIndexOf("/")+1);
@@ -228,9 +231,10 @@ angular.module('vsController').controller('blogDetailController',['$scope','blog
 				$scope.mentionId = data.mentionId ==null ? false : true;
 				$scope.createBy = data.createBy;
 				$scope.hasStore = data.hasStore;
-				$scope.mentions = utilService.getMentions(data.mentionList);
+				//$scope.mentions = utilService.getMentions(data.mentionList);
 				$scope.isSignup = data.isSignup;
 				$scope.fileList = data.fileList;
+				/*
 				if($scope.isSignup == 1){
 					eventsRESTFactory.projetList(
 							{"blogId":$scope.blogId},
@@ -239,9 +243,9 @@ angular.module('vsController').controller('blogDetailController',['$scope','blog
 					});
 				}else{
 					loadHotBlog();
-				}
+				}*/
 				loadComment($scope.blogId);
-				loadUser($scope.createBy);
+				//loadUser($scope.createBy);
 			});
 			
 		}
@@ -250,7 +254,7 @@ angular.module('vsController').controller('blogDetailController',['$scope','blog
 			window.location.href='../mobile/download/attach/downloadFile/'+fileId;
 //			documentRestFactory.downloadFile({"fileId": fileId}, function(data){});
 		}
-		
+		/*
 		function loadUser(userId){
 			userRESTFactory.get({
 				"userId":userId
@@ -261,6 +265,13 @@ angular.module('vsController').controller('blogDetailController',['$scope','blog
 				$scope.createTitle = data.title;
 				
 			});
+			
+		}*/
+		function loadUser(userId){
+			
+				$scope.createName = "test";
+				$scope.createImg ="test"
+				$scope.createTitle = "test";
 			
 		}
 		function loadHotBlog(){
@@ -413,7 +424,7 @@ angular.module('vsController').controller('blogDetailController',['$scope','blog
 				$scope.clickMentionValue = false;
 			});
 		};
-		
+		/*
 		$scope.store = function(){
 			storeService.store(1,$scope.blogId,$scope.hasStore,function(){
 				if($scope.hasStore==0){
@@ -429,5 +440,5 @@ angular.module('vsController').controller('blogDetailController',['$scope','blog
 		$scope.showProjectDetail = function(id){
 			$location.path('events/show/'+id);
 		};
-		
+		*/
 }]);

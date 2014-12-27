@@ -1,37 +1,37 @@
 angular.module('vsREST').factory('blogRESTFactory',['$resource',function($resource){
-	var url = '../mobile/blog/:blogId';
+	var url = '../blog/:blogId';
     var actions = {
     	create : {
-    		url : '../mobile/blog/create',
+    		url : '../blog/create',
     		method : 'post'
     	},
         list : {
             method : 'get'
         },
         blogs: {
-        	url: "../mobile/blog/blogs",
+        	url: "../blog/blogs",
         	method :'post'
         },
         update : {
         	method : 'post',
-        	url : '../mobile/blog/update'
+        	url : '../blog/update'
         },
         initUserBlog : {
         	method : 'post',
-        	url :'../mobile/blog/blogs'
+        	url :'../blog/blogs'
         },
         hotBlogs : {
         	method : 'get',
-        	url : '../mobile/blog/hotBlog/:pageNumber',
+        	url : '../blog/hotBlog/:pageNumber',
         	isArray :true
         },
         deleteBlog : {
         	method : 'get',
-        	url : '../mobile/blog/delete/:id'
+        	url : '../blog/delete/:id'
         },
         blogMention : {
         	method : 'get',
-        	url : '../mobile/blog/mentionBlog/:id'
+        	url : '../blog/mentionBlog/:id'
         }
     };
     

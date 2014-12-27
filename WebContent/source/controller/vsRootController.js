@@ -20,11 +20,9 @@ angular.module('vsApp')
      *     ...
      * &lt;/html&gt;
      */
-    ['$cookies','$rootScope','chatDomain','remindFactory','$http',function ($cookies,$rootScope,chatDomain,remindFactory,$http) {
-    	window.setInterval(function(){
-			remindFactory();
-		}, 60000);
+    ['$cookies','$rootScope','$http',function ($cookies,$rootScope,$http) {
     	
+    	/*
     	var nsid = $cookies.nsid;
     	if(nsid){
     		nsid = nsid.replace(/("|')/g,'');
@@ -54,5 +52,5 @@ angular.module('vsApp')
 //		    socket.on('refresh-group',function(data){
 //			    alert('refresh-group : ' + data);
 //		    });
-	    }
+	    }*/
     }]);

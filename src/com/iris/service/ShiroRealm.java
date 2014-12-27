@@ -41,7 +41,7 @@ public class ShiroRealm extends AuthorizingRealm{
 		if(!account.getIsLock().equals(ParamKey.UN_LOCKED)){
 			throw new DisabledAccountException();
 		}
-		return new SimpleAuthenticationInfo(account.getLoginName(), account.getPasswd(), getName());
+		return new SimpleAuthenticationInfo(account, account.getPasswd(), getName());
 	}
 	
 	

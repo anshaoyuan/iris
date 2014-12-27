@@ -18,7 +18,7 @@ angular.module('vsService').factory('sessionInterceptorFactory',['alertBoxFactor
 				textAlign : 'center'
 			});
 			setTimeout(function(){
-				window.location.href = '../login';
+				window.location.href = '../public/signin.html';
 			},5000);
 		}
 		return value;

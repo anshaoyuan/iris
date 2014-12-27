@@ -1,6 +1,6 @@
-aside.article.aside
+//aside.article.aside
 
-  section.author
+//  section.author
     h4.title 作者
     .clearfix
       .avatar.pull-left
@@ -9,12 +9,12 @@ aside.article.aside
         h4 {{createName}}
         small {{createTitle}}
 
-  section.hot(ng-show="isSignup==0 && hotBlogLength >= 1")
+//  section.hot(ng-show="isSignup==0 && hotBlogLength >= 1")
     h4.title 最热分享
     ul.list-unstyled(ng-repeat="blog in hotBlogs")
       li: a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName | omitFilter:20}}
       
-section.aside-panel.event(ng-show="isSignup==1")
+// section.aside-panel.event(ng-show="isSignup==1")
   h4.aside-panel-title 报名项目
 
   .program(ng-repeat="project in projects")

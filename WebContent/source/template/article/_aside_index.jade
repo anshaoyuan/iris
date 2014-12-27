@@ -3,14 +3,14 @@
 
       section.author
         h4.title
-        .clearfix
+      //  .clearfix
           .avatar.pull-left
             a(ng-href="#/me/{{currId}}"): img(ng-src="../{{currImg}}")
           .info.pull-left
             h4
               a(ng-href="#/me/{{currId}}") {{currName}}
 
-      section.hot(ng-show="hotBlogLength >= 1")
-        h4.title 最热分享
-        ul.list-unstyled(ng-repeat="blog in hotBlogs")
-          li: a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName | omitFilter:20}}
+      section.hot
+        h4.title 还没想好这块区放什么
+        ul.list-unstyled
+          li: 也许以后这里是放广告

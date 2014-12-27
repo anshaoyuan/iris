@@ -55,7 +55,7 @@ angular.module('vsApp', [
             //   url : '/',
             //  templateUrl: 'template/message/index.html'
             // })
-            .state('message', {
+            /*.state('message', {
                 url: '/messages',
                 templateUrl: 'template/message/index.html'
             })
@@ -91,7 +91,7 @@ angular.module('vsApp', [
                 templateUrl: 'template/message/new.html',
                 controller: 'pubMessageController'
             })
-
+*/
             // Users
             .state('signup', {
                 url: '/signup',
@@ -101,6 +101,7 @@ angular.module('vsApp', [
                 url: '/signin',
                 templateUrl: 'template/signin.html'
             })
+            /*
             .state('me_uid', {
                 url: '/me/:uid',
                 templateUrl: 'template/user/me.html'
@@ -142,7 +143,7 @@ angular.module('vsApp', [
                 templateUrl: 'template/group/show.html',
                 controller: 'teamDetailController'
             })
-
+*/
             // Articles
             .state('articles', {
                 url: '/articles?pageNumber',
@@ -169,7 +170,7 @@ angular.module('vsApp', [
                 templateUrl: 'template/article/new.html',
                 controller: 'blogEditController'
             })
-
+/*
             //Question
             .state('questions', {
                 url: '/questions',
@@ -259,6 +260,7 @@ angular.module('vsApp', [
               templateUrl: 'template/events/program.html',
               controller: 'signupProjectController'
             })
+            */
             .state('otherwise', {
                 url: '/otherwise',
                 template: '<strong>错误：</strong>请检查 <code>route</code> 路径' +
