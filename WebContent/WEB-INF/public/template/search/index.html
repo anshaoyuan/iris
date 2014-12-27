@@ -1,0 +1,31 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <section class="search-bar clearfix">
+        <ul class="nav nav-pills pull-left">
+          <li class="{{currNav == 'BLOG' ? 'active' : ''}}"><a href="" ng-click="switchNav('BLOG')">分享</a></li>
+          <li class="{{currNav == 'QUESTION' ? 'active' : ''}}"><a href="" ng-click="switchNav('QUESTION')">问答</a></li>
+          <li class="{{currNav == 'STREAM' ? 'active' : ''}}"><a href="" ng-click="switchNav('STREAM')">消息</a></li>
+        </ul>
+      </section>
+    </div>
+    <div ng-cloak="ng-cloak" ng-hide="loading || lists.length &lt;= 0" class="col-md-12">
+      <p class="text-info">你正在搜索[关键字]，以下是在[类别]中找到的结果：</p>
+      <article ng-repeat="list in lists" class="search-result clearfix">
+        <section class="pull-left">
+          <h4><a href="" ng-click="gotoDetail(currNav,list.id)" ng-bind-html="list.ss_title_name | omitFilter:50"></a></h4>
+          <p><a href="" ng-click="gotoDetail(currNav,list.id)" ng-bind-html="list.ss_stream_text | omitFilter:150"> </a></p>
+          <div class="meta"><a href="#/me/{{list.sb_create_by}}"><strong> {{list.ss_create_by_name}}</strong></a><span class="divider">/</span>
+            <time datetime="{{list.s_create_date}}" class="text-muted">{{list.s_create_date.slice(0,19)}}</time>
+          </div>
+        </section>
+      </article>
+      <div class="text-center">
+        <pagination boundary-links="true" max-size="maxSize" ng-click="paging()" total-items="totalItems" items-per-page="itemsPerPage" page="currentPage" rotate="false" previous-text="&lt;" next-text="&gt;" first-text="&lt;&lt;" last-text="&gt;&gt;" class="pagination-sm"></pagination>
+      </div>
+    </div>
+    <div ng-cloak="ng-cloak" ng-show="loading" style="padding-top:200px;" class="col-md-12 text-center"><i class="fa fa-spinner fa-spin fa-4x"></i></div>
+    <div ng-cloak="ng-cloak" ng-show="lists.length &lt;= 0" style="color:red" class="col-md-12 text-center">未找到你想要的结果!</div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+
+<div class="container article-container">
+  <div class="col-md-8">
+    <article class="article single">
+      <h3 ng-cloak="ng-cloak" class="title">{{blogTitle}}<a href="javascript:history.back()" class="btn btn-warning btn-back">返回列表</a></h3>
+      <div class="col-md-12">
+        <ul ng-if="fileList &amp;&amp; fileList.length &gt; 0" class="nav nav-pills">
+          <li ng-repeat="atta in fileList"><a href="" ng-click="downloadFile(atta.id)" ng-cloak="ng-cloak">{{atta.resourceName}}</a></li>
+        </ul>
+      </div>
+      <div ng-bind-html="blogContent" class="content"></div>
+      <section class="meta clearfix">
+        <!--.action.pull-left
+        button.btn.btn-warning(ng-disabled="clickMentionValue",ng-click="clickMention()",class="{{!mentionId ? 'btn-default' : 'btn-danger'}}",title="{{mentions}}")
+          span.bicon.bicon-thumbs-up
+          | <strong>{{blogPraiseCount}}</strong>&nbsp;{{mentionId ? '已赞' : '赞'}}
+        button.btn.btn-link(ng-click="store(hasStore)",ng-if="isSignup==0")
+          span.bicon
+          | {{hasStore == 1 ? '取消收藏' : '收藏'}}  
+        button.btn.btn-link(ng-show="isOwner == 1",ng-click="to_update()",id="update_blog" )
+          span.bicon.bicon-pencil
+          | 编辑
+        button.btn.btn-link(ng-show="isOwner == 1",confirm-directive="",title="确认删除吗？",ok-fn="deleteBlog(config,attr)")
+          span.bicon.bicon-trash
+          | 删除
+        a.btn.btn-link(ng-href="#/new?bid={{blogId}}")
+          span.bicon.bicon-pencil
+          | 转发消息
+        -->
+        <div class="info pull-right"><small class="text-muted">发表于：
+            <time datetime="{{blogCreateDate}}">{{blogCreateDate | timeFilter}}</time></small></div>
+      </section>
+      <hr/>
+      <section class="comment">
+        <h4><em class="text-info">{{commentLength}}</em>&nbsp;条评论</h4>
+        <ul class="list-unstyled">
+          <li ng-repeat="comment in comments" class="comment-item">
+            <p ng-bind-html="comment.commentHtml"></p>
+            <section class="meta">
+              <div class="clearfix">
+                <div class="info pull-left"><a ng-href="#/me/{{comment.userId}}"><small>{{comment.userNickname}}</small></a><small>
+                    <time class="text-muted">{{comment.createDate}}</time></small></div>
+                <div class="action pull-right">
+                  <button ng-click="showCommentForm(comment)" class="btn btn-link">评论</button>
+                  <button ng-show="comment.userId == currUser" confirm-directive="" title="确认删除吗?" data-commentId="{{comment.id}}" ok-fn="deleteComment(config,attr)" class="btn btn-link">删除</button>
+                </div>
+              </div>
+              <div ng-if="comment.subFormShow">
+                <div class="form-group">
+                  <textarea rows="5" placeholder="发表评论" ng-model="commentHtml2" class="form-control"></textarea>
+                </div>
+                <div class="form-group clearfix">
+                  <button type="submit" ng-click="subComment(0,commentHtml2)" class="btn btn-warning pull-right"><span class="bicon bicon-ok"></span>提交</button>
+                </div>
+              </div>
+            </section>
+          </li>
+        </ul>
+        <form class="reply-form">
+          <h5>你的评论：</h5>
+          <div class="form-group">
+            <textarea rows="5" placeholder="发表评论" ng-model="commentHtml1" class="form-control"></textarea>
+          </div>
+          <div class="form-group clearfix">
+            <button type="submit" ng-click="subComment(1,commentHtml1)" class="btn btn-warning pull-right"><span class="bicon bicon-ok"></span>提交</button>
+          </div>
+        </form>
+      </section>
+    </article>
+  </div>
+  <div class="col-md-4">
+    <!--aside.article.aside-->
+    <!--  section.author
+    h4.title 作者
+    .clearfix
+      .avatar.pull-left
+        a(ng-href="#/me/{{createBy}}"): img(ng-src="../{{createImg}}")
+      .info.pull-left
+        h4 {{createName}}
+        small {{createTitle}}
+        
+    -->
+    <!--  section.hot(ng-show="isSignup==0 && hotBlogLength >= 1")
+    h4.title 最热分享
+    ul.list-unstyled(ng-repeat="blog in hotBlogs")
+      li: a(ng-href="#/articles/show/{{blog.id}}") {{blog.titleName | omitFilter:20}}
+      
+    -->
+    <!-- section.aside-panel.event(ng-show="isSignup==1")
+    h4.aside-panel-title 报名项目
+    
+    .program(ng-repeat="project in projects")
+      h5.program-title {{$index+1}}. {{project.projectName|omitFilter:20}}
+        i.badge.program-signup-count {{project.signupCount}}
+      .program-date-range
+        .start-date 报名开始时间：<time datatime="{{project.startDate}}">{{project.startDate }}</time>
+        .close-date 报名结束时间：<time datatime="{{project.endDate}}">{{project.endDate }}</time>
+      .program-status.clearfix(ng-if="project.status ==2")
+        span.label.label-danger.pull-left 报名尚未开始
+        button.btn.btn-default.btn-sm.pull-right(type="button" ,ng-click="showProjectDetail(project.id)") 查看详情
+          i.fa.fa-fw.fa-arrow-right
+      .program-status.clearfix(ng-if="project.status ==3")
+        span.label.label-success.pull-left 报名正在进行
+        button.btn.btn-warning.btn-sm.pull-right(type="button",ng-click="showProjectDetail(project.id)",ng-if="project.isSignUp==0") 现在报名
+        button.btn.btn-warning.btn-sm.pull-right(type="button",ng-click="showProjectDetail(project.id)",ng-if="project.isSignUp==1") 查看详情
+          i.fa.fa-fw.fa-arrow-right
+      .program-status.clearfix(ng-if="project.status ==1")
+        span.label.label-default.pull-left 报名已经结束
+        button.btn.btn-default.btn-sm.pull-right(type="button" ,ng-click="showProjectDetail(project.id)") 查看详情
+          i.fa.fa-fw.fa-arrow-right    
+    -->
+  </div>
+</div>

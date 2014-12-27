@@ -1,0 +1,85 @@
+
+<div class="container">
+  <div class="col-md-8">
+    <article class="article single qa">
+      <h3 ng-cloak="ng-cloak" class="title">{{questionTitle}}<a href="javascript:history.back()" class="btn btn-warning btn-back">返回列表</a></h3>
+      <div ng-bind-html="questionContent"></div>
+      <section class="meta clearfix">
+        <div class="action pull-left">
+          <button ng-disabled="clickMentionValue" ng-click="clickMention()" title="{{mentions}}" class="btn btn-warning {{mentionId ? 'btn-danger' : 'btn-default'}}"><span class="bicon bicon-thumbs-up"></span><strong>{{questionPraiseCount}}</strong>&nbsp;{{mentionId ? '已赞' : '赞'}}</button>
+          <button ng-click="store(hasStore)" class="btn btn-link"><span class="bicon"></span>{{hasStore == 1 ? '取消收藏' : '收藏'}}    </button>
+          <button ng-show="isOwner == 1" ng-click="editQuestion()" class="btn btn-link"><span class="bicon bicon-pencil"></span>编辑</button>
+          <button ng-show="isOwner == 1" confirm-directive="" title="确认删除吗？" ok-fn="deleteQuestion(config,attr)" class="btn btn-link"><span class="bicon bicon-trash"></span>删除</button><a ng-href="#/new?qid={{questionId}}" class="btn btn-link"><span class="bicon bicon-pencil"></span>转发</a>
+        </div>
+        <div class="info pull-right"><small class="text-muted">发表于：
+            <time datetime="{{questionCreateDate}}">{{questionCreateDate | timeFilter}}</time></small></div>
+      </section>
+      <hr/>
+      <section class="comment">
+        <h4><em class="text-info">{{answerLength}}</em>&nbsp;条回答</h4>
+        <ul class="list-unstyled">
+          <li ng-repeat="answer in answers | orderBy:isSolution:true" class="comment-item">
+            <p ng-bind-html="answer.answerHtml"></p>
+            <section class="meta clearfix">
+              <div class="clearfix">
+                <div class="avatar pull-left"><a ng-href="#/me/{{answer.userId}}"><img ng-src="..{{answer.userImgUrl}}"/></a></div>
+                <div class="info pull-left"><a ng-href="#/me/{{answer.userId}}"><small>{{answer.userName}}</small></a><small>
+                    <time class="text-muted">{{answer.createDate}}</time></small></div>
+                <div class="action pull-right">
+                  <button ng-show="answer.isSolution" class="btn btn-link">已解决</button>
+                  <button ng-show="solution" ng-click="solutionQuestion(answer.id)" class="btn btn-link">最佳答案</button>
+                  <button ng-click="showAnswerForm(answer)" class="btn btn-link">回复</button>
+                  <button ng-show="answer.userId == currUser" confirm-directive="" title="确认删除吗?" data-answerId="{{answer.id}}" ok-fn="deleteAnswer(config,attr)" class="btn btn-link">删除</button>
+                  <button ng-click="clickMentionAnswer(answer.id)" class="btn {{answer.mentionId==null ? 'btn-default' : 'btn-danger'}}"><span class="bicon bicon-thumbs-up"></span><strong>{{answer.praiseCount}}</strong>&nbsp;{{answer.mentionId==null ? '赞' : '已赞'}}</button>
+                </div>
+              </div>
+              <div ng-if="answer.subFormShow">
+                <div class="form-group">
+                  <textarea rows="5" placeholder="发表回答" name="content2" rich-text-directive="answerHtml2" config="richTextConfig" rich-text-writer="answerHtml2_value" file-list="fileList" img-list="imgList" class="form-control"></textarea>
+                </div>
+                <div class="form-group clearfix">
+                  <button type="submit" ng-click="answerSub(0,answerHtml2)" class="btn btn-warning pull-right"><span class="bicon bicon-ok"></span>提交</button>
+                </div>
+              </div>
+            </section>
+          </li>
+        </ul>
+        <form class="reply-form">
+          <h5>你的回答：</h5>
+          <div class="form-group">
+            <textarea rows="5" placeholder="发表回答" name="content" rich-text-directive="answerContent1" config="richTextConfig" file-list="fileList" rich-text-writer="answerContent1_value" img-list="imgList" class="form-control"></textarea>
+          </div>
+          <div class="form-group clearfix">
+            <button type="submit" ng-click="answerSub(1,answerContent1)" class="btn btn-warning pull-right"><span class="bicon bicon-ok"></span>提交</button>
+          </div>
+        </form>
+      </section>
+    </article>
+  </div>
+  <div class="col-md-4">
+    <aside class="article aside qa">
+      <section class="author">
+        <h4 class="title">作者</h4>
+        <div class="clearfix">
+          <div class="avatar pull-left"><a ng-href="#/me/{{createBy}}"><img ng-src="../{{createImg}}"/></a></div>
+          <div class="info pull-left">
+            <h4>{{createName}}</h4><small>{{createTitle}}</small>
+          </div>
+        </div>
+        <div class="clearfix">
+          <h4 class="title">邀请作答</h4>
+          <select name="newTo" chosen-directive="newTo" search-callback="searchReceiver" search-list="newToList" multiple="multiple" data-placeholder="  " class="form-control pull-left">
+            <option ng-repeat="to in newToList" ng-selected="to.selected" value="{{to.id}}">{{to.name}}</option>
+          </select>
+          <button ng-click="askQuestion(users)" class="btn btn-warning pull-right"><span class="bicon bicon-ok">邀请</span></button>
+        </div>
+      </section>
+      <section ng-show="hotQuestionLength &gt;= 1" class="hot">
+        <h4 class="title">最热问答</h4>
+        <ul ng-repeat="question in hotQuestions" class="list-unstyled">
+          <li><a href="#questions/show/{{question.id}}">{{question.titleName}}</a></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+</div>

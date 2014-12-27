@@ -1,0 +1,58 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <section class="search-bar clearfix">
+        <ul class="nav nav-pills pull-left">
+          <li class="{{currNav == 'blog' ? 'active' : ''}}"><a href="" ng-click="switchNav('blog')">分享</a></li>
+          <li class="{{currNav == 'question' ? 'active' : ''}}"><a href="" ng-click="switchNav('question')">问答</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <article ng-repeat="blog in blogArray" class="article list clearfix">
+        <section class="avatar pull-right"><a ng-href="#/me/{{blog.createBy}}"><img ng-src="../{{blog.userImgUrl}}"/></a></section>
+        <section class="entity pull-left">
+          <h4 class="title"><a ng-href="#/articles/show/{{blog.id}}">{{blog.titleName}}</a></h4>
+          <div class="clearfix">
+            <div class="excerpt-image pull-left"><img ng-src="{{blog.picture}}" ng-show="blog.picture!=''"/></div>
+            <p class="excerpt">{{blog.streamText | omitFilter:200}}</p>
+          </div>
+          <footer class="meta clearfix"><strong><a ng-href="#/me/{{blog.createBy}}">{{blog.userNickname}}</a></strong>&nbsp;/&nbsp;
+            <time datetime="{{blog.createDate}}">{{blog.createDate | timeFilter}}</time>&nbsp;/&nbsp;赞：{{blog.praiseCount}}
+            &nbsp;/&nbsp;评论：{{blog.commentCount}}
+          </footer>
+        </section>
+      </article>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div ng-repeat="question in questionList">
+        <div class="qa-item">
+          <ul class="stats list-inline">
+            <li>
+              <div class="score answer">{{question.answerCount}}</div>答案
+            </li>
+            <li>
+              <div class="score agree">{{question.praiseCount}}</div>赞同
+            </li>
+          </ul>
+          <div class="brief">
+            <time datetime="{{question.createDate}}" class="timestamp">{{question.createDate | timeFilter}}</time>
+            <div class="avatar"><a href="#/me/{{question.createBy}}"><img ng-src="..{{question.userImgUrl}}"/></a></div>
+            <div class="content">
+              <h5 class="title"><a ng-href="#/questions/show/{{question.id}}">{{question.titleName | omitFilter:60}}</a></h5>
+              <div class="extra"><a ng-href="#/me/{{question.createBy}}"><span class="bicon bicon-user"></span>{{question.userNickname}}</a></div>
+            </div>
+          </div><img ng-show="question.isSolution" ng-src="image/solved.jpg" class="solved"/>
+        </div>
+      </div>
+      <div class="text-center">
+        <pagination boundary-links="true" ng-click="paging()" max-size="maxSize" rotate="false" total-items="totalItems" items-per-page="itemsPerpage" page="currentPage" previous-text="&lt;" next-text="&gt;" first-text="&lt;&lt;" last-text="&gt;&gt;" class="pagination-sm"></pagination>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <section class="qa-header">
+        <h4 class="title"><img src="image/t_qna.png"/><small><a href="#/questions/new">提问题</a></small></h4>
+        <div class="qa-filters btn-group">
+          <button type="button" ng-click="clickNewMenu()" class="btn btn-link {{title == '最新问题' ? 'disabled' : ''}}"><span class="bicon bicon-time"></span>最新问题</button>
+          <button type="button" ng-click="clickHotMenu()" class="btn btn-link {{title == '最热问题' ? 'disabled' : ''}}"><span class="bicon bicon-fire"></span>最热问题</button>
+          <button type="button" ng-click="clickUnMenu()" class="btn btn-link {{title == '未答问题' ? 'disabled' : ''}}"><span class="bicon bicon-screenshot"></span>未答问题</button>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div ng-repeat="question in questionList">
+        <div class="qa-item">
+          <ul class="stats list-inline">
+            <li>
+              <div class="score answer">{{question.answerCount}}</div>答案
+            </li>
+            <li>
+              <div class="score agree">{{question.praiseCount}}</div>赞同
+            </li>
+          </ul>
+          <div class="brief">
+            <time datetime="{{question.createDate}}" class="timestamp">{{question.createDate | timeFilter}}</time>
+            <div class="avatar"><a href="#/me/{{question.createBy}}"><img ng-src="..{{question.userImgUrl}}"/></a></div>
+            <div class="content">
+              <h5 class="title"><a ng-href="#/questions/show/{{question.id}}">{{question.titleName | omitFilter:60}}</a></h5>
+              <div class="extra"><a ng-href="#/me/{{question.createBy}}"><span class="bicon bicon-user"></span>{{question.userNickname}}</a></div>
+            </div>
+          </div><img ng-show="question.isSolution" ng-src="image/solved.jpg" class="solved"/>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <pagination boundary-links="true" max-size="maxSize" ng-click="getQuestions(currentPage)" total-items="totalItems" items-per-page="itemsPerPage" page="currentPage" rotate="false" previous-text="&lt;" next-text="&gt;" first-text="&lt;&lt;" last-text="&gt;&gt;" class="pagination-sm"></pagination>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <section ng-show="myQuestionShow" class="qa-mine">
+        <h5>我的问答<a href="" ng-click="clickMyMenu()" class="more">全部</a></h5>
+        <ul ng-repeat="question in myQuestions" class="list-unstyled">
+          <li><a ng-href="#/questions/show/{{question.id}}">{{question.titleName | omitFilter:60}}</a></li>
+        </ul>
+      </section>
+      <section ng-show="hotQuestionShow" class="qa-hot">
+        <h5>热门问答<a href="" ng-click="clickHotMenu()" class="more">全部</a></h5>
+        <ul ng-repeat="question in hotQuestions" class="list-unstyled">
+          <li><a href="#questions/show/{{question.id}}">{{question.titleName | omitFilter:60}}</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>

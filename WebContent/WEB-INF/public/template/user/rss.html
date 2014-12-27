@@ -1,0 +1,29 @@
+
+<section class="page-header">
+  <div class="container">
+    <h2 class="col-md-8"><small>来自RSS</small></h2>
+    <div class="page-header-action col-md-4 clearfix"></div>
+  </div>
+</section>
+<div class="container">
+  <div class="docs-navbar clearfix"><span>RSS名称:
+      <input type="text" ng-model="rssModel.rssName"/></span><span>RSS地址:
+      <input type="text" ng-model="rssModel.rssUrl" max-length="40"/></span><span>
+      <input ng-disabeld="btnFlag" type="button" ng-click="addRss()" value="新增" class="btn btn-default"/></span></div>
+</div>
+<div class="container">
+  <ul class="list-inline">
+    <li ng-repeat="rss in rssArray"><a href="" ng-click="viewRss(rss.rssName)">{{rss.rssName}}</a>&nbsp;&nbsp;<a href="" confirm-directive="" title="确认删除吗?" ok-fn="delRss(config,attr)" data-rssname="{{rss.rssName}}">x</a></li>
+  </ul>
+</div>
+<div ng-repeat="blog in rssDetailList" class="container">
+  <article class="article list col-md-8">
+    <section class="entity pull-left">
+      <h4 class="title"><a ng-href="">{{blog.titleName}}</a></h4>
+      <p ng-bind-html="blog.streamContent" class="excerpt"></p>
+      <footer class="meta clearfix"><strong><a ng-href="">{{blog.createBy}}</a></strong>&nbsp;/&nbsp;
+        <time datetime="{{blog.createDate}}">{{blog.createDate | timeFilter}}</time>&nbsp;<a href="" ng-click="shareRss(blog)" class="btn btn-warning">分享</a>
+      </footer>
+    </section>
+  </article>
+</div>
