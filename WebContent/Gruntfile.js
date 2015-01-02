@@ -54,7 +54,31 @@ module.exports = function (grunt) {
                 ext: '.css'
             }
         },
-
+        
+        uglify:
+        {
+        	
+        		options: {
+                    banner: '/*! <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                  },
+                  build: {
+                    src: '<%= config.path.public %>iris.js',
+                    dest: '<%= config.path.public %>iris.js'
+                  },	
+                  build1: {
+                    src: '<%= config.path.public %>common/angular.js',
+                    dest: '<%= config.path.public %>common/angular.js'
+                  }
+//        	angular:{
+//        		options: {
+//                    banner: '/*! <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+//                  },
+//                  build: {
+//                    src: '<%= config.path.public %>common/angular.js',
+//                    dest: '<%= config.path.public %>common/angular.js'
+//                  }
+//        	}
+         },
         copy: {
             font: {
                 expand: true,
@@ -188,7 +212,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
-
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     /**
           * 模版编译，通过传递 `env` 环境变量向模版传递不同的 `data`
           *
@@ -271,7 +295,7 @@ module.exports = function (grunt) {
         'copy:font', 'copy:image', 'copy:ie',
         'concat:plugin_js', 'concat:angular', 'concat:iris'
     ]);
-
+    
     grunt.registerTask('default', ['routine', 'nolivereload']);
     grunt.registerTask('run', ['routine', 'server', 'watch']);
 
@@ -283,4 +307,5 @@ module.exports = function (grunt) {
     });
     //CI 构建时使用
     grunt.registerTask('build',['routine','build-product']);
+    grunt.registerTask('zip',['uglify']);
 };

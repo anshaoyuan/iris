@@ -7,7 +7,7 @@
 4 verbose node symlink E:\win8install\nodejs\\node.exe
 5 error install Couldn't read dependencies
 6 error Failed to parse json
-6 error Unexpected end of input
+6 error Unexpected string
 7 error File: E:\workdir\code\iris\WebContent\package.json
 8 error Failed to parse package.json data.
 8 error package.json must be actual JSON, not just JavaScript.
