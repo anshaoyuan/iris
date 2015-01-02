@@ -76,7 +76,7 @@ public class BaseController {
 
 	public static Long getLoginUserId() {
 		Account user = (Account) SecurityUtils.getSubject().getPrincipal();
-		if(user==null) return null;
+		if(user==null) return -1l;
 		
 		return user.getId();
 	}
@@ -90,7 +90,7 @@ public class BaseController {
 	 */
 	public static String getLoginUserName() {
 		Account user = (Account)SecurityUtils.getSubject().getPrincipal();
-		if(user==null) return null;
+		if(user==null) return "anonymity";
 		
 		return user.getLoginName();
 	}

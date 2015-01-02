@@ -20,20 +20,23 @@
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManagerCas" />
-		<property name="loginUrl" value="/login" />
+		<property name="loginUrl" value="/index" />
 		<property name="successUrl" value="/mobile/index" />
 		<property name="unauthorizedUrl" value="/error/403.jsp"/>
 		<property name="filterChainDefinitions">
 			<value>
 				/login = anon
 				/blog/* = anon
-				/blog/delete/* = authc
+				/index = anon
+				/blog/delete/** = authc
 				/blog/update = authc
-				/blogComment/comments/* = anon
+				/blogComment/comments/** = anon
+				/blogComment/** = anon
 				/help/** = anon
 				/static/** = anon
 				/js/** = anon
                 /public/** = anon
+                /downloadFile/** = anon
                 /html/** = anon
 				/register/** = anon
 				/downloadFile/client/** = anon

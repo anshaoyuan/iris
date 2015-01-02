@@ -1,1 +1,8 @@
 /bin/
+
+/src/application-local.properties
+ 
+/WebContent/WEB-INF/classes/
+/WebContent/WEB-INF/public/
+/WebContent/downloadFile/
+/WebContent/uploadFile/

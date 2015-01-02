@@ -2854,7 +2854,7 @@ angular.module('vsController')
                 if($scope.remember){
                     $cookies.lastLoginName = $scope.username;
                 }
-                window.location.href = '../index' ;
+                window.location.href = '../public/index.html#/articles' ;
 			}else{
 				alertBoxFactory(result.msg,{width : 400,textAlign: 'center'});
 			}

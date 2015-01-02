@@ -87,11 +87,11 @@ public class PropsKeys {
 	
 	public static final String EMAIL_UPLOAD_FILE_IMG_SIZE = "email.upload.file.img.size";
 	
-	public static final String UPLOAD_IMG_SIZE_MOBILE_WIDTH = "upload.img.size.mobile.width";
+	public static final String UPLOAD_IMG_SIZE_MOBILE_WIDTH = "upload.img.size.mobilewidth";
 	
-	public static final String UPLOAD_IMG_SIZE_MID_WIDTH = "upload.img.size.mid.width";
+	public static final String UPLOAD_IMG_SIZE_MID_WIDTH = "upload.img.size.midwidth";
 	
-	public static final String UPLOAD_IMG_SIZE_MIN_WIDTH = "upload.img.size.min.width";
+	public static final String UPLOAD_IMG_SIZE_MIN_WIDTH = "upload.img.size.minwidth";
 	
 	public static final String MOBILESEND_APPKEY = "mobileSend.appkey";
 	

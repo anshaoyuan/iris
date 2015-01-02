@@ -71,6 +71,14 @@ http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
          </value>
          </property>
         </bean>
+        	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property><!--默认编码  ISO-8859-1 -->
+		<property name="maxInMemorySize" value="4096"> </property><!--最大内存大小10240  -->
+		<property name="uploadTempDir" value="/uploadFile/"></property><!-- 上传的临时目录 -->
+		<property name="maxUploadSize" value="-1"></property><!--上传文件的最大大小，-1为不限制  -->
+	</bean>
+	<!-- end -->
   <!--视图解析-->
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
             <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -82,5 +90,5 @@ http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
   <mvc:resources mapping="/js/**" location="/WEB-INF/js/" cache-period="31556921"/>
   <mvc:resources mapping="/public/**" location="/WEB-INF/public/" cache-period="31556921"/>
   <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>
-  
+   <mvc:resources mapping="/downloadFile/**" location="/WEB-INF/downloadFile/" cache-period="31556926"/>
 </beans>
