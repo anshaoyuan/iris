@@ -77,8 +77,9 @@
     </bean>
 	<!-- local development环境 -->
 	<beans profile="development">
-		<context:property-placeholder ignore-resource-not-found="true"
-			location="classpath*:/application-local.properties" />	
+		<context:property-placeholder ignore-resource-not-found="true" local-override="false"
+			location="classpath*:/application.properties,classpath*:/application-local.properties" />	
+				
 		<bean id="c3p0DataSource"  abstract="true">               
              <property name="initialPoolSize" value="1"/>  <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->              
             <property name="minPoolSize" value="1"/> <!--连接池中保留的最小连接数。-->                       
@@ -107,34 +108,39 @@
 		</bean>
 		 -->
 		 <!-- 数据源配置,使用应用内的Tomcat JDBC连接池 -->
-<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+		<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 			<!-- Connection Info -->
-			<property name="driverClassName" value="${jdbc.driver}" />
-			<property name="url" value="${jdbc.url}" />
-			<property name="username" value="${jdbc.username}" />
-			<property name="password" value="${jdbc.password}" />
-			<property name="defaultAutoCommit" value="false" />
-		</bean>
-	</beans>
-<!-- unit test环境 -->
-	<beans profile="test">
-		<context:property-placeholder ignore-resource-not-found="true"
-			location="classpath*:/application-local.properties" />	
-
-
-		 <!-- 数据源配置,使用应用内的Tomcat JDBC连接池 -->
-	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
-			<!-- Connection Info -->
-			<property name="driverClassName" value="${jdbc.driver}" />
+            <property name="driverClassName" value="${jdbc.driver}" />
 			<property name="url" value="${jdbc.url}" />
 			<property name="username" value="${jdbc.username}" />
 			<property name="password" value="${jdbc.password}" />
 			<property name="maxActive" value="${jdbc.pool.maxActive}" />
 			<property name="maxIdle" value="${jdbc.pool.maxIdle}" />
 			<property name="defaultAutoCommit" value="false" />
+			<property name="testOnBorrow" value="true" />
+			<property name="testWhileIdle" value="true" />
+			<property name="validationQuery" value="select 1 from dual" />
 		</bean>
-		
+	</beans>
+<!-- unit test环境 -->
+	<beans profile="test">
+		<context:property-placeholder ignore-resource-not-found="true" local-override="true"
+			location="classpath*:/application.properties,classpath*:/application-local.properties" />	
 			
-	
+		 <!-- 数据源配置,使用应用内的Tomcat JDBC连接池 -->
+		<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+			<!-- Connection Info -->
+            <property name="driverClassName" value="${jdbc.driver}" />
+			<property name="url" value="${jdbc.url}" />
+			<property name="username" value="${jdbc.username}" />
+			<property name="password" value="${jdbc.password}" />
+			<property name="maxActive" value="${jdbc.pool.maxActive}" />
+			<property name="maxIdle" value="${jdbc.pool.maxIdle}" />
+			<property name="defaultAutoCommit" value="false" />
+			<property name="testOnBorrow" value="true" />
+			<property name="testWhileIdle" value="true" />
+			<property name="validationQuery" value="select 1 from dual" />
+		</bean>
+
 	</beans>
 </beans>
